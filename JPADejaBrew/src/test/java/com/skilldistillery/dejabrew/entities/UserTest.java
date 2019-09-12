@@ -43,8 +43,9 @@ class UserTest {
 
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test_user_entity_mapping() {
+		assertEquals("fred" ,user.getUsername());
+		assertEquals("fred", user.getPassword());
 	}
 
 }
