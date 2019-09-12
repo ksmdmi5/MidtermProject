@@ -4,7 +4,7 @@ target
 build
 bin
 .metadata
-# .settings
+.settings
 .gradle
 *.war
 *.bak
