@@ -17,7 +17,7 @@ public class BeerType {
 	private String name;
 	private String description;
 
-	@ManyToMany(mappedBy = "beer_type")
+	@ManyToMany(mappedBy = "types")
 	private List<Beer> beers;
 
 	public BeerType() {
