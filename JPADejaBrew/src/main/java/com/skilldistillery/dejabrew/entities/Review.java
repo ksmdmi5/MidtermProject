@@ -1,5 +1,8 @@
 package com.skilldistillery.dejabrew.entities;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +17,9 @@ public class Review {
 	private int id;
 	
 	private String details;
-	private String rating;
+	private Integer rating;
+	@Column(name="date_reviewed")
+	private LocalDate dateReviewed; 
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -29,14 +34,24 @@ public class Review {
 		super();
 	}
 
-	public Review(String details, String rating, User user, Brewery brewery) {
+	
+	public Review(String details, Integer rating, LocalDate dateReviewed, User user, Brewery brewery) {
 		super();
 		this.details = details;
 		this.rating = rating;
+		this.dateReviewed = dateReviewed;
 		this.user = user;
 		this.brewery = brewery;
 	}
-	
+
+	public LocalDate getDateReviewed() {
+		return dateReviewed;
+	}
+
+	public void setDateReviewed(LocalDate dateReviewed) {
+		this.dateReviewed = dateReviewed;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -53,11 +68,11 @@ public class Review {
 		this.details = details;
 	}
 
-	public String getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 
@@ -77,10 +92,11 @@ public class Review {
 		this.brewery = brewery;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", details=" + details + ", rating=" + rating + ", user=" + user + ", brewery="
-				+ brewery + "]";
+		return "Review [id=" + id + ", details=" + details + ", rating=" + rating + ", dateReviewed=" + dateReviewed
+				+ "]";
 	}
 
 }

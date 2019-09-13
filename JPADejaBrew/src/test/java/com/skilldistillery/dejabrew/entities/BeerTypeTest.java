@@ -1,5 +1,7 @@
 package com.skilldistillery.dejabrew.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +21,7 @@ class BeerTypeTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("DejaBrew");
 	}
 
 	@AfterAll
@@ -31,6 +33,8 @@ class BeerTypeTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		beer = em.find(BeerType.class, 1);
+		
+//		|  1 | I.P.A                   | NULL        |
 	}
 
 	@AfterEach
@@ -42,6 +46,9 @@ class BeerTypeTest {
 	@Test
 	@DisplayName("Testing Beer entity mapping")
 	public void test1() {
-		
+		assertEquals("I.P.A", beer.getName());
+
+		beer.setDescription("hello, World");
+		assertEquals("hello, World", beer.getDescription());
 	}
 }
