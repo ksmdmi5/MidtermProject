@@ -8,11 +8,16 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.dejabrew.entities.User;
+import com.skilldistillery.dejabrew.entities.Brewery;
 
 @Transactional
 @Service
 public class DejaBrewDAOImpl implements DejaBrewDAO {
+	
+	@PersistenceContext
+	private EntityManager em;
+	
+//	CF - show list of all Breweries in DB
 	@Override
 	public List<Brewery> showAll() {
 		String query = "SELECT brewery FROM Brewery brewery ORDER BY id";
