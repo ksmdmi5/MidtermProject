@@ -30,7 +30,9 @@ public class DejaBrewControllerNoAuth {
 	// handles going to details of specific brewery
 	@RequestMapping(path = "details.do", method = RequestMethod.GET)
 	public ModelAndView editBrewery(Brewery brew) {
+		System.out.println("before dao "+brew);
 		brew = dao.findById(brew.getId());
+		System.out.println("after dao "+brew);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
 		System.out.println("after:" + brew.getId());
@@ -47,39 +49,39 @@ public class DejaBrewControllerNoAuth {
 		return mv;
 	}
 
-	// goes to form to create user
-	@RequestMapping(path = "registration.do", method = RequestMethod.GET)
-	public ModelAndView gotoForm() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", new User());
-		mv.setViewName("Registration");
-		return mv;
-	}
-
-	// creation of user redirects
-	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
-	public String createBrewery(User user, RedirectAttributes redir) {
-		redir.addFlashAttribute("newUser", user);
-		dao.addUser(user);
-		return "redirect:userAdded.do";
-	}
-
-	// after user user created it goes to index
-	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
-	public ModelAndView filmAdded(@ModelAttribute("newUser") User user) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", user);
-		mv.setViewName("index");
-		return mv;
-	}
-
-	// handles logging in then goes to Authed Controller
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
-	public ModelAndView login(User user) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", user);
-		mv.setViewName("");
-		return mv;
-	}
+//	// goes to form to create user
+//	@RequestMapping(path = "registration.do", method = RequestMethod.GET)
+//	public ModelAndView gotoForm() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("user", new User());
+//		mv.setViewName("Registration");
+//		return mv;
+//	}
+//
+//	// creation of user redirects
+//	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
+//	public String createBrewery(User user, RedirectAttributes redir) {
+//		redir.addFlashAttribute("newUser", user);
+//		dao.addUser(user);
+//		return "redirect:userAdded.do";
+//	}
+//
+//	// after user user created it goes to index
+//	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
+//	public ModelAndView filmAdded(@ModelAttribute("newUser") User user) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("user", user);
+//		mv.setViewName("index");
+//		return mv;
+//	}
+//
+//	// handles logging in then goes to Authed Controller
+//	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+//	public ModelAndView login(User user) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("user", user);
+//		mv.setViewName("");
+//		return mv;
+//	}
 
 }

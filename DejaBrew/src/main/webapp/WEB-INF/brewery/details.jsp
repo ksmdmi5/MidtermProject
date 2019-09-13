@@ -19,14 +19,14 @@
 			<ul>
 				<li>Address: ${brewery.address}</li>
 				<br>
-				<li>Desription: ${brewery.description}</li>
+				<li>Description: ${brewery.description}</li>
 				<br>
 				<li>url: ${brewery.url}</li>
 				<br>
 				<li>menu: ${brewery.menu}</li>
 				<br>
 			</ul>
-			<c:if test=${! empty brewery.beers}">
+			<c:if test="${! empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
 					<li>Beers: ${beer.name}</li>

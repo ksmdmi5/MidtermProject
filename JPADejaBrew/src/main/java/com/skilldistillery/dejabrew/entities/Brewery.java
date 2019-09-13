@@ -168,6 +168,7 @@ public class Brewery {
 	}
 
 	public List<Beer> getBeers() {
+		System.err.println("******* "+beers);
 		return new ArrayList<>(beers);
 	}
 

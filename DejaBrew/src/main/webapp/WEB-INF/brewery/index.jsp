@@ -21,8 +21,14 @@ body {
 
 
 </head>
+
+<form action="details.do" method="GET">
+		Search for Brewery: <input type="text" name="brew" /> <input
+			type="submit" value="Find Brewery" />
+	</form>
+
 <body>
-    <jsp:include page="navbar.jsp" />
+    <%-- <jsp:include page="navbar.jsp" /> --%>
     <ul>
         <c:forEach var='brew' items='${brews}'>
             <form method='get' action=details.do>
