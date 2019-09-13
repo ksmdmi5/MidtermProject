@@ -168,6 +168,7 @@ public class Brewery {
 	}
 
 	public List<Beer> getBeers() {
+		System.err.println("******* "+beers);
 		return new ArrayList<>(beers);
 	}
 
@@ -178,8 +179,7 @@ public class Brewery {
 	@Override
 	public String toString() {
 		return "Brewery [id=" + id + ", name=" + name + ", description=" + description + ", url=" + url + ", active="
-				+ active + ", menu=" + menu + ", reviews=" + reviews + ", beers=" + beers + ", address=" + address
-				+ ", user=" + user + "]";
+				+ active + ", menu=" + menu + ", address=" + address + "]";
 	}
 
 }

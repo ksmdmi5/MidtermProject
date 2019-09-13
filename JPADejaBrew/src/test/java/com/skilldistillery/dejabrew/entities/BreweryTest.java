@@ -56,5 +56,25 @@ class BreweryTest {
 		assertEquals("http://www.averybrewing.com/", brew.getUrl());
 		assertTrue(brew.getMenu());
 	}
+	
+	@Test
+	@DisplayName("Testing add/remove review")
+	public void test2() {
+		Review review = new Review();
+		brew.addReview(review);
+		assertEquals(1, brew.getReviews().size());
+		brew.removeReview(review);
+		assertEquals(0, brew.getReviews().size());
+	}
+
+	@Test
+	@DisplayName("Testing add/remove beer")
+	public void test3() {
+		Beer beer = new Beer();
+		brew.addBeer(beer);
+		assertEquals(1, brew.getBeers().size());
+		brew.removeBeer(beer);
+		assertEquals(0, brew.getBeers().size());
+	}
 
 }
