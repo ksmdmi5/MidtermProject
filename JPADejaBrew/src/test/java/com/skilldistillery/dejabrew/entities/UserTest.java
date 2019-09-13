@@ -47,5 +47,25 @@ class UserTest {
 		assertEquals("fred" ,user.getUsername());
 		assertEquals("password", user.getPassword());
 	}
+	
+	@Test
+	@DisplayName("Testing add/remove brewery")
+	public void test2() {
+		Brewery brewery = new Brewery();
+		user.addBrewery(brewery);
+		assertEquals(48, user.getBreweries().size());
+		user.removeBrewery(brewery);
+		assertEquals(47, user.getBreweries().size());
+	}
+	
+	@Test
+	@DisplayName("Testing add/remove review")
+	public void test3() {
+		Review review = new Review();
+		user.addReview(review);
+		assertEquals(2, user.getReviews().size());
+		user.removeReview(review);
+		assertEquals(1, user.getReviews().size());
+	}
 
 }
