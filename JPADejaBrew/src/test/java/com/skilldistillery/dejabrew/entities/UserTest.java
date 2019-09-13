@@ -45,7 +45,7 @@ class UserTest {
 	@Test
 	void test_user_entity_mapping() {
 		assertEquals("fred" ,user.getUsername());
-		assertEquals("fred", user.getPassword());
+		assertEquals("password", user.getPassword());
 	}
 
 }
