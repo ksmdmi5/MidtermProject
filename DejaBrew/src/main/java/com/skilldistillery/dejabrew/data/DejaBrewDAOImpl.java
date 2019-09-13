@@ -16,8 +16,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
-//	CF - show list of all Breweries in DB
+
 	@Override
 	public List<Brewery> showAll() {
 		String query = "SELECT brewery FROM Brewery brewery ORDER BY id";
