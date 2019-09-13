@@ -2,13 +2,11 @@ package com.skilldistillery.dejabrew.data;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.dejabrew.entities.User;
+import com.skilldistillery.dejabrew.entities.Brewery;
 
 @Transactional
 @Service
