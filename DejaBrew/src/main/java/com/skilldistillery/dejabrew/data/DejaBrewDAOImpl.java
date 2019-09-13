@@ -11,6 +11,9 @@ import com.skilldistillery.dejabrew.entities.Brewery;
 @Transactional
 @Service
 public class DejaBrewDAOImpl implements DejaBrewDAO {
+	
+	@PersistenceContext
+	private EntityManager em;
 	@Override
 	public List<Brewery> showAll() {
 		String query = "SELECT brewery FROM Brewery brewery ORDER BY id";
