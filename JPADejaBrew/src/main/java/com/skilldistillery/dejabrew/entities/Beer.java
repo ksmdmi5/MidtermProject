@@ -21,9 +21,6 @@ public class Beer {
 
 	private String name;
 
-	@Column(name="type")
-	private String style;
-	
 	@ManyToOne
 	@JoinColumn(name = "brewery_id")
 	private Brewery brewery;
@@ -38,11 +35,10 @@ public class Beer {
 	public Beer() {
 	}
 
-	public Beer(String name, String style, Brewery brewery) {
+	public Beer(String name, Brewery brewery) {
 		super();
 		this.name = name;
 		this.brewery = brewery;
-		this.style = style;
 	}
 	
 	public Brewery getBrewery() {
@@ -77,14 +73,6 @@ public class Beer {
 		this.name = name;
 	}
 
-	public String getStyle() {
-		return style;
-	}
-
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,8 +97,7 @@ public class Beer {
 
 	@Override
 	public String toString() {
-		return "Beer [id=" + id + ", name=" + name + ", style=" + style + ", brewery=" + brewery + ", types=" + types
-				+ "]";
+		return "Beer [id=" + id + ", name=" + name + ", brewery=" + brewery + ", types=" + types + "]";
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.skilldistillery.dejabrew.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +23,7 @@ class ReviewTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("DejaBrew");
 	}
 
 	@AfterAll
@@ -31,6 +35,8 @@ class ReviewTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		review = em.find(Review.class, 1);
+		
+//		|  1 |       1 |          1 |      4 | great beer, avg service | NULL          |
 	}
 
 	@AfterEach
@@ -42,7 +48,14 @@ class ReviewTest {
 	@Test
 	@DisplayName("Testing Review entity mapping")
 	public void test1() {
+		assertEquals(1, review.getUser().getId());
+		assertEquals(1, review.getBrewery().getId());
+		assertEquals(4, review.getRating());
+		assertEquals("great beer, avg service", review.getDetails());
+		assertEquals(4, review.getRating());
 		
+		review.setDateReviewed(LocalDate.now());
+		assertEquals(LocalDate.now(), review.getDateReviewed());
 	}
 
 }

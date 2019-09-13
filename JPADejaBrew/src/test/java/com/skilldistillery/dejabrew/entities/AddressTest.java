@@ -1,5 +1,7 @@
 package com.skilldistillery.dejabrew.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +21,7 @@ class AddressTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+		emf = Persistence.createEntityManagerFactory("DejaBrew");
 	}
 
 	@AfterAll
@@ -31,6 +33,8 @@ class AddressTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		addr = em.find(Address.class, 1);
+		
+//		|  1 | 136 East Second Street | Salida | Colorado | 81201 |
 	}
 
 	@AfterEach
@@ -42,7 +46,10 @@ class AddressTest {
 	@Test
 	@DisplayName("Testing Address entity mapping")
 	public void test1() {
-		
+		assertEquals("136 East Second Street", addr.getStreet());
+		assertEquals("Salida", addr.getCity());
+		assertEquals("Colorado", addr.getState());
+		assertEquals("81201", addr.getZip());
 	}
 
 }

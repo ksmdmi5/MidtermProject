@@ -1,5 +1,6 @@
 package com.skilldistillery.dejabrew.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "beer_type")
 public class BeerType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +56,7 @@ public class BeerType {
 	}
 
 	public List<Beer> getBeers() {
-		return beers;
+		return new ArrayList<>(beers);
 	}
 
 	public void setBeers(List<Beer> beers) {
