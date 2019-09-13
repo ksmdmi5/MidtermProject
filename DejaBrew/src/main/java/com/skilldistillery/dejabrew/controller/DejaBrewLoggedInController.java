@@ -21,7 +21,7 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("brews", dao.findAll());
+		mv.addObject("brews", dao.showAll());
 		mv.setViewName("index");
 		return mv;
 	}
@@ -99,7 +99,7 @@ public class DejaBrewLoggedInController {
 	// after editing it goes to details page
 	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
 	public ModelAndView editedFilm(Brewery brew) {
-		dao.updateMtn(brew.getId(), brew);
+		dao.updateBrew(brew.getId(), brew);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
 		mv.setViewName("details");
