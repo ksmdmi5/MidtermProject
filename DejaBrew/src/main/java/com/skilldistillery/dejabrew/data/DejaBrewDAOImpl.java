@@ -26,7 +26,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 //	CF - find Brewery entity by id
 	@Override
 	public Brewery findById(int id) {
-		return em.find(Brewery.class, 1);
+		return em.find(Brewery.class, id);
 	}
 //	CF - find Brewery entity name, desc, and city by keyword
 	@Override

@@ -23,17 +23,17 @@ body {
 	<h2>Details of the Brewery you choose:</h2>
 	<br>
 	<c:choose>
-		<c:when test="${not empty brewery.id }">
-			<h3>${brewery.name}</h3>
+		<c:when test="${not empty brew }">
+			<h3>${brew.name}</h3>
 			<br>
 			<ul>
-				<li>Address: ${brewery.address}</li>
+				<li>Address: ${brew.address}</li>
 				<br>
-				<li>Description: ${brewery.description}</li>
+				<li>Description: ${brew.description}</li>
 				<br>
-				<li>url: ${brewery.url}</li>
+				<li>url: ${brew.url}</li>
 				<br>
-				<li>menu: ${brewery.menu}</li>
+				<li>menu: ${brew.menu}</li>
 				<br>
 		 	</ul>
 			<%--<c:if test="${not empty brewery.beers}">

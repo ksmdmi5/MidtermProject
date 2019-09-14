@@ -2,9 +2,9 @@ package com.skilldistillery.dejabrew.data;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 class DAOTest {
 
@@ -23,7 +23,7 @@ class DAOTest {
 	@Test
 	void test() {
 		System.out.println("hello");
-		assertEquals(1, dao.findById(2).getId());
+		assertEquals(55, dao.findById(55).getDescription().length());
 	}
 
 }

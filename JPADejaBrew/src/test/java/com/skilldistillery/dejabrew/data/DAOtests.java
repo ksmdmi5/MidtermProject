@@ -24,17 +24,17 @@ class DAOtests {
 	void tearDown() throws Exception {
 		dao = null;
 	}
-	@Disabled
+//	@Disabled
 	@Test
 	void test() {
-		assertEquals(1,dao.findById(1).getId());
+		assertEquals(1,dao.findById(55).getDescription().length());
 	}
 	@Disabled
 	@Test
 	void test2() {
 		assertEquals(47,dao.showAll().size());
 	}
-	
+	@Disabled
 	@Test
 	@DisplayName("")
 	void test3() {
