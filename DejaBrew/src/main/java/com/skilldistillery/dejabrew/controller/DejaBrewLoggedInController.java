@@ -60,7 +60,9 @@ public class DejaBrewLoggedInController {
 	// after editing it goes to details page
 	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
 	public ModelAndView editedBrewery(Brewery brew) {
+		System.out.println("before update " + brew);
 		dao.updateBrew(brew.getId(), brew);
+		System.out.println("after update " + brew);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
 		mv.setViewName("details");

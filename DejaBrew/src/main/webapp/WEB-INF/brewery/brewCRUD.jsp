@@ -8,30 +8,57 @@
 <title>Create New Brewery</title>
 </head>
 <body>
-	<jsp:include page="navbar.jsp"/>
-	<h2>Brewery Add Page</h2>
-	<form action="createBrewery.do" method="POST" modelAttribute="breweryForm">
-		Brewery Name here: <input type="text" name="name" value="${brewery.name}"/><br>
-Street Address:   <input type="text" name="street" value="${address.street}"/><br>
-City:  <input type="text" name="city" value="${address.city}"/><br>
-State:  <input type="text" name="state" value="${address.state}"/><br>
-ZipCode:  <input type="number" name="zip" value="${address.zip}"/><br>
-<br>
-Does the establishment have a food menu? (Y/N)<br>
-  <input type="radio" name="menu" value="yes" ${brewery.menu==true ? "checked":""}>Yes<br>
-<input type="radio" name="menu" value="no" ${brewery.menu==false ? "checked":""}>No<br>
-<br>
-Brewery Description:  <input type="text" name="description" value="${brewery.description}"/><br>
-<br>
-URL for the Brewery: <input type="text" name="url" value="${brewery.url}"/><br>
+	<jsp:include page="navbar.jsp" />
+	<c:if test="${not empty brew }">
+		<h2>Brewery Add Page</h2>
+	</c:if>
+	<c:choose>
+	
+	<c:when test="${not empty brew }">
+	<form action="createBrewery.do" method="POST"
+		modelAttribute="breweryForm">
+	
+	</c:when>
+	<c:otherwise>
+	<form action="breweryEdited.do" method="POST"
+		modelAttribute="breweryForm">
+	
+	</c:otherwise>
+	</c:choose>
+		Brewery Name here: <input type="text" name="name"
+			value="${editBrew.name}" /><br> Street Address: <input
+			type="text" name="street" value="${editBrew.address.street}" /><br>
+		City: <input type="text" name="city" value="${editBrew.address.city}" /><br>
+		State: <input type="text" name="state" value="${editBrew.address.state}" /><br>
+		ZipCode: <input type="number" name="zip" value="${editBrew.address.zip}" /><br>
+		<br> Does the establishment have a food menu? (Y/N)<br> <input
+			type="radio" name="menu" value="yes"
+			${editBrew.menu==true ? "checked":""}>Yes<br> <input
+			type="radio" name="menu" value="no"
+			${editBrew.menu==false ? "checked":""}>No<br> <br>
+		Brewery Description: <input type="text" name="description"
+			value="${editBrew.description}" /><br> <br> URL for the
+		Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
 
-<input type="hidden" name="userId" value="1"/><!-- Change after authoritazation XXXXXXXX -->
+		<input type="hidden" name="userId" value="1" />
+		<input type="hidden" name="brewId" value="${editBrew.id }" />
+		<!-- Change after authoritazation XXXXXXXX -->
 
-<p>After the Brewery has been created you will be given a chance to add a review of the establishment and add what types of beers they have.</p>
-<br>
- <input type="submit" value="Submit New Brewery"/><br>
- 
-</form>
+		<p>After the Brewery has been created you will be given a chance
+			to add a review of the establishment and add what types of beers they
+			have.</p>
+		<br>
+		<c:choose>
+			<c:when test="${not empty brew }">
+				<input type="submit" value="Submit New Brewery" />
+				<br>
+			</c:when>
+			<c:otherwise>
+				<input type="submit" value="Update Brewery" />
+			</c:otherwise>
+		</c:choose>
+
+	</form>
 
 
 

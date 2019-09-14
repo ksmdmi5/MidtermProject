@@ -80,5 +80,21 @@ public class DejaBrewControllerNoAuth {
 		mv.setViewName("");
 		return mv;
 	}
+	// handles updating brewery
+//	@RequestMapping(path = "updateBrew.do", method = RequestMethod.GET)
+//	public ModelAndView updateBrew(@RequestParam("id") int id, Model model) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("brew", dao.findById(id));
+//		mv.setViewName("brewCRUD");
+//		return mv;
+//	}
+//	@RequestMapping(path = "updateBrew.do", method = RequestMethod.POST)
+//	public ModelAndView updateBrew(Brewery brew) {
+//		Brewery updateBrew = dao.updateBrew(brew.getId(), brew);
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("brew", updateBrew);
+//		mv.setViewName("details");
+//		return mv;
+//	}
 
 }
