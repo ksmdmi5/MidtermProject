@@ -29,7 +29,9 @@ body {
 
 <body>
 <jsp:include page="navbar.jsp"/>
-    <%-- <jsp:include page="navbar.jsp" /> --%>
+	<form action="creationFormBrewery.do" method="GET" >
+	To Add a Brewery:  <input type="submit" value="Create Brewery" />
+	</form><br>
     <ul>
         <c:forEach var='brew' items='${brews}'>
             <form method='get' action=details.do>
