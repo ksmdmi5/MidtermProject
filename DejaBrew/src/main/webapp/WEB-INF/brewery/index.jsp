@@ -29,7 +29,6 @@ body {
 
 <body>
 <jsp:include page="navbar.jsp"/>
-    <%-- <jsp:include page="navbar.jsp" /> --%>
     <ul>
         <c:forEach var='brew' items='${brews}'>
             <form method='get' action=details.do>
