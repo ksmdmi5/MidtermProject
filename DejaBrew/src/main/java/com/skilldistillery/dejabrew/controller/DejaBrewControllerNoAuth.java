@@ -2,6 +2,7 @@ package com.skilldistillery.dejabrew.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,6 +79,22 @@ public class DejaBrewControllerNoAuth {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
 		mv.setViewName("");
+		return mv;
+	}
+	// handles updating brewery
+	@RequestMapping(path = "updateBrew.do", method = RequestMethod.GET)
+	public ModelAndView updateBrew(@RequestParam("id") int id, Model model) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brew", dao.findById(id));
+		mv.setViewName("brewCRUD");
+		return mv;
+	}
+	@RequestMapping(path = "updateBrew.do", method = RequestMethod.POST)
+	public ModelAndView updateBrew(Brewery brew) {
+		Brewery updateBrew = dao.updateBrew(brew.getId(), brew);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brew", updateBrew);
+		mv.setViewName("details");
 		return mv;
 	}
 
