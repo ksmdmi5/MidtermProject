@@ -14,6 +14,7 @@ public interface DejaBrewDAO {
 	Brewery updateBrew(int id, Brewery brew);
 	Brewery addBrewery(Brewery brew);
 	boolean deleteBrewery(int id);
+	boolean deleteAddress(int id);
 	Address addAddress(Address address);
 	User addUser(User user);
 	boolean deleteUser(int id, User user);

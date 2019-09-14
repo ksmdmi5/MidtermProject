@@ -59,7 +59,7 @@ public class DejaBrewLoggedInController {
 
 	// after editing it goes to details page
 	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
-	public ModelAndView editedFilm(Brewery brew) {
+	public ModelAndView editedBrewery(Brewery brew) {
 		dao.updateBrew(brew.getId(), brew);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
@@ -69,8 +69,17 @@ public class DejaBrewLoggedInController {
 
 	// deletion redirects
 	@RequestMapping(path = "deleteBrewery.do", method = RequestMethod.POST)
-	public String deleteFilm(Brewery brew, RedirectAttributes redir) {
-		redir.addFlashAttribute("status", dao.deleteBrewery(brew.getId()));
+	public String deleteBrewery(Brewery brew, RedirectAttributes redir) {
+		boolean status = false;
+		brew = dao.findById(brew.getId());
+		System.out.println(brew);
+		int addrId = brew.getAddress().getId();
+		int brewId = brew.getId();
+		if (dao.deleteBrewery(brewId) && dao.deleteAddress(addrId)) {
+			status = true;
+		}
+		redir.addFlashAttribute("status", status);
+		
 		return "redirect:/DejaBrew";
 
 	}
