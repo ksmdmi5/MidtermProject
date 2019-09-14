@@ -178,8 +178,8 @@ public class Brewery {
 
 	@Override
 	public String toString() {
-		return "Brewery [id=" + id + ", name=" + name + ", description=" + description + ", url=" + url + ", active="
-				+ active + ", menu=" + menu + ", address=" + address + "]";
+		return "Brewery [id=" + id + ", name=" + name;// + ", description=" + description + ", url=" + url + ", active="
+				//+ active + ", menu=" + menu + ", address=" + address + "]";
 	}
 
 }

@@ -34,14 +34,14 @@ public class DejaBrewLoggedInController {
 //		return mv;
 //	}
 //
-//	// goes to form to create brewery
-//	@RequestMapping(path = "creationFormBrewery.do", method = RequestMethod.GET)
-//	public ModelAndView gotoForm() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("brew",  new Brewery();
-//		mv.setViewName("CRUD");
-//		return mv;
-//	}
+	// goes to form to create brewery
+	@RequestMapping(path = "creationFormBrewery.do", method = RequestMethod.GET)
+	public ModelAndView gotoForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brew",  new Brewery());
+		mv.setViewName("brewCRUD");
+		return mv;
+	}
 //	//goes to form to create user
 //	@RequestMapping(path = "registration.do", method = RequestMethod.GET)
 //		public ModelAndView gotoForm() {
