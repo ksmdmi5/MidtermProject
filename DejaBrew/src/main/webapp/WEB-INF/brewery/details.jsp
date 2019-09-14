@@ -4,12 +4,22 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 65px;
+}
+</style>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1"
+    charset="UTF-8">
 <title>Show Individual Brewery</title>
 </head>
 <body>
-	<%--  --%><%-- <jsp:include page="navbar.jsp"></jsp:include> --%>
+	<jsp:include page="navbar.jsp"/>
 	<h2>Details of the Brewery you choose:</h2>
 	<br>
 	<c:choose>
@@ -25,8 +35,8 @@
 				<br>
 				<li>menu: ${brewery.menu}</li>
 				<br>
-		<%-- 	</ul>
-			<c:if test="${not empty brewery.beers}">
+		 	</ul>
+			<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
 					<li>Beers: ${beer.name}</li>

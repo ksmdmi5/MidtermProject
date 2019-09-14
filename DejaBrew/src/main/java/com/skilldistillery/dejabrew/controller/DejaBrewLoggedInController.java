@@ -57,10 +57,10 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "createBrewery.do", method = RequestMethod.POST, params = "brewForm")
 	public String createBrewery(CreateForm brewForm, RedirectAttributes redir) {
 		redir.addFlashAttribute("newbrew", brewForm);
-		Address address = new Address(brewForm.getStreet(), brewForm.getCity(), 
+		Address address = new Address(brewForm.getStreet(), brewForm.getCity(),
 				brewForm.getState(), brewForm.getZip());
 		dao.addAddress(address);
-		dao.addBrew(brewForm.getName(), brewForm.getDescription(), brewForm.getUrl(), true, 
+		dao.addBrew(brewForm.getName(), brewForm.getDescription(), brewForm.getUrl(), true,
 				brewForm.getMenu(), address, brewForm.getUserId());
 		return "redirect:brewFormeryAdded.do";
 	}

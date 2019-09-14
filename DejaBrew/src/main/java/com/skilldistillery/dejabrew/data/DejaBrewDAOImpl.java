@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.dejabrew.entities.Brewery;
+import com.skilldistillery.dejabrew.entities.User;
 
 @Transactional
 @Service
@@ -35,6 +36,47 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 				+ " LIKE :keyword", Brewery.class)
 				.setParameter("keyword", "%"+keyword+"%").getResultList();
 	}
+	
+	@Override
+	public Brewery updateBrew(int id, Brewery brew) {
+		Brewery chgBrew = em.find(Brewery.class, id);
+		chgBrew.setName(brew.getName());
+		chgBrew.setAddress(brew.getAddress());
+		chgBrew.setBeers(brew.getBeers());
+		chgBrew.setUrl(brew.getUrl());
+		chgBrew.setDescription(brew.getDescription());
+		chgBrew.setActive(brew.isActive());
+		chgBrew.setReviews(brew.getReviews());
+		em.persist(chgBrew);
+		em.flush();
+		em.close();
+		
+		return chgBrew;
+	}
+	
+	@Override
+	public Brewery addBrewery(Brewery brew) {
+		em.persist(brew);
+		em.flush();
+		return em.find(Brewery.class, brew.getId());
+	}
+	@Override
+	public User addUser(User user) {
+		em.persist(user);
+		em.flush();
+		return em.find(User.class, user.getId());
+	}
+	@Override
+	public boolean deleteUser(int id, User user) {
+		try {
+			em.remove(em.find(User.class, id));
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
+	}
+	
 	
 	
 }
