@@ -6,20 +6,20 @@
 <html>
 <style>
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 65px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 65px;
 }
 </style>
 <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1"
-    charset="UTF-8">
+	charset="UTF-8">
 <title>Show Individual Brewery</title>
 </head>
 <body>
-	<jsp:include page="navbar.jsp"/>
+	<jsp:include page="navbar.jsp" />
 	<h2>Details of the Brewery you choose:</h2>
 	<br>
 	<c:choose>
@@ -35,7 +35,13 @@ body {
 				<br>
 				<li>menu: ${brew.menu}</li>
 				<br>
-		 	</ul>
+			</ul>
+			<form method='POST' action=deleteBrewery.do>
+				<li>${brew.name }</li>
+				<button class="btn btn-secondary" type="submit">
+					Delete Brewery</button>
+				<input type="hidden" name="id" value="${brew.id}">
+			</form>
 			<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
@@ -56,10 +62,10 @@ body {
 	<li>added by user: ${brewery.user}</li>
 	<br>
  --%>
-	</c:when>
-	<c:otherwise>
-		<p>No Brewery Found</p>
-	</c:otherwise>
+		</c:when>
+		<c:otherwise>
+			<p>No Brewery Found</p>
+		</c:otherwise>
 
 	</c:choose>
 </body>

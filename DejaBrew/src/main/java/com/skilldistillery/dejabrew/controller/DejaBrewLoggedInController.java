@@ -71,17 +71,8 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "deleteBrewery.do", method = RequestMethod.POST)
 	public String deleteFilm(Brewery brew, RedirectAttributes redir) {
 		redir.addFlashAttribute("status", dao.deleteBrewery(brew.getId()));
-		return "redirect:breweryDeleted.do";
+		return "redirect:/DejaBrew";
 
 	}
 
-	// redirects to index
-	@RequestMapping(path = "breweryDeleted.do", method = RequestMethod.GET)
-	public ModelAndView filmDeleted(@ModelAttribute("status") String status) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("deletedStatus", status);
-		mv.setViewName("index");
-		return mv;
-
-	}
 }

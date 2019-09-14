@@ -8,15 +8,15 @@ import com.skilldistillery.dejabrew.entities.User;
 
 
 public interface DejaBrewDAO {
-	public List<Brewery> showAll();
-	public Brewery findById(int id);
-	public List<Brewery> findBreweryByKeyword(String keyword);
+	List<Brewery> showAll();
+	Brewery findById(int id);
+	List<Brewery> findBreweryByKeyword(String keyword);
 	Brewery updateBrew(int id, Brewery brew);
 	Brewery addBrewery(Brewery brew);
-	Brewery deleteBrewery(int id);
-	public Address addAddress(Address address);
-	public User addUser(User user);
-	public boolean deleteUser(int id, User user);
+	boolean deleteBrewery(int id);
+	Address addAddress(Address address);
+	User addUser(User user);
+	boolean deleteUser(int id, User user);
 	User findUserById(int id);
 
 }
