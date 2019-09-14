@@ -1,7 +1,5 @@
 package com.skilldistillery.dejabrew.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.dejabrew.data.DejaBrewDAO;
+import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 
 @Controller
@@ -55,12 +54,12 @@ public class DejaBrewLoggedInController {
 //	@RequestMapping(path = "createBrewery.do", method = RequestMethod.POST)
 //	public String createBrewery(Brewery brew, RedirectAttributes redir) {
 //		redir.addFlashAttribute("newbrew", brew);
-//		dao.addMtn(brew);
+//		dao.addBrew(brew);
 //		return "redirect:breweryAdded.do";
 //	}
 //	//redirection goes to details of created brewery
 //	@RequestMapping(path = "breweryAdded.do", method = RequestMethod.GET)
-//	public ModelAndView filmAdded(@ModelAttribute("newBrew") Brewery brew) {
+//	public ModelAndView brewAdded(@ModelAttribute("newBrew") Brewery brew) {
 //		ModelAndView mv = new ModelAndView();
 //		mv.addObject("brew", brew);
 //		mv.setViewName("details");
@@ -75,7 +74,7 @@ public class DejaBrewLoggedInController {
 //	}
 //	// after user user created it goes to index
 //	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
-//	public ModelAndView filmAdded(@ModelAttribute("newUser") User user) {
+//	public ModelAndView brewAdded(@ModelAttribute("newUser") User user) {
 //		ModelAndView mv = new ModelAndView();
 //		mv.addObject("user", user);
 //		mv.setViewName("index");
@@ -91,8 +90,8 @@ public class DejaBrewLoggedInController {
 //	}
 //	// after editing it goes to details page
 //	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
-//	public ModelAndView editedFilm(Brewery brew) {
-//		dao.updateMtn(brew.getId(), brew);
+//	public ModelAndView editedBrew(Brewery brew) {
+//		dao.updateBrew(brew.getId(), brew);
 //		ModelAndView mv = new ModelAndView();
 //		mv.addObject("brew", brew);
 //		mv.setViewName("details");
@@ -100,14 +99,14 @@ public class DejaBrewLoggedInController {
 //	}
 //	// deletion redirects
 //	@RequestMapping(path = "deleteBrewery.do", method = RequestMethod.POST)
-//	public String deleteFilm(Brewery brew, RedirectAttributes redir) {
+//	public String deleteBrew(Brewery brew, RedirectAttributes redir) {
 //		redir.addFlashAttribute("status", dao.destroy(brew.getId()));
 //		return "redirect:breweryDeleted.do";
 //
 //	}
 //	// redirects to index
 //	@RequestMapping(path = "breweryDeleted.do", method = RequestMethod.GET)
-//	public ModelAndView filmDeleted(@ModelAttribute("status") String status) {
+//	public ModelAndView brewDeleted(@ModelAttribute("status") String status) {
 //		ModelAndView mv = new ModelAndView();
 //		mv.addObject("deletedStatus", status);
 //		mv.setViewName("index");

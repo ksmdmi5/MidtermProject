@@ -13,5 +13,6 @@ public interface DejaBrewDAO {
 	Brewery updateBrew(int id, Brewery brew);
 	Brewery addBrewery(Brewery brew);
 	public User addUser(User user);
+	public boolean deleteUser(int id, User user);
 
 }
