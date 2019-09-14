@@ -80,5 +80,4 @@ public class DejaBrewControllerNoAuth {
 		mv.setViewName("");
 		return mv;
 	}
-
 }

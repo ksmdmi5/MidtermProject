@@ -48,12 +48,10 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public Brewery updateBrew(int id, Brewery brew) {
 		Brewery chgBrew = em.find(Brewery.class, id);
 		chgBrew.setName(brew.getName());
-		chgBrew.setAddress(brew.getAddress());
-		chgBrew.setBeers(brew.getBeers());
+		chgBrew.setAddress(updateAddress(brew.getAddress().getId(), brew.getAddress()));
 		chgBrew.setUrl(brew.getUrl());
 		chgBrew.setDescription(brew.getDescription());
 		chgBrew.setActive(brew.isActive());
-		chgBrew.setReviews(brew.getReviews());
 		em.persist(chgBrew);
 		em.flush();
 		em.close();
@@ -113,7 +111,19 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
-	
-	
+
+	@Override
+	public Address updateAddress(int id, Address addr) {
+		Address chgAddr = em.find(Address.class, id);
+		chgAddr.setCity(addr.getCity());
+		chgAddr.setState(addr.getState());
+		chgAddr.setStreet(addr.getStreet());
+		chgAddr.setZip(addr.getZip());
+		em.persist(chgAddr);
+		em.flush();
+		em.close();
+		
+		return chgAddr;
+	}
+
 }

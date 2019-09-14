@@ -28,7 +28,7 @@ public class Brewery {
 	private List<Review> reviews;
 
 	@OneToMany(mappedBy = "brewery")
-	private List<Beer> beers;
+	private List<Beer> beers = new ArrayList<>();
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
@@ -168,7 +168,6 @@ public class Brewery {
 	}
 
 	public List<Beer> getBeers() {
-		System.err.println("******* "+beers);
 		return new ArrayList<>(beers);
 	}
 
