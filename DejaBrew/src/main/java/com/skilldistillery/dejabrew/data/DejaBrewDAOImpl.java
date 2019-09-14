@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.dejabrew.entities.Brewery;
+import com.skilldistillery.dejabrew.entities.User;
 
 @Transactional
 @Service
@@ -58,6 +59,12 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.persist(brew);
 		em.flush();
 		return em.find(Brewery.class, brew.getId());
+	}
+	@Override
+	public User addUser(User user) {
+		em.persist(user);
+		em.flush();
+		return em.find(User.class, user.getId());
 	}
 	
 	

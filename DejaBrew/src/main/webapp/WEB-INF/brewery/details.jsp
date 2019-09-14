@@ -9,7 +9,7 @@
 <title>Show Individual Brewery</title>
 </head>
 <body>
-	<%--  --%><%-- <jsp:include page="navbar.jsp"></jsp:include> --%>
+	<jsp:include page="navbar.jsp"/>
 	<h2>Details of the Brewery you choose:</h2>
 	<br>
 	<c:choose>
