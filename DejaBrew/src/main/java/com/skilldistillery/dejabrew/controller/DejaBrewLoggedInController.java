@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -48,24 +49,28 @@ public class DejaBrewLoggedInController {
 		return mv;
 	}
 
-	// goes to form to update Brewery
-	@RequestMapping(path = "editBrewery.do", method = RequestMethod.GET)
-	public ModelAndView editBrewery(Brewery brew) {
+	// after editing it goes to details page
+	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
+	public ModelAndView editBrewery(@RequestParam("brewId") int id, CreateForm breweryForm) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("editBrew", dao.findById(brew.getId()));
-		mv.setViewName("brewCRUD");
+		int addrId = dao.findById(id).getAddress().getId();
+		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(),
+				breweryForm.getState(), breweryForm.getZip());
+		address.setId(addrId);
+		dao.updateAddress(addrId, address);
+		dao.updateBrew(id, new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), 
+				true, breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+		mv.addObject("brew", dao.findById(id));
+		mv.setViewName("details");
 		return mv;
 	}
 
-	// after editing it goes to details page
-	@RequestMapping(path = "breweryEdited.do", method = RequestMethod.POST)
+	// goes to form to update Brewery
+	@RequestMapping(path = "editBrewery.do", method = RequestMethod.GET)
 	public ModelAndView editedBrewery(Brewery brew) {
-		System.out.println("before update " + brew);
-		dao.updateBrew(brew.getId(), brew);
-		System.out.println("after update " + brew);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("brew", brew);
-		mv.setViewName("details");
+		mv.addObject("editBrew", dao.findById(brew.getId()));
+		mv.setViewName("brewCRUD");
 		return mv;
 	}
 

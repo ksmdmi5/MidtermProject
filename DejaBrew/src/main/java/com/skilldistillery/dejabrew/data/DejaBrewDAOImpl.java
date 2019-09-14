@@ -49,11 +49,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		Brewery chgBrew = em.find(Brewery.class, id);
 		chgBrew.setName(brew.getName());
 		chgBrew.setAddress(updateAddress(brew.getAddress().getId(), brew.getAddress()));
-		chgBrew.setBeers(brew.getBeers());
 		chgBrew.setUrl(brew.getUrl());
 		chgBrew.setDescription(brew.getDescription());
 		chgBrew.setActive(brew.isActive());
-		chgBrew.setReviews(brew.getReviews());
 		em.persist(chgBrew);
 		em.flush();
 		em.close();
