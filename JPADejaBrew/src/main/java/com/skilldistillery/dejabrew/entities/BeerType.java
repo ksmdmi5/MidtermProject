@@ -65,7 +65,7 @@ public class BeerType {
 
 	@Override
 	public String toString() {
-		return "BeerType [id=" + id + ", name=" + name + ", description=" + description + ", beers=" + beers + "]";
+		return "BeerType [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
 }
