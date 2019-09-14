@@ -105,6 +105,18 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.flush();
 		return em.find(Address.class, address.getId());
 	}
+
+	@Override
+	public boolean deleteAddress(int id) {
+		try {
+			System.out.println(id);
+			em.remove(em.find(Address.class, id));
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
+	}
 	
 	
 	
