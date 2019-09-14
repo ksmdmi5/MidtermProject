@@ -8,7 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+import com.skilldistillery.dejabrew.entities.Beer;
+=======
 import com.skilldistillery.dejabrew.entities.Address;
+>>>>>>> 99fe6835e7303cd8ae340d9b0994aa1709a0d443
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 

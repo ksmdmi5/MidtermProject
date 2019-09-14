@@ -30,15 +30,9 @@ public class DejaBrewControllerNoAuth {
 	// handles going to details of specific brewery
 	@RequestMapping(path = "details.do", method = RequestMethod.GET)
 	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id) {
-		System.out.println("******************** before dao "+brew.getDescription());
-		System.out.println("############# BREW ##########" + brew);
-		System.out.println("$$$$$$$$$$$$$$$" + id);
 		brew = dao.findById(brew.getId());
-		System.out.println("%%%%%%%%%%%%%%%%% BREW ##########" + brew);
-		System.out.println("after dao "+brew.getDescription());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
-		System.out.println("after:" + brew.getId());
 		mv.setViewName("details");
 		return mv;
 	}
