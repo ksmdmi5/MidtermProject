@@ -8,7 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import com.skilldistillery.dejabrew.entities.Beer;
+=======
+import com.skilldistillery.dejabrew.entities.Address;
+>>>>>>> 99fe6835e7303cd8ae340d9b0994aa1709a0d443
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 
@@ -18,6 +22,12 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+//	CF - find User entity by id
+	@Override
+	public User findUserById(int id) {
+		return em.find(User.class, id);
+	}
 
 	@Override
 	public List<Brewery> showAll() {
@@ -76,6 +86,24 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		}
 		em.close();
 		return true;
+	}
+
+	@Override
+	public boolean deleteBrewery(int id) {
+		try {
+			em.remove(em.find(Brewery.class, id));
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
+	}
+
+	@Override
+	public Address addAddress(Address address) {
+		em.persist(address);
+		em.flush();
+		return em.find(Address.class, address.getId());
 	}
 	
 	
