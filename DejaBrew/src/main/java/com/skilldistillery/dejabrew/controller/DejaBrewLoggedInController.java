@@ -72,7 +72,6 @@ public class DejaBrewLoggedInController {
 	public String deleteBrewery(Brewery brew, RedirectAttributes redir) {
 		boolean status = false;
 		brew = dao.findById(brew.getId());
-		System.out.println(brew);
 		int addrId = brew.getAddress().getId();
 		int brewId = brew.getId();
 		if (dao.deleteBrewery(brewId) && dao.deleteAddress(addrId)) {
