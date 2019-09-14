@@ -29,7 +29,7 @@ URL for the Brewery: <input type="text" name="url" value="${brewery.url}"/><br>
 
 <p>After the Brewery has been created you will be given a chance to add a review of the establishment and add what types of beers they have.</p>
 <br>
- <input type="submit" name="addNewBrewery" value="Submit New Brewery"/><br>
+ <input type="submit" value="Submit New Brewery"/><br>
  
 </form>
 
