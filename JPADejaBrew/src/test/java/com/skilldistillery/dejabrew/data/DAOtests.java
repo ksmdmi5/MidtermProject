@@ -5,7 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.skilldistillery.dejabrew.entities.Address;
+import com.skilldistillery.dejabrew.entities.Brewery;
+import com.skilldistillery.dejabrew.entities.User;
 
 class DAOtests {
 	private DejaBrewDAO dao;
@@ -24,9 +29,23 @@ class DAOtests {
 	void test() {
 		assertEquals(1,dao.findById(1).getId());
 	}
+	@Disabled
 	@Test
 	void test2() {
 		assertEquals(47,dao.showAll().size());
+	}
+	
+	@Test
+	@DisplayName("")
+	void test3() {
+		User user1 = new User("asdf", "asdf", true,"asdf");
+		user1.setId(3);
+		Address addy = new Address("Fake st", "fake state", "fake city", "12347");
+		addy.setId(5);
+		Brewery brew = new Brewery("fred", "fred", "fred", true, true,addy, user1 );
+		brew.setBeers(null);
+		brew.setReviews(null);
+		assertEquals("fred", dao.addBrewery(brew).getName());
 	}
 
 }

@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.skill.distillery.springcrud.data.FourteenerDAO;
 import com.skilldistillery.dejabrew.data.DejaBrewDAO;
 import com.skilldistillery.dejabrew.entities.User;
-import com.skilldistillery.jpamountain.entities.Fourteener;
 
 @Controller
 public class DejaBrewLoggedInController {
@@ -27,7 +25,7 @@ public class DejaBrewLoggedInController {
 		mv.setViewName("index");
 		return mv;
 	}
-	
+
 	// handles keyword search function
 	@RequestMapping(path = "searchKeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {

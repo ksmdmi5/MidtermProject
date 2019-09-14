@@ -36,6 +36,29 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 				.setParameter("keyword", "%"+keyword+"%").getResultList();
 	}
 	
+	@Override
+	public Brewery updateBrew(int id, Brewery brew) {
+		Brewery chgBrew = em.find(Brewery.class, id);
+		chgBrew.setName(brew.getName());
+		chgBrew.setAddress(brew.getAddress());
+		chgBrew.setBeers(brew.getBeers());
+		chgBrew.setUrl(brew.getUrl());
+		chgBrew.setDescription(brew.getDescription());
+		chgBrew.setActive(brew.isActive());
+		chgBrew.setReviews(brew.getReviews());
+		em.persist(chgBrew);
+		em.flush();
+		em.close();
+		
+		return chgBrew;
+	}
+	
+	@Override
+	public Brewery addBrewery(Brewery brew) {
+		em.persist(brew);
+		em.flush();
+		return em.find(Brewery.class, brew.getId());
+	}
 	
 	
 	
