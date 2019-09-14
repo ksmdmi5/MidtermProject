@@ -53,7 +53,7 @@ public class DejaBrewControllerNoAuth {
 	public ModelAndView gotoForm() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", new User());
-		mv.setViewName("Registration");
+		mv.setViewName("register");
 		return mv;
 	}
 
