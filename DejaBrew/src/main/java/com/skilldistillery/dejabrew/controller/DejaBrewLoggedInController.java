@@ -12,21 +12,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.dejabrew.data.DejaBrewDAO;
 import com.skilldistillery.dejabrew.entities.User;
-//import com.skilldistillery.jpamountain.entities.Fourteener;
 
 @Controller
 public class DejaBrewLoggedInController {
 	@Autowired
 	private DejaBrewDAO dao;
-//	// home page
+	// home page
 //	@RequestMapping(path = "/")
 //	public ModelAndView index() {
 //		ModelAndView mv = new ModelAndView();
-//		mv.addObject("brews", dao.findAll());
+//		mv.addObject("brews", dao.showAll());
 //		mv.setViewName("index");
 //		return mv;
 //	}
-//	
+//
 //	// handles keyword search function
 //	@RequestMapping(path = "searchKeyword.do", params = "keyword", method = RequestMethod.GET)
 //	public ModelAndView getFilmByKeyword(String keyword) {
