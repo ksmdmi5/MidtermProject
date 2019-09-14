@@ -22,7 +22,7 @@ public class Brewery {
 	private String description;
 	private String url;
 	private boolean active;
-	private Boolean menu;
+	private boolean menu;
 
 	@OneToMany(mappedBy = "brewery")
 	private List<Review> reviews;

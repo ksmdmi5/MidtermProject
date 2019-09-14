@@ -25,8 +25,8 @@
 				<br>
 				<li>menu: ${brewery.menu}</li>
 				<br>
-		<%-- 	</ul>
-			<c:if test="${not empty brewery.beers}">
+		 	</ul>
+			<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
 					<li>Beers: ${beer.name}</li>

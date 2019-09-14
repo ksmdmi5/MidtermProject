@@ -23,7 +23,7 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("brews", dao.findAll());
+		mv.addObject("brews", dao.showAll());
 		mv.setViewName("index");
 		return mv;
 	}
