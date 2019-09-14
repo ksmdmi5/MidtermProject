@@ -19,6 +19,7 @@ class BreweryTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private Brewery brew;
+	private Brewery brewMain;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,6 +34,7 @@ class BreweryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
+		brewMain = em.find(Brewery.class, 1);
 		brew = em.find(Brewery.class, 2);
 		
 //		|  2 |          2 |              1 | Avery Brewing Company |      1 | Established in 1993, Avery Brewing Co. is a family owned and operated micro-brewery dedicated to brewing the finest quality English and Belgian style ales.. From humble beginnings, brewing 800 barrels of three different beers in 1994, we have progressed to brewing 13,000 barrels of twenty different beers in 2007. We attribute this success to beer drinkers gravitating to beers with more interesting flavor profiles. The unique flavor complexity of Avery beers occurs through a combination of sparing no expense with regard to ingredients and our hopping methods. Sparing no expense means using lots of specialty malts, imported hops, such as Styrian Goldings, and imported Belgian candy sugar. | http://www.averybrewing.com/ |    1 |
@@ -55,6 +57,8 @@ class BreweryTest {
 		assertEquals("Established in 1993", brew.getDescription().substring(0,19));
 		assertEquals("http://www.averybrewing.com/", brew.getUrl());
 		assertTrue(brew.getMenu());
+		assertEquals(5, brewMain.getBeers().size());
+		assertEquals(1, brewMain.getReviews().size());
 	}
 	
 	@Test

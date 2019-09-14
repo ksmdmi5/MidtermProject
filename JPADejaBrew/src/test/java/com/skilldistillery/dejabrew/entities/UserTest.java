@@ -1,7 +1,7 @@
 package com.skilldistillery.dejabrew.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +46,12 @@ class UserTest {
 	void test_user_entity_mapping() {
 		assertEquals("fred" ,user.getUsername());
 		assertEquals("password", user.getPassword());
+		user.setRole("admin");
+		assertEquals("admin", user.getRole());
+		user.setEnabled(false);
+		assertFalse(user.getEnabled());
+		assertEquals(1, user.getReviews().size());
+		assertEquals(47, user.getBreweries().size());
 	}
 	
 	@Test

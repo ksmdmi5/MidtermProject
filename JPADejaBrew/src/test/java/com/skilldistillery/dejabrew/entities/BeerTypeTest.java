@@ -47,6 +47,7 @@ class BeerTypeTest {
 	@DisplayName("Testing Beer entity mapping")
 	public void test1() {
 		assertEquals("I.P.A", beer.getName());
+		assertEquals(1, beer.getBeers().size());
 
 		beer.setDescription("hello, World");
 		assertEquals("hello, World", beer.getDescription());
