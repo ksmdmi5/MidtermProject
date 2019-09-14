@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.dejabrew.entities.Beer;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 
