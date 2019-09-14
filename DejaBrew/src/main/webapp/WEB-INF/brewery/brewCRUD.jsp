@@ -20,7 +20,7 @@
 	
 	</c:when>
 	<c:otherwise>
-	<form action="editedBrewery.do" method="POST"
+	<form action="breweryEdited.do" method="POST"
 		modelAttribute="breweryForm">
 	
 	</c:otherwise>
