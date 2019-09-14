@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,6 @@ body {
 				<li>menu: ${brew.menu}</li>
 				<br>
 			</ul>
-<<<<<<< HEAD
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
@@ -66,39 +66,13 @@ body {
 			<br>
 			<li>added by user: ${brewery.user}</li>
 			<br>
-=======
-			<form method='POST' action=deleteBrewery.do>
-				<li>${brew.name }</li>
-				<button class="btn btn-secondary" type="submit">
-					Delete Brewery</button>
-				<input type="hidden" name="id" value="${brew.id}">
-			</form>
-			<%--<c:if test="${not empty brewery.beers}">
-				<c:forEach items="${brewery.beers}" var="beer">
-					<li>Beers: ${beer.type}</li>
-					<li>Beers: ${beer.name}</li>
-					<br>
-				</c:forEach>
-			</c:if>
-	<br>
-	<c:if test="${not empty brewery.reviews}">
-
-		<c:forEach items="${brewery.reviews}" var="review">
-			<li>Reviews: ${review.details}</li>
-			<li>Reviews: ${review.rating}</li>
-			<br>
-		</c:forEach>
-	</c:if>
-	<br>
-	<li>added by user: ${brewery.user}</li>
-	<br>
- --%>
->>>>>>> 99fe6835e7303cd8ae340d9b0994aa1709a0d443
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
 		</c:otherwise>
-
 	</c:choose>
+	<form action="editBrewery.do" method="GET" >
+	<input type="hidden" value="${brew.id }" name="id"> 
+	Edit Brewery:  <input type="submit" value="Edit Brewery" />
 </body>
 </html>
