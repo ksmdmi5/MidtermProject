@@ -36,7 +36,6 @@ body {
 				<li>menu: ${brew.menu}</li>
 				<br>
 			</ul>
-<<<<<<< HEAD
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
@@ -66,7 +65,6 @@ body {
 			<br>
 			<li>added by user: ${brewery.user}</li>
 			<br>
-=======
 			<form method='POST' action=deleteBrewery.do>
 				<li>${brew.name }</li>
 				<button class="btn btn-secondary" type="submit">
@@ -93,7 +91,6 @@ body {
 	<li>added by user: ${brewery.user}</li>
 	<br>
  --%>
->>>>>>> 99fe6835e7303cd8ae340d9b0994aa1709a0d443
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
