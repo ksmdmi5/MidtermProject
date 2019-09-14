@@ -85,9 +85,14 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	}
 
 	@Override
-	public Brewery deleteBrewery(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteBrewery(int id) {
+		try {
+			em.remove(em.find(Brewery.class, id));
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
 	}
 
 	@Override
