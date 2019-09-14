@@ -8,11 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-import com.skilldistillery.dejabrew.entities.Beer;
-=======
 import com.skilldistillery.dejabrew.entities.Address;
->>>>>>> 99fe6835e7303cd8ae340d9b0994aa1709a0d443
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 
@@ -52,7 +48,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public Brewery updateBrew(int id, Brewery brew) {
 		Brewery chgBrew = em.find(Brewery.class, id);
 		chgBrew.setName(brew.getName());
-		chgBrew.setAddress(brew.getAddress());
+		chgBrew.setAddress(updateAddress(brew.getAddress().getId(), brew.getAddress()));
 		chgBrew.setBeers(brew.getBeers());
 		chgBrew.setUrl(brew.getUrl());
 		chgBrew.setDescription(brew.getDescription());
@@ -117,7 +113,19 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
-	
-	
+
+	@Override
+	public Address updateAddress(int id, Address addr) {
+		Address chgAddr = em.find(Address.class, id);
+		chgAddr.setCity(addr.getCity());
+		chgAddr.setState(addr.getState());
+		chgAddr.setStreet(addr.getStreet());
+		chgAddr.setZip(addr.getZip());
+		em.persist(chgAddr);
+		em.flush();
+		em.close();
+		
+		return chgAddr;
+	}
+
 }

@@ -12,12 +12,13 @@ public interface DejaBrewDAO {
 	Brewery findById(int id);
 	List<Brewery> findBreweryByKeyword(String keyword);
 	Brewery updateBrew(int id, Brewery brew);
+	Address updateAddress(int id, Address address);
 	Brewery addBrewery(Brewery brew);
 	boolean deleteBrewery(int id);
-	boolean deleteAddress(int id);
 	Address addAddress(Address address);
 	User addUser(User user);
 	boolean deleteUser(int id, User user);
 	User findUserById(int id);
+	boolean deleteAddress(int id);
 
 }
