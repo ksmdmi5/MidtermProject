@@ -19,7 +19,7 @@ public class DejaBrewControllerNoAuth {
 	private DejaBrewDAO dao;
 
 	// home page
-	@RequestMapping(path = {"/", "/DejaBrew"})
+	@RequestMapping(path = {"/"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brews", dao.showAll());
