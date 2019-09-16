@@ -1,7 +1,6 @@
 package com.skilldistillery.dejabrew.data;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -111,7 +110,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-
+	
 	@Override
 	public Address updateAddress(int id, Address addr) {
 		Address chgAddr = em.find(Address.class, id);
