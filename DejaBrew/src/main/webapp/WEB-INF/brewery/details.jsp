@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet"
@@ -18,6 +19,7 @@ body {
 <meta name="viewport" content="width=device-width, initial-scale=1"
     charset="UTF-8">
 <title>Show Individual Brewery</title>
+<!-- <link rel='stylesheet' href='IndexCSS.css'> -->
 </head>
 <body>
 	<jsp:include page="navbar.jsp" /><br>
@@ -27,16 +29,16 @@ body {
 		<c:when test="${not empty brew }">
 			<h3>${brew.name}</h3>
 			<br>
-			<ul>
-				<li>Address: ${brew.address}</li>
+
+				Address:  ${brew.address}
 				<br>
-				<li>Description: ${brew.description}</li>
+				Description:  ${brew.description}
 				<br>
-				<li>url: ${brew.url}</li>
+				URL:  ${brew.url}
 				<br>
-				<li>menu: ${brewery.menu==true ? "Yes":"No"}</li>
+				menu:  ${brewery.menu==true ? "Yes":"No"}
 				<br>
-			</ul>
+
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
@@ -65,12 +67,20 @@ body {
 			<br>
 			<li>added by user: ${brewery.user}</li>
 			<br><br>
+
 			<form action="add brewReview.do" method="POST">
 			Add Review for this Brewery:<br>
 			<textarea rows="6" cols="90">
 			</textarea>
 			<input type="submit" value ="add review">
-			
+
+			<br>
+			<form method='POST' action=deleteBrewery.do>
+				<button class="btn btn-secondary" type="submit">
+					Delete Brewery</button>
+				<input type="hidden" name="id" value="${brew.id}">
+			</form>
+
 			<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
@@ -101,7 +111,7 @@ body {
 	<input type="hidden" value="${brew.id }" name="id">
 	<input type="submit" value="Edit Brewery" />
 			<form method='POST' action=deleteBrewery.do>
-				
+
 				<button class="btn btn-secondary" type="submit">
 					Delete Brewery</button>
 				<input type="hidden" name="id" value="${brew.id}">

@@ -1,6 +1,7 @@
 package com.skilldistillery.dejabrew.data;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.dejabrew.entities.Address;
+import com.skilldistillery.dejabrew.entities.Beer;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.User;
 
@@ -64,12 +66,30 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.flush();
 		return em.find(Brewery.class, brew.getId());
 	}
+	
+	@Override
+	public boolean deleteBrewery(int id) {
+		try {
+			Brewery brew = em.find(Brewery.class, id);
+			List<Beer> beers = brew.getBeers();
+			for (Beer beer : beers) {
+				em.remove(beer);
+			}
+			em.remove(brew);
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
+	}
+	
 	@Override
 	public User addUser(User user) {
 		em.persist(user);
 		em.flush();
 		return em.find(User.class, user.getId());
 	}
+	
 	@Override
 	public boolean deleteUser(int id, User user) {
 		try {
@@ -80,18 +100,14 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-
+	
 	@Override
-	public boolean deleteBrewery(int id) {
-		try {
-			em.remove(em.find(Brewery.class, id));
-		} catch (Exception e) {
-			return false;
-		}
-		em.close();
-		return true;
+	public Beer addBeer(Beer beer) {
+		em.persist(beer);
+		em.flush();
+		return em.find(Beer.class, beer.getId());
 	}
-
+	
 	@Override
 	public Address addAddress(Address address) {
 		em.persist(address);
