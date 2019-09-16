@@ -7,17 +7,17 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <style>
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 65px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 65px;
 }
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1"
-    charset="UTF-8">
+	charset="UTF-8">
 <title>Show Individual Brewery</title>
 <!-- <link rel='stylesheet' href='IndexCSS.css'> -->
 </head>
@@ -66,22 +66,21 @@ body {
 			</c:choose>
 			<br>
 			<li>added by user: ${brewery.user}</li>
-			<br><br>
+			<br>
+			<br>
 
 			<form action="add brewReview.do" method="POST">
-			Add Review for this Brewery:<br>
-			<textarea rows="6" cols="90">
+				Add Review for this Brewery:<br>
+				<textarea rows="6" cols="90">
 			</textarea>
-			<input type="submit" value ="add review">
+				<input type="submit" value="add review"> <br>
+				<form method='POST' action=deleteBrewery.do>
+					<button class="btn btn-secondary" type="submit">Delete
+						Brewery</button>
+					<input type="hidden" name="id" value="${brew.id}">
+				</form>
 
-			<br>
-			<form method='POST' action=deleteBrewery.do>
-				<button class="btn btn-secondary" type="submit">
-					Delete Brewery</button>
-				<input type="hidden" name="id" value="${brew.id}">
-			</form>
-
-			<%--<c:if test="${not empty brewery.beers}">
+				<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
 					<li>Beers: ${beer.name}</li>
@@ -106,15 +105,17 @@ body {
 			<p>No Brewery Found</p>
 		</c:otherwise>
 	</c:choose>
-	<form action="editBrewery.do" method="GET" >
-	<br><br>
-	<input type="hidden" value="${brew.id }" name="id">
-	<input type="submit" value="Edit Brewery" />
-			<form method='POST' action=deleteBrewery.do>
+	<form action="editBrewery.do" method="GET">
+		<br>
+		<br> <input type="hidden" value="${brew.id }" name="id">
+		<input type="submit" value="Edit Brewery" />
+	</form>
 
-				<button class="btn btn-secondary" type="submit">
-					Delete Brewery</button>
-				<input type="hidden" name="id" value="${brew.id}">
-			</form>
+	<form method='POST' action=deleteBrewery.do>
+
+		<button class="btn btn-secondary" type="submit">Delete
+			Brewery</button>
+		<input type="hidden" name="id" value="${brew.id}">
+	</form>
 </body>
 </html>
