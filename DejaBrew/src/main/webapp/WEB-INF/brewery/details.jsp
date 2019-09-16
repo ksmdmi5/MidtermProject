@@ -73,39 +73,38 @@ body {
 						Brewery</button>
 					<input type="hidden" name="id" value="${brew.id}">
 				</form>
+<%-- 
+				<c:if test="${not empty brewery.beers}">
+					<c:forEach items="${brewery.beers}" var="beer">
+						<li>Beers: ${beer.type}</li>
+						<li>Beers: ${beer.name}</li>
+						<br>
+					</c:forEach>
+				</c:if>
+				<br>
+				<c:if test="${not empty brewery.reviews}">
 
-				<%--<c:if test="${not empty brewery.beers}">
-				<c:forEach items="${brewery.beers}" var="beer">
-					<li>Beers: ${beer.type}</li>
-					<li>Beers: ${beer.name}</li>
-					<br>
-				</c:forEach>
-			</c:if>
-	<br>
-	<c:if test="${not empty brewery.reviews}">
-
-		<c:forEach items="${brewery.reviews}" var="review">
-			<li>Reviews: ${review.details}</li>
-			<li>Reviews: ${review.rating}</li>
+					<c:forEach items="${brewery.reviews}" var="review">
+						<li>Reviews: ${review.details}</li>
+						<li>Reviews: ${review.rating}</li>
 
 			Added By:  ${brew.user.username}
 			<br>
-
-			<br>
-			<form action="createReview.do" method="POST">
-				Add Review for this Brewery:<br>
-				<textarea rows="6" cols="90">
+ --%>
+						<br>
+						<form action="createReview.do" method="POST">
+							Add Review for this Brewery:<br>
+							<textarea rows="6" cols="90">
 			</textarea>
-				<br> <input type="submit" name="addReview" value="Add Review" /><br>
-				<br>
+							<br> <input type="submit" name="addReview"
+								value="Add Review" /><br> <br>
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
 		</c:otherwise>
 	</c:choose>
 	<form action="editBrewery.do" method="GET">
-		<br>
-		<br> <input type="hidden" value="${brew.id }" name="id">
+		<br> <br> <input type="hidden" value="${brew.id }" name="id">
 		<input type="submit" value="Edit Brewery" />
 	</form>
 
