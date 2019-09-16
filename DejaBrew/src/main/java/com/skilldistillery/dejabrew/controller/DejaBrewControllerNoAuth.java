@@ -19,7 +19,7 @@ public class DejaBrewControllerNoAuth {
 	private DejaBrewDAO dao;
 
 	// home page
-	@RequestMapping(path = {"/", "/DejaBrew"})
+	@RequestMapping(path = {"/" , "/DejaBrew"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brews", dao.showAll());
@@ -30,15 +30,9 @@ public class DejaBrewControllerNoAuth {
 	// handles going to details of specific brewery
 	@RequestMapping(path = "details.do", method = RequestMethod.GET)
 	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id) {
-		System.out.println("******************** before dao "+brew.getDescription());
-		System.out.println("############# BREW ##########" + brew);
-		System.out.println("$$$$$$$$$$$$$$$" + id);
 		brew = dao.findById(brew.getId());
-		System.out.println("%%%%%%%%%%%%%%%%% BREW ##########" + brew);
-		System.out.println("after dao "+brew.getDescription());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
-		System.out.println("after:" + brew.getId());
 		mv.setViewName("details");
 		return mv;
 	}
@@ -79,12 +73,11 @@ public class DejaBrewControllerNoAuth {
 	}
 
 	// handles logging in then goes to Authed Controller
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	@RequestMapping(path = "login", method = RequestMethod.GET)
 	public ModelAndView login(User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
-		mv.setViewName("");
+		mv.setViewName("login");
 		return mv;
 	}
-
 }
