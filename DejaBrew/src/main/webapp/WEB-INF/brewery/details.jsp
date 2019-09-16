@@ -56,31 +56,36 @@ body {
 				<c:otherwise>No Reviews have been posted.</c:otherwise>
 			</c:choose>
 			<br>
-			Added By:  ${brew.user.username}
-			<br>
-			<br>
-			<form action="createReview.do" method="POST">
+
+			Added By : ${brew.user.username}</li>
+			<br>			
 				Add Review for this Brewery:<br>
-				<textarea type=" text" name="details" rows="6" cols="90">
+				<form action="createReview.do" method="POST" <%-- modelAttribute="review" --%>>
+				
+				<textarea type="text" name="details" rows="6" cols="90">
 			</textarea>
-				<br> <input type="hidden" name="userId" value="1" /> <input
-					type="hidden" name="brewId" value="${brew.id}" /> <input
-					type="submit" name="addReview" value="Add Review" />
-			</form>
-			<br>
-			<br>
+				
+				<input type="hidden" value="${brew.id}" name="brewery" /><br>
+			 <input type="submit" name="addReview" value="Add Review" />
+			 </form>
+				<br>
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
 		</c:otherwise>
 	</c:choose>
 	<form action="editBrewery.do" method="GET">
-		<input type="hidden" value="${brew.id}" name="id"> <input
-			type="submit" value="Edit Brewery" /><<br> <br>
-		<form method='POST' action=deleteBrewery.do>
-			<button class="btn btn-secondary" type="submit"
-				value="Delete Brewery">Delete Brewery</button>
-			<input type="hidden" name="id" value="${brew.id}">
-		</form>
+
+		<br> <br> <input type="hidden" value="${brew.id }" name="id">
+		<input type="submit" value="Edit Brewery" />
+	</form>
+
+	<form method='POST' action=deleteBrewery.do>
+
+		<button class="btn btn-secondary" type="submit">Delete
+			Brewery</button>
+		<input type="hidden" name="id" value="${brew.id}">
+	</form>
+
 </body>
 </html>

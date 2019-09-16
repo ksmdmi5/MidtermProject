@@ -94,7 +94,12 @@ public class DejaBrewLoggedInController {
 
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
-	public ModelAndView createReview(Review review) {
+	public ModelAndView createReview(@RequestParam("brewery") int id,@RequestParam("details") String detail ) {
+		Review review = new Review();
+		review.setDetails(detail);
+		//dao.findById(id);
+		System.out.println("MMMMMMMMMMMMM"+ id);
+		review.setBrewery(dao.findById(id));
 		System.out.println("XXXXXXXXXXXXbefore "+ review);
 		Review newReview = dao.addReview(review);
 		System.out.println("$$$$$$$$$$after"+ review);
@@ -123,7 +128,6 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
 	public String deleteReview(Review review, RedirectAttributes redir) {
 		boolean status = false;
-//		review = dao.findById(review.getId());
 		int brewId = review.getBrewery().getId();
 		int userId = review.getUser().getId();
 		int revId = review.getId();
