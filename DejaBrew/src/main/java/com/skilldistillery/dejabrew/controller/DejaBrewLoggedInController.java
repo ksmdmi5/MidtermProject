@@ -95,7 +95,9 @@ public class DejaBrewLoggedInController {
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
 	public ModelAndView createReview(Review review) {
+		System.out.println("XXXXXXXXXXXXbefore "+ review);
 		Review newReview = dao.addReview(review);
+		System.out.println("$$$$$$$$$$after"+ review);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("review", newReview);
 		mv.setViewName("details");
