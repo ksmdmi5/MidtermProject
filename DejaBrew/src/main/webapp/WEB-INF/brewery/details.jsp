@@ -58,17 +58,27 @@ body {
 			<br>
 
 			Added By : ${brew.user.username}</li>
-			<br>			
-				Add Review for this Brewery:<br>
-				<form action="createReview.do" method="POST" <%-- modelAttribute="review" --%>>
-				
+			<br>
+			Add Review for this Brewery:<br>
+			<form action="createReview.do" method="POST" modelAttribute="review">
+
+				<fieldset class="rating">
+					<legend>Rate This Brewery:</legend>
+					<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 Stars">5 stars</label> 
+					<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 Stars">4 stars</label> 
+					<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 Stars">3stars</label>
+					<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 Stars">2 stars</label> 
+					<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 Stars">1 star</label>
+				</fieldset>
+				<br>
+
 				<textarea type="text" name="details" rows="6" cols="90">
 			</textarea>
-				
-				<input type="hidden" value="${brew.id}" name="brewery" /><br>
-			 <input type="submit" name="addReview" value="Add Review" />
-			 </form>
-				<br>
+
+				<input type="hidden" value="${brew.id}" name="breweryID" /><br>
+				<input type="submit" name="addReview" value="Add Review" />
+			</form>
+			<br>
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>

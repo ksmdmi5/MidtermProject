@@ -141,11 +141,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 
 	@Override
 	public Review addReview(Review review) {
-		review.setRating(4);
+		review.setRating(review.getRating());
 		review.setDateReviewed(LocalDate.now());
-		System.out.println("before persit wwwwwwwwwwwwww"+ review);
 		em.persist(review);
-		System.out.println("getting past persist here xxxxxxxx");
 		em.flush();
 		return em.find(Review.class, review.getId());
 	}

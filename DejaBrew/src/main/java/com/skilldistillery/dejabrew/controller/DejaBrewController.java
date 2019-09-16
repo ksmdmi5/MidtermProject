@@ -41,6 +41,7 @@ public class DejaBrewController {
 	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id, Principal principal) {
 		brew = dao.findById(brew.getId());
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("review", new Review());
 		mv.addObject("brew", brew);
 		mv.addObject("loggedIn", principal);
 		mv.setViewName("details");
@@ -161,22 +162,31 @@ public class DejaBrewController {
 
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
-	public ModelAndView createReview(@RequestParam("brewery") int id,@RequestParam("details") String detail, Principal principal ) {
-		Review review = new Review();
-		review.setDetails(detail);
-		//dao.findById(id);
-		System.out.println("MMMMMMMMMMMMM"+ id);
+	public ModelAndView createReview( Principal principal, Review review, @RequestParam("breweryID") int id ) {
+		System.out.println("************ before creation"+ review);
 		review.setUser(dao.findUserByName(principal.getName()));
-		System.out.println("bbbbbbbbbbbbbbb after principal" +dao.findUserByName(principal.getName()));
 		review.setBrewery(dao.findById(id));
-		System.out.println("XXXXXXXXXXXXbefore "+ review);
-		Review newReview = dao.addReview(review);
-		System.out.println("$$$$$$$$$$after"+ review);
+		dao.addReview(review);
+		System.out.println("************ after creation"+ review);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("brew", dao.findById(id));
+		mv.addObject("brew", dao.findById(review.getBrewery().getId()));
 		mv.setViewName("details");
 		return mv;
 	}
+//	// allows user to create a Review
+//	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
+//	public ModelAndView createReview(@RequestParam("brewery") int id,@RequestParam("details") String detail, Principal principal ) {
+//		Review review = new Review();
+//		review.setDetails(detail);
+//		
+//		review.setUser(dao.findUserByName(principal.getName()));
+//		review.setBrewery(dao.findById(id));
+//		Review newReview = dao.addReview(review);
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("brew", dao.findById(id));
+//		mv.setViewName("details");
+//		return mv;
+//	}
 
 	@RequestMapping(path = "updateReview.do", method = RequestMethod.GET)
 	public ModelAndView editReview(@RequestParam("id") int id, Model model) {
