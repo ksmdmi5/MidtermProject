@@ -66,13 +66,39 @@ body {
 			<br>
 			<li>added by user: ${brewery.user}</li>
 			<br>
+			<form method='POST' action=deleteBrewery.do>
+				<li>${brew.name }</li>
+				<button class="btn btn-secondary" type="submit">
+					Delete Brewery</button>
+				<input type="hidden" name="id" value="${brew.id}">
+			</form>
+			<%--<c:if test="${not empty brewery.beers}">
+				<c:forEach items="${brewery.beers}" var="beer">
+					<li>Beers: ${beer.type}</li>
+					<li>Beers: ${beer.name}</li>
+					<br>
+				</c:forEach>
+			</c:if>
+	<br>
+	<c:if test="${not empty brewery.reviews}">
+
+		<c:forEach items="${brewery.reviews}" var="review">
+			<li>Reviews: ${review.details}</li>
+			<li>Reviews: ${review.rating}</li>
+			<br>
+		</c:forEach>
+	</c:if>
+	<br>
+	<li>added by user: ${brewery.user}</li>
+	<br>
+ --%>
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
 		</c:otherwise>
 	</c:choose>
 	<form action="editBrewery.do" method="GET" >
-	<input type="hidden" value="${brew.id }" name="id"> 
+	<input type="hidden" value="${brew.id }" name="id">
 	Edit Brewery:  <input type="submit" value="Edit Brewery" />
 </body>
 </html>
