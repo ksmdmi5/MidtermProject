@@ -34,7 +34,7 @@ body {
 				<br>
 				<li>url: ${brew.url}</li>
 				<br>
-				<li>menu: ${brew.menu}</li>
+				<li>menu: ${brewery.menu==true ? "Yes":"No"}</li>
 				<br>
 			</ul>
 			<c:choose>
