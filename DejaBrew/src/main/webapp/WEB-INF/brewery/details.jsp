@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet"
@@ -18,6 +19,7 @@ body {
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
+<!-- <link rel='stylesheet' href='IndexCSS.css'> -->
 </head>
 <body>
 	<jsp:include page="navbar.jsp" /><br>
@@ -26,10 +28,10 @@ body {
 	<c:choose>
 		<c:when test="${not empty brew }">
 			<h3>${brew.name}</h3>
-			<br>		
-				Address: <pre class="tab">${brew.address.street} , ${brew.address.city} , ${brew.address.state} , ${brew.address.zip} </pre>				
-				Description: ${brew.description}<br>			
-				URL: ${brew.url}<br>			
+			<br>
+				Address: <pre class="tab">${brew.address.street} , ${brew.address.city} , ${brew.address.state} , ${brew.address.zip} </pre>
+				Description: ${brew.description}<br>
+				URL: ${brew.url}<br>
 				menu: ${brew.menu==true ? "Yes":"No"}<br>
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
