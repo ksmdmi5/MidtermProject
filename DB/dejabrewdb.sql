@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `brewery` (
   CONSTRAINT `fk_brewery_address`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_brewery_user1`
     FOREIGN KEY (`createdby_user`)
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   CONSTRAINT `fk_review_brewery1`
     FOREIGN KEY (`brewery_id`)
     REFERENCES `brewery` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `beer` (
   CONSTRAINT `fk_beer_brewery`
     FOREIGN KEY (`brewery_id`)
     REFERENCES `brewery` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `beer_has_type` (
   CONSTRAINT `fk_beer_has_beer_type_beer1`
     FOREIGN KEY (`beer_id`)
     REFERENCES `beer` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_beer_has_beer_type_beer_type1`
     FOREIGN KEY (`beer_type_id`)
