@@ -18,7 +18,7 @@ public interface DejaBrewDAO {
 	boolean deleteBrewery(int id);
 	Address addAddress(Address address);
 	User addUser(User user);
-	boolean deleteUser(int id, User user);
+	boolean deleteUser(int id);
 	User findUserById(int id);
 	Review addReview(Review review);
 	Review updateReview(int id, Review review);
