@@ -17,8 +17,8 @@ import javax.persistence.OneToMany;
 
 		private String username;
 		private String password;
-		private Boolean enabled;
-		private String role;
+		private Boolean enabled = true;
+		private String role = "ROLE_USER";
 		
 		@OneToMany(mappedBy = "user")
 		private List<Review> reviews;
@@ -30,12 +30,10 @@ import javax.persistence.OneToMany;
 		public User() {
 		}
 		
-		public User(String username, String password, Boolean enabled, String role) {
+		public User(String username, String password) {
 			super();
 			this.username = username;
 			this.password = password;
-			this.enabled = enabled;
-			this.role = role;
 		}
 
 		public void addReview(Review review) {

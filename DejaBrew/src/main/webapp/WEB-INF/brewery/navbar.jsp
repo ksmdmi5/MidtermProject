@@ -29,30 +29,31 @@
 					<!--Panel 7-->
 					<div class="tab-pane fade in show active" id="panel7"
 						role="tabpanel">
+						<form action="login" method="POST">
+							<!--Body-->
+							<div class="modal-body mb-1">
+								<div class="md-form form-sm mb-5">
+									<i class="fas fa-envelope prefix"></i> <input type="text"
+										name="username" id="modalLRInput10"
+										class="form-control form-control-sm validate"> <label
+										data-error="wrong" data-success="right" for="modalLRInput10">Your
+										Username</label>
+								</div>
 
-						<!--Body-->
-						<div class="modal-body mb-1">
-							<div class="md-form form-sm mb-5">
-								<i class="fas fa-envelope prefix"></i> <input type="text"
-									id="modalLRInput10"
-									class="form-control form-control-sm validate"> <label
-									data-error="wrong" data-success="right" for="modalLRInput10">Your
-									Username</label>
+								<div class="md-form form-sm mb-4">
+									<i class="fas fa-lock prefix"></i> <input type="password"
+										name="password" id="modalLRInput11"
+										class="form-control form-control-sm validate"> <label
+										data-error="wrong" data-success="right" for="modalLRInput11">Your
+										password</label>
+								</div>
+								<div class="text-center mt-2">
+									<button class="btn btn-info" type="submit">
+										Log in <i class="fas fa-sign-in ml-1"></i>
+									</button>
+								</div>
 							</div>
-
-							<div class="md-form form-sm mb-4">
-								<i class="fas fa-lock prefix"></i> <input type="password"
-									id="modalLRInput11"
-									class="form-control form-control-sm validate"> <label
-									data-error="wrong" data-success="right" for="modalLRInput11">Your
-									password</label>
-							</div>
-							<div class="text-center mt-2">
-								<button class="btn btn-info" type="submit">
-									Log in <i class="fas fa-sign-in ml-1"></i>
-								</button>
-							</div>
-						</div>
+						</form>
 						<!--Footer-->
 						<div class="modal-footer">
 							<button type="button"
@@ -126,9 +127,17 @@
 		Search by keyword:<br> <input type="text" name="keyword"
 			maxlength="10"> <input type="submit" value="Search" />
 	</form>
-	<div class="text-center">
-		<a href="" class="btn btn-default btn-rounded my-3"
-			data-toggle="modal" data-target="#modalLRForm">LogIn/Register</a>
-	</div>
-
+	<c:choose>
+		<c:when test="${empty loggedIn }">
+			<div class="text-center">
+				<a href="" class="btn btn-default btn-rounded my-3"
+					data-toggle="modal" data-target="#modalLRForm">LogIn/Register</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="text-center">
+				<a href="/logout" class="btn btn-default btn-rounded my-3">Logout</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
 </nav>

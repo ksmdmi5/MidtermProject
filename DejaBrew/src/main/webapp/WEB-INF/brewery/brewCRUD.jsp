@@ -21,7 +21,7 @@ body {
 <title>Create New Brewery</title>
 </head>
 <body>
-	<jsp:include page="navbar.jsp" />
+	<jsp:include page="navbar.jsp" /><br>
 	<c:if test="${not empty brew }">
 		<h2>Brewery Add Page</h2>
 	</c:if>

@@ -1,5 +1,7 @@
 package com.skilldistillery.dejabrew.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -15,11 +18,75 @@ import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.CreateForm;
 import com.skilldistillery.dejabrew.entities.Review;
+import com.skilldistillery.dejabrew.entities.User;
 
 @Controller
-public class DejaBrewLoggedInController {
+@SessionAttributes("loggedIn")
+public class DejaBrewController {
 	@Autowired
 	private DejaBrewDAO dao;
+
+	// home page
+	@RequestMapping(path = { "/", "/DejaBrew" })
+	public ModelAndView index(Principal principal) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brews", dao.showAll());
+		mv.addObject("loggedIn", principal);
+		mv.setViewName("index");
+		return mv;
+	}
+
+	// handles going to details of specific brewery
+	@RequestMapping(path = "details.do", method = RequestMethod.GET)
+	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id, Principal principal) {
+		brew = dao.findById(brew.getId());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brew", brew);
+		mv.addObject("loggedIn", principal);
+		mv.setViewName("details");
+		return mv;
+	}
+
+	// handles keyword search function
+	@RequestMapping(path = "searchKeyword.do", params = "keyword", method = RequestMethod.GET)
+	public ModelAndView getFilmByKeyword(String keyword) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("brews", dao.findBreweryByKeyword(keyword));
+		mv.setViewName("index");
+		return mv;
+	}
+
+	// goes to form to create user
+	@RequestMapping(path = "registration.do", method = RequestMethod.GET)
+	public ModelAndView gotoForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new User());
+		mv.setViewName("register");
+		return mv;
+	}
+
+	// creation of user redirects
+	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
+	public String createBrewery(User user, RedirectAttributes redir) {
+		redir.addFlashAttribute("newUser", user);
+		dao.addUser(user);
+		return "redirect:userAdded.do";
+	}
+
+	// after user user created it goes to index
+	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
+	public String filmAdded(@ModelAttribute("newUser") User user, RedirectAttributes redir) {
+		redir.addFlashAttribute("user", user);
+		return "redirect:/DejaBrew";
+	}
+
+	@RequestMapping(path = "login", method = RequestMethod.GET)
+	public ModelAndView login(User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("login");
+		return mv;
+	}
 
 	// goes to form to create brewery
 	@RequestMapping(path = "creationFormBrewery.do", method = RequestMethod.GET)
@@ -94,13 +161,19 @@ public class DejaBrewLoggedInController {
 
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
-	public ModelAndView createReview(Review review) {
-		Review newReview = dao.addReview(review);
+	public ModelAndView createReview(@RequestParam("brewery") int id,@RequestParam("details") String detail, Principal principal ) {
+		Review review = new Review();
+		review.setDetails(detail);
+		//dao.findById(id);
+		review.setUser(dao.findUserByName(principal.getName()));
+		review.setBrewery(dao.findById(id));
+		Review newReview = dao.addReview(review);;
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("review", newReview);
+		mv.addObject("brew", dao.findById(id));
 		mv.setViewName("details");
 		return mv;
 	}
+
 	@RequestMapping(path = "updateReview.do", method = RequestMethod.GET)
 	public ModelAndView editReview(@RequestParam("id") int id, Model model) {
 		ModelAndView mv = new ModelAndView();
@@ -121,7 +194,6 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
 	public String deleteReview(Review review, RedirectAttributes redir) {
 		boolean status = false;
-		review = dao.findReviewById(review.getId());
 		int brewId = review.getBrewery().getId();
 		int userId = review.getUser().getId();
 		int revId = review.getId();
@@ -131,5 +203,4 @@ public class DejaBrewLoggedInController {
 		redir.addFlashAttribute("status", status);
 		return "redirect:details";
 	}
-
 }

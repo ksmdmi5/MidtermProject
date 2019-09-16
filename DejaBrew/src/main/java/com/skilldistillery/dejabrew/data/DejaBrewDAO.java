@@ -8,25 +8,25 @@ import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
 
-
 public interface DejaBrewDAO {
+
 	Brewery findById(int id);
-	Review findReviewById(int id);
+	User findUserByName(String name);
+	User findUserById(int id);
 	List<Brewery> showAll();
 	List<Brewery> findBreweryByKeyword(String keyword);
-	Brewery updateBrew(int id, Brewery brew);
-	Address updateAddress(int id, Address address);
-	Brewery addBrewery(Brewery brew);
-	Address addAddress(Address address);
-	User addUser(User user);
-	boolean deleteUser(int id);
-	User findUserById(int id);
-	Review addReview(Review review);
+	Address updateAddress(int id, Address addr);
 	Review updateReview(int id, Review review);
-	boolean deleteReview(int id);
+	Brewery updateBrew(int id, Brewery brew);
+	Brewery addBrewery(Brewery brew);
+	User addUser(User user);
 	Beer addBeer(Beer beer);
+	Review addReview(Review review);
+	Address addAddress(Address address);
 	boolean deleteBrewery(int id);
-	boolean deleteUser(int id, User user);
+	boolean deleteUser(int id);
 	boolean deleteAddress(int id);
+	boolean deleteReview(int id);
+	boolean deleteUser(int id, User user);
 
 }

@@ -38,7 +38,7 @@ class DAOtests {
 	@Test
 	@DisplayName("")
 	void test3() {
-		User user1 = new User("asdf", "asdf", true,"asdf");
+		User user1 = new User("asdf", "asdf");
 		user1.setId(3);
 		Address addy = new Address("Fake st", "fake state", "fake city", "12347");
 		addy.setId(5);

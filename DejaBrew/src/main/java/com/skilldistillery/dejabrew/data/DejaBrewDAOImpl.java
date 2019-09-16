@@ -18,10 +18,10 @@ import com.skilldistillery.dejabrew.entities.User;
 @Transactional
 @Service
 public class DejaBrewDAOImpl implements DejaBrewDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 //	CF - find User entity by id
 	@Override
 	public User findUserById(int id) {
@@ -32,24 +32,34 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	}
 
 	@Override
+	public User findUserByName(String name) {
+		String query = "SELECT user FROM User user where user.username = :name";
+		return em.createQuery(query, User.class).setParameter("name", name).getResultList().get(0);
+	}
+
+	@Override
 	public List<Brewery> showAll() {
 		String query = "SELECT brewery FROM Brewery brewery ORDER BY id";
 		return em.createQuery(query, Brewery.class).getResultList();
 	}
+
 //	CF - find Brewery entity by id
 	@Override
 	public Brewery findById(int id) {
 		return em.find(Brewery.class, id);
 	}
+
 //	CF - find Brewery entity name, desc, and city by keyword
 	@Override
 	public List<Brewery> findBreweryByKeyword(String keyword) {
-		return em.createQuery("SELECT brew FROM Brewery brew WHERE brew.name LIKE :keyword"
-				+ " OR brew.description LIKE :keyword OR brew.address.city"
-				+ " LIKE :keyword", Brewery.class)
-				.setParameter("keyword", "%"+keyword+"%").getResultList();
+		return em
+				.createQuery(
+						"SELECT brew FROM Brewery brew WHERE brew.name LIKE :keyword"
+								+ " OR brew.description LIKE :keyword OR brew.address.city" + " LIKE :keyword",
+						Brewery.class)
+				.setParameter("keyword", "%" + keyword + "%").getResultList();
 	}
-	
+
 	@Override
 	public Brewery updateBrew(int id, Brewery brew) {
 		Brewery chgBrew = em.find(Brewery.class, id);
@@ -61,17 +71,17 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.persist(chgBrew);
 		em.flush();
 		em.close();
-		
+
 		return chgBrew;
 	}
-	
+
 	@Override
 	public Brewery addBrewery(Brewery brew) {
 		em.persist(brew);
 		em.flush();
 		return em.find(Brewery.class, brew.getId());
 	}
-	
+
 	@Override
 	public boolean deleteBrewery(int id) {
 		try {
@@ -87,14 +97,14 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
+
 	@Override
 	public User addUser(User user) {
 		em.persist(user);
 		em.flush();
 		return em.find(User.class, user.getId());
 	}
-	
+
 	@Override
 	public boolean deleteUser(int id) {
 		try {
@@ -105,14 +115,14 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
+
 	@Override
 	public Beer addBeer(Beer beer) {
 		em.persist(beer);
 		em.flush();
 		return em.find(Beer.class, beer.getId());
 	}
-	
+
 	@Override
 	public Address addAddress(Address address) {
 		em.persist(address);
@@ -131,7 +141,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
+
 	@Override
 	public Review addReview(Review review) {
 		review.setRating(4);
@@ -150,7 +160,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.persist(chgReview);
 		em.flush();
 		em.close();
-		
+
 		return chgReview;
 	}
 
@@ -165,7 +175,8 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
+
+	@Override
 	public Address updateAddress(int id, Address addr) {
 		Address chgAddr = em.find(Address.class, id);
 		chgAddr.setCity(addr.getCity());
@@ -175,7 +186,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.persist(chgAddr);
 		em.flush();
 		em.close();
-		
+
 		return chgAddr;
 	}
 	@Override
