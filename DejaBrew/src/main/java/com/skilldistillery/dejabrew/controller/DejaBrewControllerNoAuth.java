@@ -65,14 +65,11 @@ public class DejaBrewControllerNoAuth {
 
 	// after user user created it goes to index
 	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
-	public ModelAndView filmAdded(@ModelAttribute("newUser") User user) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", user);
-		mv.setViewName("index");
-		return mv;
+	public String filmAdded(@ModelAttribute("newUser") User user, RedirectAttributes redir) {
+		redir.addFlashAttribute("user", user);
+		return "redirect:/DejaBrew";
 	}
 
-	// handles logging in then goes to Authed Controller
 	@RequestMapping(path = "login", method = RequestMethod.GET)
 	public ModelAndView login(User user) {
 		ModelAndView mv = new ModelAndView();
@@ -81,5 +78,4 @@ public class DejaBrewControllerNoAuth {
 		return mv;
 	}
 
-	
 }
