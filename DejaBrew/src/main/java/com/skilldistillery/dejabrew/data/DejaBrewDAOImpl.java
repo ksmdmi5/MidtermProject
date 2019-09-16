@@ -2,7 +2,6 @@ package com.skilldistillery.dejabrew.data;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -113,7 +112,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-
+	
 	@Override
 	public Review addReview(Review review) {
 		em.persist(review);
