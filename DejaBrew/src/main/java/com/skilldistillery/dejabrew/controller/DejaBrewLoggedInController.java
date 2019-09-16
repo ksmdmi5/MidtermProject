@@ -2,6 +2,7 @@ package com.skilldistillery.dejabrew.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import com.skilldistillery.dejabrew.data.DejaBrewDAO;
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.CreateForm;
+import com.skilldistillery.dejabrew.entities.Review;
 
 @Controller
 public class DejaBrewLoggedInController {
@@ -32,11 +34,11 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "createBrewery.do", method = RequestMethod.POST)
 	public String createBrewery(CreateForm breweryForm, RedirectAttributes redir) {
 		redir.addFlashAttribute("newbrew", breweryForm);
-		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(),
-				breweryForm.getState(), breweryForm.getZip());
+		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(), breweryForm.getState(),
+				breweryForm.getZip());
 		dao.addAddress(address);
-		dao.addBrewery(new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), 
-				true, breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+		dao.addBrewery(new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), true,
+				breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
 		return "redirect:/DejaBrew";
 	}
 
@@ -54,12 +56,12 @@ public class DejaBrewLoggedInController {
 	public ModelAndView editBrewery(@RequestParam("brewId") int id, CreateForm breweryForm) {
 		ModelAndView mv = new ModelAndView();
 		int addrId = dao.findById(id).getAddress().getId();
-		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(),
-				breweryForm.getState(), breweryForm.getZip());
+		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(), breweryForm.getState(),
+				breweryForm.getZip());
 		address.setId(addrId);
 		dao.updateAddress(addrId, address);
-		dao.updateBrew(id, new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), 
-				true, breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+		dao.updateBrew(id, new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), true,
+				breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
 		mv.addObject("brew", dao.findById(id));
 		mv.setViewName("details");
 		return mv;
@@ -85,9 +87,49 @@ public class DejaBrewLoggedInController {
 			status = true;
 		}
 		redir.addFlashAttribute("status", status);
-		
+
 		return "redirect:/DejaBrew";
 
+	}
+
+	// allows user to create a Review
+	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
+	public ModelAndView createReview(Review review) {
+		Review newReview = dao.addReview(review);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("review", newReview);
+		mv.setViewName("details");
+		return mv;
+	}
+	@RequestMapping(path = "updateReview.do", method = RequestMethod.GET)
+	public ModelAndView editReview(@RequestParam("id") int id, Model model) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("editReview", dao.findById(id));
+		mv.setViewName("brewCRUD");
+		return mv;
+	}
+
+	@RequestMapping(path = "reviewEdited.do", method = RequestMethod.POST)
+	public ModelAndView editReview(Review review) {
+		Review updatedReview = dao.updateReview(review.getId(), review);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("review", updatedReview);
+		mv.setViewName("details");
+		return mv;
+	}
+
+	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
+	public String deleteReview(Review review, RedirectAttributes redir) {
+		boolean status = false;
+//		review = dao.findById(review.getId());
+		int brewId = review.getBrewery().getId();
+		int userId = review.getUser().getId();
+		int revId = review.getId();
+		if (dao.deleteReview(revId) && dao.deleteBrewery(brewId) && dao.deleteUser(userId)) {
+			status = true;
+		}
+		redir.addFlashAttribute("status", status);
+		return "redirect:details";
 	}
 
 }

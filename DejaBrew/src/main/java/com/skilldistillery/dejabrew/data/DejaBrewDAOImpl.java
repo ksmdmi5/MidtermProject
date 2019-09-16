@@ -1,5 +1,6 @@
 package com.skilldistillery.dejabrew.data;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Brewery;
+import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
 
 @Transactional
@@ -71,7 +73,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		return em.find(User.class, user.getId());
 	}
 	@Override
-	public boolean deleteUser(int id, User user) {
+	public boolean deleteUser(int id) {
 		try {
 			em.remove(em.find(User.class, id));
 		} catch (Exception e) {
@@ -112,6 +114,37 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	}
 	
 	@Override
+	public Review addReview(Review review) {
+		em.persist(review);
+		em.flush();
+		return em.find(Review.class, review.getId());
+	}
+
+	@Override
+	public Review updateReview(int id, Review review) {
+		Review chgReview = em.find(Review.class, id);
+		chgReview.setRating(review.getRating());
+		chgReview.setDetails(review.getDetails());
+		chgReview.setDateReviewed(LocalDate.now());
+		em.persist(chgReview);
+		em.flush();
+		em.close();
+		
+		return chgReview;
+	}
+
+	@Override
+	public boolean deleteReview(int id) {
+		try {
+			System.out.println(id);
+			em.remove(em.find(Review.class, id));
+		} catch (Exception e) {
+			return false;
+		}
+		em.close();
+		return true;
+	}
+	
 	public Address updateAddress(int id, Address addr) {
 		Address chgAddr = em.find(Address.class, id);
 		chgAddr.setCity(addr.getCity());
@@ -124,5 +157,4 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		
 		return chgAddr;
 	}
-
 }
