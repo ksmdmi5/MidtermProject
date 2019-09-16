@@ -23,12 +23,10 @@ body {
 </head>
 <body>
 	<jsp:include page="navbar.jsp" /><br>
-	<h2>Details of the Brewery you choose:</h2>
+	<h2>Details of ${brew.name}</h2>
 	<br>
 	<c:choose>
 		<c:when test="${not empty brew }">
-			<h3>${brew.name}</h3>
-			<br>
 				Address: <pre class="tab">${brew.address.street} , ${brew.address.city} , ${brew.address.state} , ${brew.address.zip} </pre>
 				Description: ${brew.description}<br>
 				URL: ${brew.url}<br>
@@ -37,7 +35,7 @@ body {
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
 					<c:forEach items="${brew.beers}" var="beer">
-						${beer.name},
+						&nbsp;&nbsp;&nbsp;${beer.name},
 						<c:forEach items="${beer.types}" var="bt">
 							  Style: ${bt.name}    <%--  Description: ${bt.description} --%>
 						</c:forEach>
@@ -59,51 +57,25 @@ body {
 			</c:choose>
 			<br>
 
-			<li>added by user: ${brewery.user}</li>
-			<br>
-			<br>
-
-			<form action="add brewReview.do" method="POST">
+			Added By : ${brew.user.username}</li>
+			<br>			
 				Add Review for this Brewery:<br>
-				<textarea rows="6" cols="90">
+				<form action="createReview.do" method="POST" <%-- modelAttribute="review" --%>>
+				
+				<textarea type="text" name="details" rows="6" cols="90">
 			</textarea>
-				<input type="submit" value="add review"> <br>
-				<form method='POST' action=deleteBrewery.do>
-					<button class="btn btn-secondary" type="submit">Delete
-						Brewery</button>
-					<input type="hidden" name="id" value="${brew.id}">
-				</form>
-<%-- 
-				<c:if test="${not empty brewery.beers}">
-					<c:forEach items="${brewery.beers}" var="beer">
-						<li>Beers: ${beer.type}</li>
-						<li>Beers: ${beer.name}</li>
-						<br>
-					</c:forEach>
-				</c:if>
+				
+				<input type="hidden" value="${brew.id}" name="brewery" /><br>
+			 <input type="submit" name="addReview" value="Add Review" />
+			 </form>
 				<br>
-				<c:if test="${not empty brewery.reviews}">
-
-					<c:forEach items="${brewery.reviews}" var="review">
-						<li>Reviews: ${review.details}</li>
-						<li>Reviews: ${review.rating}</li>
-
-			Added By:  ${brew.user.username}
-			<br>
- --%>
-						<br>
-						<form action="createReview.do" method="POST">
-							Add Review for this Brewery:<br>
-							<textarea rows="6" cols="90">
-			</textarea>
-							<br> <input type="submit" name="addReview"
-								value="Add Review" /><br> <br>
 		</c:when>
 		<c:otherwise>
 			<p>No Brewery Found</p>
 		</c:otherwise>
 	</c:choose>
 	<form action="editBrewery.do" method="GET">
+
 		<br> <br> <input type="hidden" value="${brew.id }" name="id">
 		<input type="submit" value="Edit Brewery" />
 	</form>
