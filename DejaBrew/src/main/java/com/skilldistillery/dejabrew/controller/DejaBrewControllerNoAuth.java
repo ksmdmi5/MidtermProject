@@ -19,7 +19,7 @@ public class DejaBrewControllerNoAuth {
 	private DejaBrewDAO dao;
 
 	// home page
-	@RequestMapping(path = {"/", "/DejaBrew"})
+	@RequestMapping(path = {"/" , "/DejaBrew"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brews", dao.showAll());
@@ -73,11 +73,11 @@ public class DejaBrewControllerNoAuth {
 	}
 
 	// handles logging in then goes to Authed Controller
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	@RequestMapping(path = "login", method = RequestMethod.GET)
 	public ModelAndView login(User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", user);
-		mv.setViewName("");
+		mv.setViewName("login");
 		return mv;
 	}
 }
