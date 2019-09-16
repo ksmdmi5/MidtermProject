@@ -54,7 +54,7 @@ body {
 		Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
 
 		<input type="hidden" name="userId" value="1" />
-		<input type="hidden" name="brewId" value="${editBrew.id }" />
+		<input type="hidden" name="brewId" value="${brew.id }" />
 		<!-- Change after authoritazation XXXXXXXX -->
 
 		<p>After the Brewery has been created you will be given a chance
