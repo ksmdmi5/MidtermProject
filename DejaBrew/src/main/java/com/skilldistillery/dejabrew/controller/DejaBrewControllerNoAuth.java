@@ -23,7 +23,7 @@ public class DejaBrewControllerNoAuth {
 	private DejaBrewDAO dao;
 
 	// home page
-	@RequestMapping(path = {"/" , "/DejaBrew"})
+	@RequestMapping(path = {"/DejaBrew"})
 	public ModelAndView index(Principal principal) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brews", dao.showAll());
@@ -31,6 +31,13 @@ public class DejaBrewControllerNoAuth {
 		mv.setViewName("index");
 		return mv;
 	}
+	
+	@RequestMapping(path = {"/"})
+	public String index2() {
+		return "redirect:/DejaBrew";
+	}
+	
+	
 
 	// handles going to details of specific brewery
 	@RequestMapping(path = "details.do", method = RequestMethod.GET)
