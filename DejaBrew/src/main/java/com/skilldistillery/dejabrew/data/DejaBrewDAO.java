@@ -11,6 +11,7 @@ import com.skilldistillery.dejabrew.entities.User;
 public interface DejaBrewDAO {
 	List<Brewery> showAll();
 	Brewery findById(int id);
+	Review findReviewById(int id);
 	List<Brewery> findBreweryByKeyword(String keyword);
 	Brewery updateBrew(int id, Brewery brew);
 	Address updateAddress(int id, Address address);

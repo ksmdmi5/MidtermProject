@@ -121,7 +121,7 @@ public class DejaBrewLoggedInController {
 	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
 	public String deleteReview(Review review, RedirectAttributes redir) {
 		boolean status = false;
-//		review = dao.findById(review.getId());
+		review = dao.findReviewById(review.getId());
 		int brewId = review.getBrewery().getId();
 		int userId = review.getUser().getId();
 		int revId = review.getId();

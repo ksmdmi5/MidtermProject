@@ -25,6 +25,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public User findUserById(int id) {
 		return em.find(User.class, id);
 	}
+	public Review findReviewById(int id) {
+		return em.find(Review.class, id);
+	}
 
 	@Override
 	public List<Brewery> showAll() {
