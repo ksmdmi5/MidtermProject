@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Brewery;
+import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
 
 
@@ -19,5 +20,7 @@ public interface DejaBrewDAO {
 	User addUser(User user);
 	boolean deleteUser(int id, User user);
 	User findUserById(int id);
-
+	Review addReview(Review review);
+	Review updateReview(int id, Review review);
+	boolean deleteReview(int id);
 }
