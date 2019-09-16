@@ -22,14 +22,14 @@ body {
 <!-- <link rel='stylesheet' href='IndexCSS.css'> -->
 </head>
 <body>
-	<jsp:include page="navbar.jsp" />
+	<jsp:include page="navbar.jsp" /><br>
 	<h2>Details of the Brewery you choose:</h2>
 	<br>
 	<c:choose>
 		<c:when test="${not empty brew }">
 			<h3>${brew.name}</h3>
 			<br>
-			
+
 				Address:  ${brew.address}
 				<br>
 				Description:  ${brew.description}
@@ -38,15 +38,14 @@ body {
 				<br>
 				menu:  ${brewery.menu==true ? "Yes":"No"}
 				<br>
-			
+
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
 					<c:forEach items="${brew.beers}" var="beer">
 						<li>${beer.name}</li>
 						<c:forEach items="${beer.types}" var="bt">
-							<li>Style: ${bt.name}</li>
-							<li>Description: ${bt.description}</li>
+							Style: ${bt.name}     Description: ${bt.description}<br>
 						</c:forEach>
 						<br>
 					</c:forEach>
@@ -67,12 +66,21 @@ body {
 			</c:choose>
 			<br>
 			<li>added by user: ${brewery.user}</li>
+			<br><br>
+
+			<form action="add brewReview.do" method="POST">
+			Add Review for this Brewery:<br>
+			<textarea rows="6" cols="90">
+			</textarea>
+			<input type="submit" value ="add review">
+
 			<br>
 			<form method='POST' action=deleteBrewery.do>
 				<button class="btn btn-secondary" type="submit">
 					Delete Brewery</button>
 				<input type="hidden" name="id" value="${brew.id}">
 			</form>
+
 			<%--<c:if test="${not empty brewery.beers}">
 				<c:forEach items="${brewery.beers}" var="beer">
 					<li>Beers: ${beer.type}</li>
@@ -99,7 +107,14 @@ body {
 		</c:otherwise>
 	</c:choose>
 	<form action="editBrewery.do" method="GET" >
+	<br><br>
 	<input type="hidden" value="${brew.id }" name="id">
-	Edit Brewery:  <input type="submit" value="Edit Brewery" />
+	<input type="submit" value="Edit Brewery" />
+			<form method='POST' action=deleteBrewery.do>
+
+				<button class="btn btn-secondary" type="submit">
+					Delete Brewery</button>
+				<input type="hidden" name="id" value="${brew.id}">
+			</form>
 </body>
 </html>
