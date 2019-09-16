@@ -70,10 +70,12 @@ public class DejaBrewControllerNoAuth {
 		return "redirect:/DejaBrew";
 	}
 
-	// handles logging in then goes to Authed Controller
-//	@RequestMapping(path = "login", method = RequestMethod.GET)
-//	public String login(User user, RedirectAttributes redir) {
-//		redir.addFlashAttribute("user", user);
-//		return "redirect:/DejaBrew";
-//	}
+	@RequestMapping(path = "login", method = RequestMethod.GET)
+	public ModelAndView login(User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", user);
+		mv.setViewName("login");
+		return mv;
+	}
+
 }
