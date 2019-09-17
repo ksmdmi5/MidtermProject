@@ -56,6 +56,11 @@ body {
 						<c:if test="${review.user.username == loggedIn.name}">
 							<button onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
 								Update</button>
+								<form action="deleteReview.do" method="POST">
+									<input type="hidden" name="reviewID" value="${review.id }">
+									<input type="hidden" name="brewID" value="${review.brewery.id}">
+									<button type="submit" >Delete</button>
+								</form>
 						</c:if>
 					</c:forEach>
 				</c:when>
@@ -90,7 +95,7 @@ body {
 
 				<input type="hidden" id="review_id" name="reviewID" /><br>
 				<input type="hidden" value="${brew.id}" name="breweryID" /><br>
-				<input id="review_btn" type="submit" name="addReview" value="Add Review" />
+				<input id="review_btn" type="submit" value="Add Review" />
 			</form>
 
 			<br>

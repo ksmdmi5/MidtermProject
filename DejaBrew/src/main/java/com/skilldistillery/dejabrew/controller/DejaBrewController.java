@@ -181,16 +181,11 @@ public class DejaBrewController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
-	public String deleteReview(Review review, RedirectAttributes redir) {
-		boolean status = false;
-		int brewId = review.getBrewery().getId();
-		int userId = review.getUser().getId();
-		int revId = review.getId();
-		if (dao.deleteReview(revId) && dao.deleteBrewery(brewId) && dao.deleteUser(userId)) {
-			status = true;
-		}
-		redir.addFlashAttribute("status", status);
-		return "redirect:details";
+	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST, params = {"brewID", "reviewID"})
+	public ModelAndView deleteReview(int reviewID, int brewID) {
+		ModelAndView mv = new ModelAndView("details");
+		mv.addObject("brew", dao.findById(brewID));
+		dao.deleteReview(reviewID);
+		return mv;
 	}
 }
