@@ -1,6 +1,7 @@
 package com.skilldistillery.dejabrew.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.skilldistillery.dejabrew.data.DejaBrewDAO;
 import com.skilldistillery.dejabrew.entities.Address;
+import com.skilldistillery.dejabrew.entities.Beer;
+import com.skilldistillery.dejabrew.entities.BeerType;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.CreateForm;
 import com.skilldistillery.dejabrew.entities.Review;
@@ -80,7 +84,7 @@ public class DejaBrewController {
 
 	// after user user created it goes to index
 	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
-	public String filmAdded(@ModelAttribute("newUser") User user, RedirectAttributes redir) {
+	public String userAdded(@ModelAttribute("newUser") User user, RedirectAttributes redir) {
 		redir.addFlashAttribute("user", user);
 		return "redirect:/DejaBrew";
 	}
@@ -116,7 +120,7 @@ public class DejaBrewController {
 
 	// redirection goes to details of created brewery
 	@RequestMapping(path = "breweryAdded.do", method = RequestMethod.GET)
-	public ModelAndView filmAdded(@ModelAttribute("newBrew") Brewery brew) {
+	public ModelAndView breweryAdded(@ModelAttribute("newBrew") Brewery brew) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", brew);
 		mv.setViewName("details");
@@ -191,5 +195,19 @@ public class DejaBrewController {
 		mv.addObject("brew", dao.findById(brewID));
 		dao.deleteReview(reviewID);
 		return mv;
+	}
+	@RequestMapping(path="addBeer.do", method = RequestMethod.POST, params= {"beerTypeId","beerName","brewId"} )
+	public ModelAndView addBeer( int beerTypeId, String beerName, int brewId) {
+		ModelAndView mv = new ModelAndView();
+		Beer beer = new Beer();
+		beer.setBrewery(dao.findById(brewId));
+		List <BeerType> types = Arrays.asList(dao.findByBeerType(beerTypeId));
+		beer.setTypes(types);
+		beer.setName(beerName);
+		dao.addBeer(beer);
+		mv.addObject("brew", dao.findById(brewId));
+		
+		mv.setViewName("details");
+		return mv; 
 	}
 }

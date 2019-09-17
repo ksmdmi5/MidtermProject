@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Beer;
+import com.skilldistillery.dejabrew.entities.BeerType;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
@@ -13,6 +14,7 @@ public interface DejaBrewDAO {
 	Brewery findById(int id);
 	User findUserByName(String name);
 	User findUserById(int id);
+	BeerType findByBeerType(int id);
 	List<Brewery> showAll();
 	List<Brewery> findBreweryByKeyword(String keyword);
 	Address updateAddress(int id, Address addr);
@@ -22,7 +24,7 @@ public interface DejaBrewDAO {
 	User addUser(User user);
 	Beer addBeer(Beer beer);
 	Review addReview(Review review);
-	Address addAddress(Address address);
+	Address addAddress(Address address);	
 	boolean deleteBrewery(int id);
 	boolean deleteUser(int id);
 	boolean deleteAddress(int id);
