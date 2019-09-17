@@ -29,5 +29,6 @@ public interface DejaBrewDAO {
 	boolean deleteUser(int id);
 	boolean deleteAddress(int id);
 	boolean deleteReview(int id);
+	boolean deleteUser(int id, User user);
 
 }

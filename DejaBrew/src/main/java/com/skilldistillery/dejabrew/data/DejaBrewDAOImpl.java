@@ -28,6 +28,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public User findUserById(int id) {
 		return em.find(User.class, id);
 	}
+	public Review findReviewById(int id) {
+		return em.find(Review.class, id);
+	}
 
 	@Override
 	public User findUserByName(String name) {
@@ -192,6 +195,5 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	@Override
 	public BeerType findByBeerType(int id) {
 		return em.find(BeerType.class, id);
-		
 	}
 }

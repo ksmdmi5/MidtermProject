@@ -10,8 +10,59 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<!-- <link rel='stylesheet' type='text/css' href='master.css'> -->
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 65px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.rating {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:20px;
+    color:#ccc;
+}
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+.rating > input:checked ~ label {
+    color: #ffc700;    
+}
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
@@ -45,7 +96,8 @@
 
 				</div>
 				<div class="right-info">
-					<iframe width="100%" height="500" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
+					<iframe width="100%" height="500" frameborder="0"
+						src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
 						Boulder+Colorado+80303&z=14&output=embed"></iframe>
 				</div>
 
@@ -70,8 +122,11 @@
 				<c:choose>
 					<c:when test="${not empty brew.reviews}">
 						<c:forEach items="${brew.reviews}" var="review">
-							Rating: ${review.rating}<br>
-							Review: ${review.details}<br>
+						Reviewed By: ${review.user.username}<br>
+							<c:forEach begin="1" end="${review.rating }" varStatus="loop">
+								<span>🍺</span>
+							</c:forEach>
+						${review.details }<br>
 
 							<c:if test="${review.user.username == loggedIn.name}">
 								<button
@@ -96,25 +151,23 @@
 			Add Review for this Brewery:<br>
 			<form id="review_form" action="createReview.do" method="POST"
 				modelAttribute="review">
-
+				<!-- DO NOT FORMAT STARS GET WEIRD  -->
 				<fieldset class="rating">
-					<legend>Rate This Brewery:</legend>
-					<input type="radio" id="star5" name="rating" value="5" checked /><label
-						for="star5" title="5 Stars">5 stars</label> <input type="radio"
-						id="star4" name="rating" value="4" /><label for="star4"
-						title="4 Stars">4 stars</label> <input type="radio" id="star3"
-						name="rating" value="3" /><label for="star3" title="3 Stars">3stars</label>
-					<input type="radio" id="star2" name="rating" value="2" /><label
-						for="star2" title="2 Stars">2 stars</label> <input type="radio"
-						id="star1" name="rating" value="1" /><label for="star1"
-						title="1 Stars">1 star</label>
-				</fieldset>
-				<br>
-
+    <input type="radio" id="star5" name="rating" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rating" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rating" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rating" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rating" value="1" />
+    <label for="star1" title="text">1 star</label>
+  </fieldset>
+				<br><br>
 				<textarea type="text" id="review_textbox" name="details" rows="6"
 					cols="90">
-		</textarea>
-
+			</textarea>
 				<input type="hidden" id="review_id" name="reviewID" /><br> <input
 					type="hidden" value="${brew.id}" name="breweryID" /><br> <input
 					id="review_btn" type="submit" value="Add Review" />
