@@ -36,6 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.permitAll()
 		.and()
 			.logout()
+				.invalidateHttpSession(true)
+				.logoutSuccessUrl("/DejaBrew")
 			.permitAll();
 		
 		// /userInfo page requires login as ROLE_USER or ROLE_ADMIN.

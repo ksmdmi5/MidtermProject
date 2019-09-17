@@ -144,7 +144,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 
 	@Override
 	public Review addReview(Review review) {
-		review.setRating(4);
+		review.setRating(review.getRating());
 		review.setDateReviewed(LocalDate.now());
 		em.persist(review);
 		em.flush();
