@@ -72,7 +72,7 @@ body {
 
 				<fieldset class="rating">
 					<legend>Rate This Brewery:</legend>
-					<input type="radio" id="star5" name="rating" value="5" /><label
+					<input type="radio" id="star5" name="rating" value="5" checked/><label
 						for="star5" title="5 Stars">5 stars</label> <input type="radio"
 						id="star4" name="rating" value="4" /><label for="star4"
 						title="4 Stars">4 stars</label> <input type="radio" id="star3"
@@ -115,10 +115,14 @@ body {
 	<script type="text/javascript">
 
 		function setReviewData(details, rating, id){
+			let star = "star" + rating;
+			let review_btn = document.getElementById("review_btn");
+			document.getElementById(star).checked = true;
 			document.getElementById("review_textbox").value = details;
 			document.getElementById("review_form").action = "updateReview.do";
-			document.getElementById("review_btn").value = "Update Review";
+			review_btn.value = "Update Review";
 			document.getElementById("review_id").value = id; 
+			review_btn.focus();
 		}
 		
 	</script>

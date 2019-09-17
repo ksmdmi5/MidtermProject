@@ -35,7 +35,7 @@
 								<div class="md-form form-sm mb-5">
 									<i class="fas fa-envelope prefix"></i> <input type="text"
 										name="username" id="modalLRInput10"
-										class="form-control form-control-sm validate" autofocus> <label
+										class="form-control form-control-sm validate"> <label
 										data-error="wrong" data-success="right" for="modalLRInput10">Your
 										Username</label>
 								</div>
