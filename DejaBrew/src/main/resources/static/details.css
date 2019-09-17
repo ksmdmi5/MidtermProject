@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.address-div {
+	padding: 20px 0;
+}
+
+#brew-name{
+	font-size: 70px;
+	color: #f7f7f7;
+	width: 70%;
+	position: absolute;
+	top: 200px;
+	padding: 0 50px;
+}
+
+#header-img {
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    padding: 0 50px;
+}
+
+.left-info {
+	width: 55%;
+}
+
+.right-info {
+	width: 45%;
+}
+
+
+
+
