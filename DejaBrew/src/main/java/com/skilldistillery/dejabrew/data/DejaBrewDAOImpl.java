@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Beer;
+import com.skilldistillery.dejabrew.entities.BeerType;
 import com.skilldistillery.dejabrew.entities.Brewery;
 import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
@@ -112,6 +113,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
+	
 
 	@Override
 	public Beer addBeer(Beer beer) {
@@ -185,5 +187,11 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 
 		return chgAddr;
+	}
+
+	@Override
+	public BeerType findByBeerType(int id) {
+		return em.find(BeerType.class, id);
+		
 	}
 }

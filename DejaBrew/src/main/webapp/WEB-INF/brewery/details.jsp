@@ -140,6 +140,34 @@
 			Brewery</button>
 		<input type="hidden" name="id" value="${brew.id}">
 	</form>
+	<br><br>
+	Here is your chance to add a specific beer associated with this Brewery:<br> 
+	<form action="addBeer.do" method="POST">
+	What Style is this beer?<select name="beerTypeId">
+	<option value="1">I.P.A.  </option>
+	<option value="2">A.P.A.  </option>
+	<option value="3">Ale  </option>
+	<option value="4">Lager  </option>
+	<option value="5">Porter  </option>
+	<option value="6">Stout  </option>
+	<option value="7">Pilsner  </option>
+	<option value="8">Bock  </option>
+	<option value="9">E.S.B.  </option>
+	<option value="10">Brown  </option>
+	<option value="11">Gose  </option>
+	<option value="12">Saison  </option>
+	<option value="13">Belgian  </option>
+	<option value="14">Wheat/Weisse/Hefeweizen   </option>
+	<option value="15">Blond  </option>
+	<option value=16">Amber  </option>
+	<option value="17">Other  </option>	
+	</select>
+	Specific Name: <input type="text" name="beerName" />
+	<input type="hidden" name="brewId" value="${brew.id}"/>
+	<input type="submit" name="Add A New Beer" />
+	</form>
+	
+	
 
 	<script type="text/javascript">
 		function setReviewData(details, rating, id) {
