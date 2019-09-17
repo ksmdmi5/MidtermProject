@@ -46,38 +46,53 @@ body {
 			No beer listing found.<br>
 				</c:otherwise>
 			</c:choose>
+			<div id = "reviewDiv">
 			<c:choose>
 				<c:when test="${not empty brew.reviews}">
 					<c:forEach items="${brew.reviews}" var="review">
 						Rating: ${review.rating}<br>
 						Review: ${review.details}<br>
+
+						<c:if test="${review.user.username == loggedIn.name}">
+							<button onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
+								Update</button>
+						</c:if>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>No Reviews have been posted.</c:otherwise>
 			</c:choose>
+			</div>
+
 			<br>
 
 			Added By : ${brew.user.username}</li>
 			<br>
 			Add Review for this Brewery:<br>
-			<form action="createReview.do" method="POST" modelAttribute="review">
+			<form id="review_form" action="createReview.do" method="POST" modelAttribute="review">
 
 				<fieldset class="rating">
 					<legend>Rate This Brewery:</legend>
-					<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 Stars">5 stars</label> 
-					<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 Stars">4 stars</label> 
-					<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 Stars">3stars</label>
-					<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 Stars">2 stars</label> 
-					<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 Stars">1 star</label>
+					<input type="radio" id="star5" name="rating" value="5" /><label
+						for="star5" title="5 Stars">5 stars</label> <input type="radio"
+						id="star4" name="rating" value="4" /><label for="star4"
+						title="4 Stars">4 stars</label> <input type="radio" id="star3"
+						name="rating" value="3" /><label for="star3" title="3 Stars">3stars</label>
+					<input type="radio" id="star2" name="rating" value="2" /><label
+						for="star2" title="2 Stars">2 stars</label> <input type="radio"
+						id="star1" name="rating" value="1" /><label for="star1"
+						title="1 Stars">1 star</label>
 				</fieldset>
 				<br>
 
-				<textarea type="text" name="details" rows="6" cols="90">
+				<textarea type="text" id="review_textbox" name="details" rows="6"
+					cols="90">
 			</textarea>
 
+				<input type="hidden" id="review_id" name="reviewID" /><br>
 				<input type="hidden" value="${brew.id}" name="breweryID" /><br>
-				<input type="submit" name="addReview" value="Add Review" />
+				<input id="review_btn" type="submit" name="addReview" value="Add Review" />
 			</form>
+
 			<br>
 		</c:when>
 		<c:otherwise>
@@ -97,5 +112,15 @@ body {
 		<input type="hidden" name="id" value="${brew.id}">
 	</form>
 
+	<script type="text/javascript">
+
+		function setReviewData(details, rating, id){
+			document.getElementById("review_textbox").value = details;
+			document.getElementById("review_form").action = "updateReview.do";
+			document.getElementById("review_btn").value = "Update Review";
+			document.getElementById("review_id").value = id; 
+		}
+		
+	</script>
 </body>
 </html>
