@@ -30,43 +30,75 @@
 				<div class="left-info">
 
 					<div class="extra-info">
-						Website: ${brew.url}<br> Menu: ${brew.menu==true ? "Yes":"No"}<br>
+						<h4>Website:</h4>${brew.url}<br> <br>
+						<h4>Menu:</h4>
+						${brew.menu==true ? "Yes":"No"}<br>
 					</div>
 
 					<div class="address-div">
-						Address: <br> ${brew.address.street} <br>
-						${brew.address.city}, ${brew.address.state} ${brew.address.zip}
+						<h4>Address:</h4>
+						${brew.address.street} <br> ${brew.address.city},
+						${brew.address.state} ${brew.address.zip}
 					</div>
 
 					<div class="desc-div">
-						Description: ${brew.description}<br>
+						<h4>Description:</h4>
+						${brew.description}<br>
 					</div>
 
 
 				</div>
 				<div class="right-info">
-					<iframe width="100%" height="500" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
+					<iframe width="100%" height="500" frameborder="0"
+						src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
 						Boulder+Colorado+80303&z=14&output=embed"></iframe>
 				</div>
 
 			</div>
 
-			<c:choose>
-				<c:when test="${not empty brew.beers}">
-					<h4>Beer Listing:</h4>
-					<c:forEach items="${brew.beers}" var="beer">
-						&nbsp;&nbsp;&nbsp;${beer.name},
-						<c:forEach items="${beer.types}" var="bt">
-							Style: ${bt.name}    <%--  Description: ${bt.description} --%>
-						</c:forEach>
-						<br>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					No beer listing found.<br>
-				</c:otherwise>
-			</c:choose>
-			<div id="reviewDiv">
+
+
+
+			<div class="list-container">
+				<div class="beer-list">
+					<c:choose>
+
+
+						<c:when test="${not empty brew.beers}">
+							<h2>Beer Listing:</h2>
+							<c:forEach items="${brew.beers}" var="beer">
+
+
+								<div class="beer-detail">
+
+									<img class="beer-img" alt="beer" src="beer.png" width="50px">
+
+
+									<div class="beer-info">
+
+										<h3>${beer.name}</h3>
+										<c:forEach items="${beer.types}" var="bt">
+								Style: ${bt.name}    <%--  Description: ${bt.description} --%>
+										</c:forEach>
+										<br>
+
+									</div>
+
+
+
+
+								</div>
+
+							</c:forEach>
+
+
+						</c:when>
+						<c:otherwise>
+							No beer listing found.<br>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div id="review-list">
 				<c:choose>
 					<c:when test="${not empty brew.reviews}">
 						<c:forEach items="${brew.reviews}" var="review">
@@ -89,9 +121,10 @@
 				</c:choose>
 			</div>
 
-			<br>
+			</div>
+
 			
-			Added By : ${brew.user.username}</li>
+			Added By : ${brew.user.username}
 			<br>
 			Add Review for this Brewery:<br>
 			<form id="review_form" action="createReview.do" method="POST"

@@ -20,9 +20,14 @@ body {
 	padding-bottom: 20px;
 }
 
+.desc-div {
+	margin-right: 40px;
+}
+
 .info {
     display: flex;
     padding: 0 50px;
+    margin-bottom: 60px;
 }
 
 .left-info {
@@ -33,6 +38,40 @@ body {
 	width: 45%;
 }
 
+.list-container {
+    display: flex;
+}
 
+.beer-list {
+    width: 60%;
+}
 
+.beer-list h2 {
+	padding-left: 40px;
+}
+
+.review-list {
+    width: 40%;
+}
+
+.beer-detail {
+	margin:auto;
+	width:90%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-style: solid;
+    margin-bottom: 8px;
+}
+
+.beer-img {
+    margin: auto;
+    grid-column: 1;
+}
+
+.beer-info {
+	margin: 4px;
+    padding: 10px 22px;
+    grid-column: 2;
+    background-color: rgb(175, 175, 175);
+}
 
