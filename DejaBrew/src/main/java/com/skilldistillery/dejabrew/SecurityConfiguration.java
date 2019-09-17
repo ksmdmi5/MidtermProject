@@ -43,7 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// /userInfo page requires login as ROLE_USER or ROLE_ADMIN.
 		// If no login, it will redirect to /login page.
-		http.authorizeRequests().antMatchers("/createBrewery.do","/editBrewery.do*", "/creationFormBrewery.do").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests()
+		.antMatchers("/createBrewery.do","/createReview.do*","/editBrewery.do*", "/creationFormBrewery.do")
+		.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 		http.authorizeRequests().antMatchers("/deleteBrewery.do*").access("hasRole('ROLE_ADMIN')");
 	}
 

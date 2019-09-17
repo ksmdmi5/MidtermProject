@@ -1,10 +1,10 @@
 package com.skilldistillery.dejabrew.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +30,10 @@ public class DejaBrewController {
 	@RequestMapping(path = { "/", "/DejaBrew" })
 	public ModelAndView index(Principal principal) {
 		ModelAndView mv = new ModelAndView();
+		List<Brewery> brews = dao.showAll();
+		for (Brewery brewery : brews) {
+//			brewery.setDescription(brews.get(0));
+		}
 		mv.addObject("brews", dao.showAll());
 		mv.addObject("loggedIn", principal);
 		mv.setViewName("index");
