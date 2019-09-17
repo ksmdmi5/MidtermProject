@@ -20,48 +20,32 @@
 	<jsp:include page="navbar.jsp" />
 	<br>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-md-8 font-color">
-				<div>
-					<h1>Deja Brew</h1>
-					<h2>Your Source For Finding Breweries In Your Area</h2>
+	<form action="creationFormBrewery.do" method="GET">
+		To Add a Brewery: <input type="submit" value="Create Brewery" />
+	</form>
+	<br>
+	<!-- <img src="https://picsum.photos/350/305?image=100" alt="Dummy Image"> -->
+	<ul>
 
-				</div>
-				<div>
-					<h3>We Encourage Our Users To Help Update and Provide Quality
-						Reviews</h3>
-				</div>
+		<div class="masonry-wrapper">
+			<div class="masonry">
 
 
-				<form action="creationFormBrewery.do" method="GET">
-					To Add a Brewery: <input type="submit" value="Create Brewery" />
-				</form>
-				<br>
-			</div>
-		</div>
-		<!-- <img src="https://picsum.photos/350/305?image=100" alt="Dummy Image"> -->
-		<ul>
-			<div class="grid">
-				<div class="masonry-wrapper">
-					<div class="masonry">
-						<c:forEach var='brew' items='${brews}'>
+				<c:forEach var='brew' items='${brews}'>
+					<c:set var="count" value="${count + 1}" scope="page" />
 
-							<div class="masonry-item">
-								<div class="masonry-content">
-									<div class="card-deck">
-										<div class="card" style="width: 250px">
-											<img class="card-img-top"
-												src="https://picsum.photos/350/305?image=100"
-												alt="Card image">
-											<div class="card-body">
-												<h4 class="card-title">${brew.name }</h4>
-												<%-- <p class="card-text">${brew.url }</p> --%>
-												<a href="details.do" value="${brew.id }"
-													class="btn btn-primary">Brewery Details</a>
-											</div>
-										</div>
-									</div>
+
+					<div class="masonry-item">
+						<div class="masonry-content">
+							<div class="card" style="width: 250px">
+								<img class="card-img-top"
+									src="https://picsum.photos/350/305?image=100" alt="Card image">
+								<div class="card-body">
+									<form action="details.do" method="GET">
+									<h4 class="card-title">${brew.name }</h4>
+									<p class="card-text">${brew.url }</p>
+										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">See Profile</button>
+									</form>
 								</div>
 						</c:forEach>
 						<div class="masonry-item">

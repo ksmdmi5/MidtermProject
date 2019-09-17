@@ -10,48 +10,68 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	padding-top: 65px;
-}
-</style>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
-<!-- <link rel='stylesheet' href='IndexCSS.css'> -->
+<link rel='stylesheet' type="text/css" href='details.css'>
 </head>
+
 <body>
 	<jsp:include page="navbar.jsp" /><br>
-	<h2>Details of ${brew.name}</h2>
-	<br>
+	<div class="header">
+		<img id="header-img" alt="beer-img" src="detail.jpg">
+		<div id="brew-name">${brew.name}</div>
+	</div>
 	<c:choose>
 		<c:when test="${not empty brew }">
-				Address: <pre class="tab">${brew.address.street} , ${brew.address.city} , ${brew.address.state} , ${brew.address.zip} </pre>
-				Description: ${brew.description}<br>
-				URL: ${brew.url}<br>
-				menu: ${brew.menu==true ? "Yes":"No"}<br>
+			<div class="info">
+				<div class="left-info">
+
+					<div class="extra-info">
+						Website: ${brew.url}<br> Menu: ${brew.menu==true ? "Yes":"No"}<br>
+					</div>
+
+					<div class="address-div">
+						Address: <br> ${brew.address.street} <br>
+						${brew.address.city}, ${brew.address.state} ${brew.address.zip}
+					</div>
+
+					<div class="desc-div">
+						Description: ${brew.description}<br>
+					</div>
+
+
+				</div>
+				<div class="right-info">
+					<iframe width="100%" height="500" frameborder="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
+						Boulder+Colorado+80303&z=14&output=embed"></iframe>
+				</div>
+
+			</div>
+
 			<c:choose>
 				<c:when test="${not empty brew.beers}">
 					<h4>Beer Listing:</h4>
 					<c:forEach items="${brew.beers}" var="beer">
 						&nbsp;&nbsp;&nbsp;${beer.name},
 						<c:forEach items="${beer.types}" var="bt">
-							  Style: ${bt.name}    <%--  Description: ${bt.description} --%>
+							Style: ${bt.name}    <%--  Description: ${bt.description} --%>
 						</c:forEach>
 						<br>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-			No beer listing found.<br>
+					No beer listing found.<br>
 				</c:otherwise>
 			</c:choose>
 			<div id="reviewDiv">
 				<c:choose>
 					<c:when test="${not empty brew.reviews}">
 						<c:forEach items="${brew.reviews}" var="review">
-						Rating: ${review.rating}<br>
-						Review: ${review.details}<br>
+							Rating: ${review.rating}<br>
+							Review: ${review.details}<br>
 
 							<c:if test="${review.user.username == loggedIn.name}">
 								<button
@@ -70,7 +90,7 @@ body {
 			</div>
 
 			<br>
-
+			
 			Added By : ${brew.user.username}</li>
 			<br>
 			Add Review for this Brewery:<br>
@@ -93,12 +113,13 @@ body {
 
 				<textarea type="text" id="review_textbox" name="details" rows="6"
 					cols="90">
-			</textarea>
+		</textarea>
 
 				<input type="hidden" id="review_id" name="reviewID" /><br> <input
 					type="hidden" value="${brew.id}" name="breweryID" /><br> <input
 					id="review_btn" type="submit" value="Add Review" />
-					<button style="display: none;" id="cancel_update_btn" onClick="window.location.reload();">Cancel</button>
+				<button style="display: none;" id="cancel_update_btn"
+					onClick="window.location.reload();">Cancel</button>
 			</form>
 
 			<br>
@@ -161,7 +182,21 @@ body {
 			document.getElementById("cancel_update_btn").style.display = "block";
 			review_btn.focus();
 		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
 		
 	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+
 </body>
 </html>
