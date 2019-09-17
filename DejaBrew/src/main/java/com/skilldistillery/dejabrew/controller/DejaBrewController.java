@@ -163,58 +163,29 @@ public class DejaBrewController {
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
 	public ModelAndView createReview( Principal principal, Review review, @RequestParam("breweryID") int id ) {
-		System.out.println("************ before creation"+ review);
 		review.setUser(dao.findUserByName(principal.getName()));
 		review.setBrewery(dao.findById(id));
 		dao.addReview(review);
-		System.out.println("************ after creation"+ review);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brew", dao.findById(review.getBrewery().getId()));
 		mv.setViewName("details");
 		return mv;
 	}
-//	// allows user to create a Review
-//	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
-//	public ModelAndView createReview(@RequestParam("brewery") int id,@RequestParam("details") String detail, Principal principal ) {
-//		Review review = new Review();
-//		review.setDetails(detail);
-//		
-//		review.setUser(dao.findUserByName(principal.getName()));
-//		review.setBrewery(dao.findById(id));
-//		Review newReview = dao.addReview(review);
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("brew", dao.findById(id));
-//		mv.setViewName("details");
-//		return mv;
-//	}
 
-	@RequestMapping(path = "updateReview.do", method = RequestMethod.GET)
-	public ModelAndView editReview(@RequestParam("id") int id, Model model) {
+	@RequestMapping(path = "updateReview.do", method = RequestMethod.POST, params = {"breweryID", "reviewID"})
+	public ModelAndView editReview(Review review, int breweryID, int reviewID) {
+		dao.updateReview(reviewID, review);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("editReview", dao.findById(id));
-		mv.setViewName("brewCRUD");
-		return mv;
-	}
-
-	@RequestMapping(path = "reviewEdited.do", method = RequestMethod.POST)
-	public ModelAndView editReview(Review review) {
-		Review updatedReview = dao.updateReview(review.getId(), review);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("review", updatedReview);
+		mv.addObject("brew", dao.findById(breweryID));
 		mv.setViewName("details");
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST)
-	public String deleteReview(Review review, RedirectAttributes redir) {
-		boolean status = false;
-		int brewId = review.getBrewery().getId();
-		int userId = review.getUser().getId();
-		int revId = review.getId();
-		if (dao.deleteReview(revId) && dao.deleteBrewery(brewId) && dao.deleteUser(userId)) {
-			status = true;
-		}
-		redir.addFlashAttribute("status", status);
-		return "redirect:details";
+	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST, params = {"brewID", "reviewID"})
+	public ModelAndView deleteReview(int reviewID, int brewID) {
+		ModelAndView mv = new ModelAndView("details");
+		mv.addObject("brew", dao.findById(brewID));
+		dao.deleteReview(reviewID);
+		return mv;
 	}
 }
