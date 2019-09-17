@@ -78,9 +78,11 @@ body {
 								<img class="card-img-top"
 									src="https://picsum.photos/350/305?image=100" alt="Card image">
 								<div class="card-body">
+									<form action="details.do" method="GET">
 									<h4 class="card-title">${brew.name }</h4>
 									<p class="card-text">${brew.url }</p>
-									<a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a>
+										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">See Profile</button>
+									</form>
 								</div>
 							</div>
 
