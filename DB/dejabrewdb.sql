@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
-  `role` VARCHAR(45) NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
+  `role` VARCHAR(45) NOT NULL DEFAULT 'ROLE_USER',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -177,6 +177,7 @@ START TRANSACTION;
 USE `dejabrewdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'fred', 'password', true, 'ROLE_USER');
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (2, 'admin', 'admin', true, 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (3, 'paulxl', 'paulxl', true, 'ROLE_USER');
 
 COMMIT;
 

@@ -6,12 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HomeResource {
 
-	@GetMapping("/")
-	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		return mv;
-	}
 	
 	@GetMapping("/user")
 	public String user() {
