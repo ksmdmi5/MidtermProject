@@ -28,30 +28,27 @@ body {
 	<c:choose>
 	
 	<c:when test="${not empty brew }">
-	<form action="createBrewery.do" method="POST"
-		modelAttribute="breweryForm">
-	
+	<form action="createBrewery.do" method="POST" modelAttribute="breweryForm">	
 	</c:when>
-	<c:otherwise>
-	<form action="breweryEdited.do" method="POST"
-		modelAttribute="breweryForm">
 	
+	<c:otherwise>
+	<form action="breweryEdited.do" method="POST" modelAttribute="breweryForm">	
 	</c:otherwise>
+	
 	</c:choose>
-		Brewery Name here: <input type="text" name="name"
-			value="${editBrew.name}" /><br> Street Address: <input
-			type="text" name="street" value="${editBrew.address.street}" /><br>
+		Brewery Name here: <input type="text" name="name" value="${editBrew.name}" /><br>
+		Street Address: <input type="text" name="street" value="${editBrew.address.street}" /><br>
 		City: <input type="text" name="city" value="${editBrew.address.city}" /><br>
 		State: <input type="text" name="state" value="${editBrew.address.state}" /><br>
 		ZipCode: <input type="number" name="zip" value="${editBrew.address.zip}" /><br>
-		<br> Does the establishment have a food menu? (Y/N)<br> <input
+		<br> 
+		Does the establishment have a food menu? (Y/N)<br> <input
 			type="radio" name="menu" value="yes"
 			${editBrew.menu==true ? "checked":""}>Yes<br> <input
 			type="radio" name="menu" value="no"
 			${editBrew.menu==false ? "checked":""}>No<br> <br>
-		Brewery Description: <input type="text" name="description"
-			value="${editBrew.description}" /><br> <br> URL for the
-		Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
+		Brewery Description: <input type="text" name="description" value="${editBrew.description}" /><br> <br> 
+		URL for the Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
 
 		<input type="hidden" name="userId" value="1" />
 		<input type="hidden" name="brewId" value="${editBrew.id }" />
