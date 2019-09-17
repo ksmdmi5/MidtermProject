@@ -10,51 +10,53 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
 <!-- <link rel='stylesheet' type='text/css' href='master.css'> -->
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	padding-top: 65px;
 }
-*{
-    margin: 0;
-    padding: 0;
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/* Styling h1 and links
+––––––––––––––––––––––––––––––––– */
+h1[alt="Simple"] {color: white;}
+a[href], a[href]:hover {color: grey; font-size: 0.5em; text-decoration: none}
+
+
+body
+{
+  background: #4a4a4c !important;
 }
-.rating {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 8em;
+  font-family: FontAwesome;
+  display: inline-block; 
 }
-.rating:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
 }
-.rating:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.rating:not(:checked) > label:before {
-    content: '★ ';
-}
-.rating > input:checked ~ label {
-    color: #ffc700;    
-}
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
@@ -90,9 +92,9 @@ body {
 				<c:choose>
 					<c:when test="${not empty brew.reviews}">
 						<c:forEach items="${brew.reviews}" var="review">
-						Reviewed By: ${review.user.username}
-						Rating: ${review.rating}<br>
-						Review: ${review.details}<br>
+						Reviewed By: ${review.user.username}<br>
+						${review.rating}<br>
+						${review.details }<br>
 
 							<c:if test="${review.user.username == loggedIn.name}">
 								<button
@@ -117,19 +119,16 @@ body {
 			Add Review for this Brewery:<br>
 			<form id="review_form" action="createReview.do" method="POST"
 				modelAttribute="review">
-			<div class= "rating">
-			<legend>Brewery Rating</legend>
-					<input type="radio" id="star5" name="rating" value="5" /> <label
-						for="star5" title="text">5 stars</label> <input type="radio"
-						id="star4" name="rating" value="4" /> <label for="star4"
-						title="text">4 stars</label> <input type="radio" id="star3"
-						name="rating" value="3" /> <label for="star3" title="text">3
-						stars</label> <input type="radio" id="star2" name="rating" value="2" /> <label
-						for="star2" title="text">2 stars</label> <input type="radio"
-						id="star1" name="rating" value="1" /> <label for="star1"
-						title="text">1 star</label>
-				</div>
-				<br>
+<div class="rating">
+        <div class="starrating risingstar d-flex flex-row-reverse">
+            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
+            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
+            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
+            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
+            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
+        </div>
+  </div>	
+				<br> <br> <br> <br> <br>
 				<textarea type="text" id="review_textbox" name="details" rows="6"
 					cols="90">
 			</textarea>
