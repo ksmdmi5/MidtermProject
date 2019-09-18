@@ -128,34 +128,37 @@
 
 			Added By : ${brew.user.username}
 			<br>
+
+			<c:if test="${not empty loggedIn }">
+			
 			Add Review for this Brewery:<br>
-			<form id="review_form" action="createReview.do" method="POST"
-				modelAttribute="review">
-				<!-- DO NOT FORMAT STARS GET WEIRD  -->
-				<div class="rating">
-					<fieldset class="rating">
-						<input type="radio" id="star5" name="rating" value="5" /> <label
-							for="star5" title="text">5 stars</label> <input type="radio"
-							id="star4" name="rating" value="4" /> <label for="star4"
-							title="text">4 stars</label> <input type="radio" id="star3"
-							name="rating" value="3" /> <label for="star3" title="text">3
-							stars</label> <input type="radio" id="star2" name="rating" value="2" />
-						<label for="star2" title="text">2 stars</label> <input
-							type="radio" id="star1" name="rating" value="1" /> <label
-							for="star1" title="text">1 star</label>
-					</fieldset>
-				</div>
-				<br>
-				<br>
-				<textarea type="text" id="review_textbox" name="details" rows="6"
-					cols="90">
+				<form id="review_form" action="createReview.do" method="POST"
+					modelAttribute="review">
+					<!-- DO NOT FORMAT STARS GET WEIRD  -->
+					<div class="rating">
+						<fieldset class="rating">
+							<input type="radio" id="star5" name="rating" value="5" checked/> <label
+								for="star5" title="text">5 stars</label> <input type="radio"
+								id="star4" name="rating" value="4" /> <label for="star4"
+								title="text">4 stars</label> <input type="radio" id="star3"
+								name="rating" value="3" /> <label for="star3" title="text">3
+								stars</label> <input type="radio" id="star2" name="rating" value="2" />
+							<label for="star2" title="text">2 stars</label> <input
+								type="radio" id="star1" name="rating" value="1" /> <label
+								for="star1" title="text">1 star</label>
+						</fieldset>
+					</div>
+					<br> <br>
+					<textarea type="text" id="review_textbox" name="details" rows="6"
+						cols="90">
 			</textarea>
-				<input type="hidden" id="review_id" name="reviewID" /><br> <input
-					type="hidden" value="${brew.id}" name="breweryID" /><br> <input
-					id="review_btn" type="submit" value="Add Review" />
-				<button style="display: none;" id="cancel_update_btn"
-					onClick="window.location.reload();">Cancel</button>
-			</form>
+					<input type="hidden" id="review_id" name="reviewID" /><br> <input
+						type="hidden" value="${brew.id}" name="breweryID" /><br> <input
+						id="review_btn" type="submit" value="Add Review" />
+					<button style="display: none;" id="cancel_update_btn"
+						onClick="window.location.reload();">Cancel</button>
+				</form>
+			</c:if>
 
 			<br>
 		</c:when>
