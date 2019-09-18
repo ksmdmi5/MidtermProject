@@ -10,10 +10,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link rel='stylesheet' type='text/css' href='master.css'> 
 
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
@@ -59,10 +55,7 @@
 				</div>
 
 			</div>
-
-
-
-
+      
 			<div class="list-container">
 				<div class="beer-list">
 					<c:choose>
@@ -107,7 +100,7 @@
 					<c:choose>
 						<c:when test="${not empty brew.reviews}">
 							<c:forEach items="${brew.reviews}" var="review">
-									Reviewed By: ${review.user.username}<br>
+									Reviewed By: ${review.user.username}       ${review.dateReviewed}<br>
 										<c:forEach begin="1" end="${review.rating }" varStatus="loop">
 											<span>🍺</span>
 										</c:forEach>
@@ -139,19 +132,21 @@
 			<form id="review_form" action="createReview.do" method="POST"
 				modelAttribute="review">
 				<!-- DO NOT FORMAT STARS GET WEIRD  -->
-				<fieldset class="rating">
-    <input type="radio" id="star5" name="rating" value="5" />
-    <label for="star5" title="text">5 stars</label>
-    <input type="radio" id="star4" name="rating" value="4" />
-    <label for="star4" title="text">4 stars</label>
-    <input type="radio" id="star3" name="rating" value="3" />
-    <label for="star3" title="text">3 stars</label>
-    <input type="radio" id="star2" name="rating" value="2" />
-    <label for="star2" title="text">2 stars</label>
-    <input type="radio" id="star1" name="rating" value="1" />
-    <label for="star1" title="text">1 star</label>
-  </fieldset>
-				<br><br>
+				<div class="rating">
+					<fieldset class="rating">
+						<input type="radio" id="star5" name="rating" value="5" /> <label
+							for="star5" title="text">5 stars</label> <input type="radio"
+							id="star4" name="rating" value="4" /> <label for="star4"
+							title="text">4 stars</label> <input type="radio" id="star3"
+							name="rating" value="3" /> <label for="star3" title="text">3
+							stars</label> <input type="radio" id="star2" name="rating" value="2" />
+						<label for="star2" title="text">2 stars</label> <input
+							type="radio" id="star1" name="rating" value="1" /> <label
+							for="star1" title="text">1 star</label>
+					</fieldset>
+				</div>
+				<br>
+				<br>
 				<textarea type="text" id="review_textbox" name="details" rows="6"
 					cols="90">
 			</textarea>
@@ -180,31 +175,35 @@
 			Brewery</button>
 		<input type="hidden" name="id" value="${brew.id}">
 	</form>
-	<br><br>
-	Here is your chance to add a specific beer associated with this Brewery:<br>
+
+	<br>
+	<br> Here is your chance to add a specific beer associated with
+	this Brewery:
+	<br>
 	<form action="addBeer.do" method="POST">
-	What Style is this beer?<select name="beerTypeId">
-	<option value="1">I.P.A.  </option>
-	<option value="2">A.P.A.  </option>
-	<option value="3">Ale  </option>
-	<option value="4">Lager  </option>
-	<option value="5">Porter  </option>
-	<option value="6">Stout  </option>
-	<option value="7">Pilsner  </option>
-	<option value="8">Bock  </option>
-	<option value="9">E.S.B.  </option>
-	<option value="10">Brown  </option>
-	<option value="11">Gose  </option>
-	<option value="12">Saison  </option>
-	<option value="13">Belgian  </option>
-	<option value="14">Wheat/Weisse/Hefeweizen   </option>
-	<option value="15">Blond  </option>
-	<option value=16">Amber  </option>
-	<option value="17">Other  </option>
-	</select>
-	Specific Name: <input type="text" name="beerName" />
-	<input type="hidden" name="brewId" value="${brew.id}"/>
-	<input type="submit" name="Add A New Beer" />
+		What Style is this beer?<select name="beerTypeId">
+			<option value="1">I.P.A.</option>
+			<option value="2">A.P.A.</option>
+			<option value="3">Ale</option>
+			<option value="4">Lager</option>
+			<option value="5">Porter</option>
+			<option value="6">Stout</option>
+			<option value="7">Pilsner</option>
+			<option value="8">Bock</option>
+			<option value="9">E.S.B.</option>
+			<option value="10">Brown</option>
+			<option value="11">Gose</option>
+			<option value="12">Saison</option>
+			<option value="13">Belgian</option>
+			<option value="14">Wheat/Weisse/Hefeweizen</option>
+			<option value="15">Blond</option>
+			<option value=16">Amber</option>
+			<option value="17">Other</option>
+		</select> Specific Name: <input type="text" name="beerName" /> <input
+			type="hidden" name="brewId" value="${brew.id}" /> <input
+			type="submit" name="Add A New Beer" />
+
+
 	</form>
 
 

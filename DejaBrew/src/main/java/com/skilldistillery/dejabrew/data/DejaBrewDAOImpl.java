@@ -196,4 +196,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public BeerType findByBeerType(int id) {
 		return em.find(BeerType.class, id);
 	}
+	@Override
+	public boolean deleteUser(int id, User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
