@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+/* 	padding-top: 65px; */
 }
 
 .address-div {
@@ -20,9 +21,14 @@ body {
 	padding-bottom: 20px;
 }
 
+.desc-div {
+	margin-right: 40px;
+}
+
 .info {
     display: flex;
     padding: 0 50px;
+    margin-bottom: 60px;
 }
 
 .left-info {
@@ -33,6 +39,86 @@ body {
 	width: 45%;
 }
 
+.list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
+.beer-list {
+	grid-column: 1;
+}
 
+.beer-list h2 {
+	padding-left: 40px;
+}
 
+.review-list {
+	grid-column: 2;
+}
+
+.review-detail {
+	width: 80%;
+}
+
+.review {
+	margin-bottom: 20px;
+}
+
+.beer-detail {
+	margin:auto;
+	width:90%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-style: solid;
+    margin-bottom: 8px;
+}
+
+.beer-img {
+    margin: auto;
+    grid-column: 1;
+}
+
+.beer-info {
+	margin: 4px;
+    padding: 10px 22px;
+    grid-column: 2;
+    background-color: rgb(175, 175, 175);
+}
+
+/*------------ Rating -------------*/
+
+.rating {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:20px;
+    color:#ccc;
+}
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+.rating > input:checked ~ label {
+    color: #ffc700;
+}
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}

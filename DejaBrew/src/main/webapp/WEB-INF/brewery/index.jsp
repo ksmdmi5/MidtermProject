@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel='stylesheet' type='text/css' href='IndexCSS.css'> 
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="IndexCSS.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>index</title>
@@ -44,27 +44,34 @@
 									<form action="details.do" method="GET">
 									<h4 class="card-title">${brew.name }</h4>
 									<p class="card-text">${brew.url }</p>
-										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">See Profile</button>
+										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">View Details</button>
 									</form>
 								</div>
-						</c:forEach>
-						<div class="masonry-item">
-								<div class="masonry-content">
-						<div class="card" style="width: 250px">
-							<img class="card-img-top"
-								src="https://picsum.photos/350/305?image=100" alt="Card image">
-							<div class="card-body">
-								<h4 class="card-title">Add your brewery</h4>
-								<p class="card-text">Add your url</p>
 							</div>
-							<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
+
+
+							<%-- <h3 class="masonry-title">${brew.name }</h3>
+							<p class="masonry-description">${brew.description }</p> --%>
 						</div>
 					</div>
-					</div>
-					</div>
-				</div>
+
+
+				</c:forEach>
+				<div class="card" style="width: 250px">
+								<img class="card-img-top"
+									src="https://picsum.photos/350/305?image=100" alt="Card image">
+								<div class="card-body">
+									<h4 class="card-title">Add your brewery</h4>
+									<p class="card-text">Add your url</p>
+									<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
+								</div>
+							</div>
+
+
 			</div>
-	</div>
+
+		</div>
+
 	</ul>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -77,7 +84,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
 	</div>
 </body>
 </html>
