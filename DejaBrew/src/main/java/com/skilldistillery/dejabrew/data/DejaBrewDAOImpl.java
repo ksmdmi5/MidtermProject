@@ -196,5 +196,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public BeerType findByBeerType(int id) {
 		return em.find(BeerType.class, id);
 	}
-
+	@Override
+	public List<User> showAllUsers() {
+		String query = "SELECT user FROM User user";
+		return em.createQuery(query, User.class).getResultList();
+	}
 }
