@@ -62,7 +62,8 @@
 
 					<div class="desc-div">
 						<h4>Description:</h4>
-						${brew.description}<br> Added By : ${brew.user.username}
+						<br> ${brew.description}<br> Added By :
+						${brew.user.username}
 					</div>
 
 
@@ -101,8 +102,6 @@
 									</div>
 
 
-
-
 								</div>
 
 							</c:forEach>
@@ -113,6 +112,35 @@
 							No beer listing found.<br>
 						</c:otherwise>
 					</c:choose>
+					<c:if test="${not empty loggedIn }">
+						<br>
+						<h2>Add Beer:</h2>
+						<div class="beer-form">
+							<br> Name: <input type="text" name="beerName" /> <input
+								type="hidden" name="brewId" value="${brew.id}" /><br>
+							<form action="addBeer.do" method="POST">
+								Style: <select name="beerTypeId">
+									<option value="1">I.P.A.</option>
+									<option value="2">A.P.A.</option>
+									<option value="3">Ale</option>
+									<option value="4">Lager</option>
+									<option value="5">Porter</option>
+									<option value="6">Stout</option>
+									<option value="7">Pilsner</option>
+									<option value="8">Bock</option>
+									<option value="9">E.S.B.</option>
+									<option value="10">Brown</option>
+									<option value="11">Gose</option>
+									<option value="12">Saison</option>
+									<option value="13">Belgian</option>
+									<option value="14">Wheat/Weisse/Hefeweizen</option>
+									<option value="15">Blond</option>
+									<option value=16">Amber</option>
+									<option value="17">Other</option>
+								</select><input type="submit" name="Add Beer" />
+							</form>
+						</div>
+					</c:if>
 				</div>
 				<div id="review-list">
 					<h2>Reviews:</h2>
@@ -187,10 +215,6 @@
 				</div>
 
 
-
-
-
-
 			</c:if>
 
 		</c:when>
@@ -200,35 +224,7 @@
 	</c:choose>
 
 
-
-	<br> Here is your chance to add a specific beer associated with
-	this Brewery:
-	<br>
-	<form action="addBeer.do" method="POST">
-		What Style is this beer?<select name="beerTypeId">
-			<option value="1">I.P.A.</option>
-			<option value="2">A.P.A.</option>
-			<option value="3">Ale</option>
-			<option value="4">Lager</option>
-			<option value="5">Porter</option>
-			<option value="6">Stout</option>
-			<option value="7">Pilsner</option>
-			<option value="8">Bock</option>
-			<option value="9">E.S.B.</option>
-			<option value="10">Brown</option>
-			<option value="11">Gose</option>
-			<option value="12">Saison</option>
-			<option value="13">Belgian</option>
-			<option value="14">Wheat/Weisse/Hefeweizen</option>
-			<option value="15">Blond</option>
-			<option value=16">Amber</option>
-			<option value="17">Other</option>
-		</select> Specific Name: <input type="text" name="beerName" /> <input
-			type="hidden" name="brewId" value="${brew.id}" /> <input
-			type="submit" name="Add A New Beer" />
-
-
-	</form>
+	<footer></footer>
 
 
 

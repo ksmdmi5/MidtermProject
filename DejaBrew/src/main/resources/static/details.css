@@ -103,6 +103,10 @@ body {
     background-color: rgb(175, 175, 175);	
 }
 
+.beer-form {
+	margin: 0 50px 50px;
+}
+
 .modify-brew {
 	display: flex;
 	flex-direction: column;
@@ -123,6 +127,11 @@ body button {
 
 .review-container { /* For adding new review */
 	padding: 5%;
+	padding-top: 0;
+}
+
+footer {
+	margin-bottom: 50px;
 }
 
 /*---------- Rating ----------*/
