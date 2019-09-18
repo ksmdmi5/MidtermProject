@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+/* 	padding-top: 65px; */
 }
 
 .address-div {
@@ -20,9 +21,14 @@ body {
 	padding-bottom: 20px;
 }
 
+.desc-div {
+	margin-right: 40px;
+}
+
 .info {
     display: flex;
     padding: 0 50px;
+    margin-bottom: 60px;
 }
 
 .left-info {
@@ -32,6 +38,29 @@ body {
 .right-info {
 	width: 45%;
 }
+
+.list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.beer-list {
+	grid-column: 1;
+}
+
+.beer-list h2 {
+	padding-left: 40px;
+}
+
+.review-list {
+	grid-column: 2;
+}
+
+.review-detail {
+	width: 80%;
+}
+
+/*---------- Rating ----------*/
 
 .rating {
     float: left;
@@ -68,6 +97,4 @@ body {
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
     color: #c59b08;
-}
-
-
+  

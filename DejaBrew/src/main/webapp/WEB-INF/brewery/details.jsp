@@ -11,12 +11,6 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	padding-top: 65px;
-}
-</style>
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
@@ -25,8 +19,9 @@ body {
 
 <body>
 	<jsp:include page="navbar.jsp" /><br>
+	
 	<div class="header">
-		<img id="header-img" alt="beer-img" src="detail.jpg">
+		<img id="header-img" alt="beer-img" src="/img/details.jpg">
 		<div id="brew-name">${brew.name}</div>
 	</div>
 	<c:choose>
@@ -35,16 +30,20 @@ body {
 				<div class="left-info">
 
 					<div class="extra-info">
-						Website: ${brew.url}<br> Menu: ${brew.menu==true ? "Yes":"No"}<br>
+						<h4>Website:</h4>${brew.url}<br> <br>
+						<h4>Menu:</h4>
+						${brew.menu==true ? "Yes":"No"}<br>
 					</div>
 
 					<div class="address-div">
-						Address: <br> ${brew.address.street} <br>
-						${brew.address.city}, ${brew.address.state} ${brew.address.zip}
+						<h4>Address:</h4>
+						${brew.address.street} <br> ${brew.address.city},
+						${brew.address.state} ${brew.address.zip}
 					</div>
 
 					<div class="desc-div">
-						Description: ${brew.description}<br>
+						<h4>Description:</h4>
+						${brew.description}<br>
 					</div>
 
 
@@ -56,51 +55,78 @@ body {
 				</div>
 
 			</div>
+      
+			<div class="list-container">
+				<div class="beer-list">
+					<c:choose>
 
-			<c:choose>
-				<c:when test="${not empty brew.beers}">
-					<h4>Beer Listing:</h4>
-					<c:forEach items="${brew.beers}" var="beer">
-						&nbsp;&nbsp;&nbsp;${beer.name},
-						<c:forEach items="${beer.types}" var="bt">
-							Style: ${bt.name}    <%--  Description: ${bt.description} --%>
-						</c:forEach>
-						<br>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					No beer listing found.<br>
-				</c:otherwise>
-			</c:choose>
-			<div id="reviewDiv">
-				<c:choose>
-					<c:when test="${not empty brew.reviews}">
-						<c:forEach items="${brew.reviews}" var="review">
-						Reviewed By: ${review.user.username}     ${review.dateReviewed}<br>
-							<c:forEach begin="1" end="${review.rating }" varStatus="loop">
-								<span>🍺</span>
-							</c:forEach><br>
-						${review.details }<br>
 
-							<c:if test="${review.user.username == loggedIn.name}">
-								<button
-									onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
-									Update</button>
-								<form action="deleteReview.do" method="POST">
-									<input type="hidden" name="reviewID" value="${review.id }">
-									<input type="hidden" name="brewID" value="${review.brewery.id}">
-									<button type="submit">Delete</button>
-								</form>
-							</c:if>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>No Reviews have been posted.</c:otherwise>
-				</c:choose>
+						<c:when test="${not empty brew.beers}">
+							<h2>Beer Listing:</h2>
+							<c:forEach items="${brew.beers}" var="beer">
+
+
+								<div class="beer-detail">
+
+									<img class="beer-img" alt="beer" src="beer.png" width="50px">
+
+
+									<div class="beer-info">
+
+										<h3>${beer.name}</h3>
+										<c:forEach items="${beer.types}" var="bt">
+								Style: ${bt.name}    <%--  Description: ${bt.description} --%>
+										</c:forEach>
+										<br>
+
+									</div>
+
+
+
+
+								</div>
+
+							</c:forEach>
+
+
+						</c:when>
+						<c:otherwise>
+							No beer listing found.<br>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div id="review-list">
+					<h2>Reviews:</h2>
+					<c:choose>
+						<c:when test="${not empty brew.reviews}">
+							<c:forEach items="${brew.reviews}" var="review">
+									Reviewed By: ${review.user.username}       ${review.dateReviewed}<br>
+										<c:forEach begin="1" end="${review.rating }" varStatus="loop">
+											<span>🍺</span>
+										</c:forEach>
+									<div class="review-detail">Review: ${review.details}</div>
+
+									<c:if test="${review.user.username == loggedIn.name}">
+										<button
+											onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
+											Update</button>
+										<form action="deleteReview.do" method="POST">
+											<input type="hidden" name="reviewID" value="${review.id }">
+											<input type="hidden" name="brewID"
+												value="${review.brewery.id}">
+											<button type="submit">Delete</button>
+										</form>
+									</c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>No Reviews have been posted.</c:otherwise>
+					</c:choose>
+				</div>
+
 			</div>
 
-			<br>
-			
-			Added By : ${brew.user.username}</li>
+
+			Added By : ${brew.user.username}
 			<br>
 			Add Review for this Brewery:<br>
 			<form id="review_form" action="createReview.do" method="POST"
@@ -149,6 +175,7 @@ body {
 			Brewery</button>
 		<input type="hidden" name="id" value="${brew.id}">
 	</form>
+
 	<br>
 	<br> Here is your chance to add a specific beer associated with
 	this Brewery:
@@ -175,6 +202,8 @@ body {
 		</select> Specific Name: <input type="text" name="beerName" /> <input
 			type="hidden" name="brewId" value="${brew.id}" /> <input
 			type="submit" name="Add A New Beer" />
+
+
 	</form>
 
 
@@ -196,7 +225,7 @@ body {
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous">
-		
+
 	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
