@@ -99,27 +99,31 @@
 					</c:choose>
 				</div>
 				<div id="review-list">
-				<c:choose>
-					<c:when test="${not empty brew.reviews}">
-						<c:forEach items="${brew.reviews}" var="review">
-							Rating: ${review.rating}<br>
-							Review: ${review.details}<br>
+					<h2>Reviews:</h2>
+					<c:choose>
+						<c:when test="${not empty brew.reviews}">
+							<c:forEach items="${brew.reviews}" var="review">
+								<div class="rating">
+									Rating: ${review.rating}<br>
+									<div class="review-detail">Review: ${review.details}</div>
 
-							<c:if test="${review.user.username == loggedIn.name}">
-								<button
-									onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
-									Update</button>
-								<form action="deleteReview.do" method="POST">
-									<input type="hidden" name="reviewID" value="${review.id }">
-									<input type="hidden" name="brewID" value="${review.brewery.id}">
-									<button type="submit">Delete</button>
-								</form>
-							</c:if>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>No Reviews have been posted.</c:otherwise>
-				</c:choose>
-			</div>
+									<c:if test="${review.user.username == loggedIn.name}">
+										<button
+											onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
+											Update</button>
+										<form action="deleteReview.do" method="POST">
+											<input type="hidden" name="reviewID" value="${review.id }">
+											<input type="hidden" name="brewID"
+												value="${review.brewery.id}">
+											<button type="submit">Delete</button>
+										</form>
+									</c:if>
+								</div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>No Reviews have been posted.</c:otherwise>
+					</c:choose>
+				</div>
 
 			</div>
 

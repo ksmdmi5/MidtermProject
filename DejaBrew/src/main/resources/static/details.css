@@ -39,11 +39,12 @@ body {
 }
 
 .list-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .beer-list {
-    width: 60%;
+	grid-column: 1;
 }
 
 .beer-list h2 {
@@ -51,7 +52,15 @@ body {
 }
 
 .review-list {
-    width: 40%;
+	grid-column: 2;
+}
+
+.review-detail {
+	width: 80%;
+}
+
+.review {
+	margin-bottom: 20px;
 }
 
 .beer-detail {
