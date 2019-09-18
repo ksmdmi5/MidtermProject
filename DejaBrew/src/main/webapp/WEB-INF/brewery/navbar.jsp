@@ -113,19 +113,19 @@
 		</c:when>
 	</c:choose>
 	<form action="searchKeyword.do" method="GET">
-		Search by keyword:<br> <input type="text" name="keyword"
+		<input type="text" name="keyword" placeholder="Enter a Keyword"
 			maxlength="10"> <input type="submit" value="Search" />
 	</form>
 	<c:choose>
 		<c:when test="${empty loggedIn }">
 			<div class="text-center">
-				<a href="" class="btn btn-default btn-rounded my-3"
-					data-toggle="modal" data-target="#modalLRForm">LogIn/Register</a>
+				<a href="" class="btn btn-primary"
+					data-toggle="modal" data-target="#modalLRForm">Login/Register</a>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="text-center">
-				<a href="/logout" class="btn btn-default btn-rounded my-3">Logout</a>
+				<a href="/logout" class="btn btn-primary">Logout</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
