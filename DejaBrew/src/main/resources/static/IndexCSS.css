@@ -5,19 +5,31 @@ body {
     color: white;
     background-image: url("/image/Flag-of-Colorado-XL.jpg");
 }
+.container-fluid{
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
 .masonry {
 	display: flex;
 	flex-flow: row wrap;
-	margin-left: -8px; /* Adjustment for the gutter */
+	/* margin-left: 10px; */  /* Adjustment for the gutter  */
+	
+	/* margin-right: 10px; */
 	width: 100%;
+	justify-content: space-evenly!important;
+	
+	 /* border: 5px solid red; */ 
 }
-.masonry-brick {
+ .masonry-item {
 	flex: auto;
-	height: 250px;
+	height: 550px;
 	min-width: 150px;
-	margin: 0 8px 8px 0; /* Some gutter */
-}
-.masonry-brick:nth-child(4n+1) {
+	    
+} 
+
+
+/* .masonry-brick:nth-child(4n+1) {
 	width: 250px;
 }
 .masonry-brick:nth-child(4n+1):nth-child(4n+2) {
@@ -28,7 +40,7 @@ body {
 }
 .masonry-brick:nth-child(4n+1):nth-child(4n+4) {
 	width: 380px;
-}
+} */
 
 
 
