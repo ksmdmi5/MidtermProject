@@ -88,7 +88,7 @@
 
 								<div class="beer-detail">
 
-									<img class="beer-img" alt="beer" src="beer.png" width="50px">
+									<img class="beer-img" alt="beer" src="beer.png" style= 'background-color: red' width="50px">
 
 
 									<div class="beer-info">
