@@ -131,7 +131,6 @@
 			Add Review for this Brewery:<br>
 			<form id="review_form" action="createReview.do" method="POST"
 				modelAttribute="review">
-				<!-- DO NOT FORMAT STARS GET WEIRD  -->
 				<div class="rating">
 					<fieldset class="rating">
 						<input type="radio" id="star5" name="rating" value="5" /> <label

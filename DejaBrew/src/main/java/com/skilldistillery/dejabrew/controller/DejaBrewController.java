@@ -1,10 +1,12 @@
 package com.skilldistillery.dejabrew.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.skilldistillery.dejabrew.data.DejaBrewDAO;
 import com.skilldistillery.dejabrew.entities.Address;
 import com.skilldistillery.dejabrew.entities.Beer;
@@ -38,6 +39,7 @@ public class DejaBrewController {
 		for (Brewery brewery : brews) {
 //			brewery.setDescription(brews.get(0));
 		}
+		mv.addObject("auth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		mv.addObject("brews", dao.showAll());
 		mv.addObject("loggedIn", principal);
 		mv.setViewName("index");
@@ -210,4 +212,28 @@ public class DejaBrewController {
 		mv.setViewName("details");
 		return mv; 
 	}
+
+	//Shows list of users
+	@RequestMapping(path="admin.do")
+	public ModelAndView showUsers(Principal principal) {
+	List<User> users = dao.showAllUsers();
+	ModelAndView mv = new ModelAndView();
+	mv.addObject("users", dao.showAllUsers());
+	mv.addObject("loggedIn", principal);
+	mv.setViewName("admin");
+	return mv;
+	}
+
+	//Delete user, only intended for admin
+	@RequestMapping(path="deleteUser.do", method = RequestMethod.POST)
+	public ModelAndView deleteUser(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id", id);
+		dao.deleteUser(id);
+		mv.addObject("users", dao.showAllUsers());
+		mv.setViewName("admin");
+		return mv;
+	}
+	
 }
+	
