@@ -15,6 +15,8 @@
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
 <link rel='stylesheet' type="text/css" href='details.css'>
+<link rel='stylesheet' type="text/css" href='beerColor.css'>
+
 </head>
 
 <body>
@@ -85,11 +87,9 @@
 							<h2>Beer Listing:</h2>
 							<c:forEach items="${brew.beers}" var="beer">
 
-
-								<div class="beer-detail">
-
-									<img class="beer-img" alt="beer" src="beer.png" style= 'background-color: red' width="50px">
-
+								<div class="beer-detail ">
+									<img class="beer-img ${beer.types[0].name}" alt="beer"
+										src="beer.png" width="50px">
 
 									<div class="beer-info">
 
@@ -241,6 +241,7 @@
 			document.getElementById("cancel_update_btn").style.display = "block";
 			review_btn.focus();
 		}
+
 	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
