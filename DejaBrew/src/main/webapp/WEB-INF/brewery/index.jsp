@@ -5,45 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-	text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 65px;
-    color: white;
-    background-image: url("/image/Flag-of-Colorado-XL.jpg");
-}
+<link rel='stylesheet' type='text/css' href='IndexCSS.css'> 
 
-.masonry {
-	display: flex;
-	flex-flow: row wrap;
-	margin-left: -8px; /* Adjustment for the gutter */
-	width: 100%;
-}
-
-.masonry-brick {
-	flex: auto;
-	height: 250px;
-	min-width: 150px;
-	margin: 0 8px 8px 0; /* Some gutter */
-}
-
-.masonry-brick:nth-child(4n+1) {
-	width: 250px;
-}
-
-.masonry-brick:nth-child(4n+1):nth-child(4n+2) {
-	width: 325px;
-}
-
-.masonry-brick:nth-child(4n+1):nth-child(4n+3) {
-	width: 180px;
-}
-
-.masonry-brick:nth-child(4n+1):nth-child(4n+4) {
-	width: 380px;
-}
-</style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -81,7 +44,7 @@ body {
 									<form action="details.do" method="GET">
 									<h4 class="card-title">${brew.name }</h4>
 									<p class="card-text">${brew.url }</p>
-										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">See Profile</button>
+										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">View Details</button>
 									</form>
 								</div>
 							</div>
