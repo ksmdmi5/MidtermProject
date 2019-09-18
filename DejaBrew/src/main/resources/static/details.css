@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-/* 	padding-top: 65px; */
+    overflow-x: hidden; 
 }
 
 .address-div {
@@ -12,9 +12,11 @@ body {
 	color: #f7f7f7;
 	width: 70%;
 	position: absolute;
-	top: 200px;
-	padding: 0 50px;
+	top: 140px;
+    padding: 0 50px;
+    line-height: 70px;
 }
+
 
 #header-img {
 	width: 100%;
@@ -33,6 +35,10 @@ body {
 
 .left-info {
 	width: 55%;
+}
+
+.left-info-btn-cont {
+    display: flex;
 }
 
 .right-info {
@@ -64,6 +70,18 @@ body {
 	margin-bottom: 20px;	
 }	
 
+.user-review {
+    background-color: rgb(175, 175, 175);	
+    margin: 10px 40px 10px 10px;
+    padding: 10px 30px;
+}
+
+.user-review h4 {
+	position: relative;
+	left: 80%;
+	bottom: 10px;
+}
+
 .beer-detail {	
 	margin:auto;	
 	width:90%;	
@@ -83,6 +101,28 @@ body {
     padding: 10px 22px;	
     grid-column: 2;	
     background-color: rgb(175, 175, 175);	
+}
+
+.modify-brew {
+	display: flex;
+	flex-direction: column;
+    margin: auto;
+}
+
+.modify-brew button {
+    margin: 10px;
+}
+
+.btn-pair {
+	display: flex
+}
+
+body button {
+	margin: 0 10px;
+}
+
+.review-container { /* For adding new review */
+	padding: 5%;
 }
 
 /*---------- Rating ----------*/
