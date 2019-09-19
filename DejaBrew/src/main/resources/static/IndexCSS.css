@@ -4,8 +4,8 @@ body {
 	padding-top: 65px;
 	color: white;
 	background-image: url("/image/Flag-of-Colorado-XL2.jpg");
-	background-position: center; 
-	background-repeat : no-repeat;
+	background-position: center;
+	background-repeat: no-repeat;
 	background-attachment: fixed;
 	overflow-x: hidden;
 	background-repeat: no-repeat;
@@ -20,7 +20,6 @@ body {
 .container {
 	margin: 5%;
 }
-
 
 .flex-container {
 	display: flex;
@@ -38,10 +37,12 @@ body {
 	vertical-align: center;
 }
 
+h4 {
+	font-size: 1.5vm;
+}
+
 .card-body h4 {
 	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	margin: 0;
 }
 
