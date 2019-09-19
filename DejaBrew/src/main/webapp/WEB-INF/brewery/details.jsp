@@ -71,9 +71,7 @@
 
 				</div>
 				<div class="right-info" id="map-container">
-<!-- 					<iframe width="100%" height="500" frameborder="0"
-						src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
-						Boulder+Colorado+80303&z=14&output=embed"></iframe> -->
+					<!-- Div for google maps. Don't delete -->
 				</div>
 
 			</div>
@@ -244,7 +242,6 @@
 		
 		function getMap(street, city, state, zip){
 			let address = (street.split(" ").join("+")) + "+" + (city.split(" ").join("+")) + "+" + state + "+" + zip;
-			console.log(address);
 			
 			let map = document.createElement("iframe");
 			map.width = "100%";
@@ -254,9 +251,6 @@
 				"&z=14&output=embed";
 
 			document.getElementById("map-container").appendChild(map);
-//			<iframe width="100%" height="500" frameborder="0"
-//				src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
-//				Boulder+Colorado+80303&z=14&output=embed"></iframe>
 		}
 		
 
