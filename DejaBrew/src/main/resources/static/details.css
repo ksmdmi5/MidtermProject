@@ -170,4 +170,8 @@ footer {
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
     color: #c59b08;
-} 
+}
+span {
+	font-size: 50px;
+	
+}
