@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body onload= 'getMap("${ brew.address.street }", "${ brew.address.city }", "${ brew.address.state }", "${ brew.address.zip }")'>
 	<jsp:include page="navbar.jsp" /><br>
 
 	<div class="header">
@@ -70,10 +70,10 @@
 
 
 				</div>
-				<div class="right-info">
-					<iframe width="100%" height="500" frameborder="0"
+				<div class="right-info" id="map-container">
+<!-- 					<iframe width="100%" height="500" frameborder="0"
 						src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
-						Boulder+Colorado+80303&z=14&output=embed"></iframe>
+						Boulder+Colorado+80303&z=14&output=embed"></iframe> -->
 				</div>
 
 			</div>
@@ -116,9 +116,9 @@
 						<br>
 						<h2>Add Beer:</h2>
 						<div class="beer-form">
+							<form action="addBeer.do" method="POST">
 							<br> Name: <input type="text" name="beerName" /> <input
 								type="hidden" name="brewId" value="${brew.id}" /><br>
-							<form action="addBeer.do" method="POST">
 								Style: <select name="beerTypeId">
 									<option value="1">I.P.A.</option>
 									<option value="2">A.P.A.</option>
@@ -135,9 +135,9 @@
 									<option value="13">Belgian</option>
 									<option value="14">Wheat/Weisse/Hefeweizen</option>
 									<option value="15">Blond</option>
-									<option value=16">Amber</option>
+									<option value="16">Amber</option>
 									<option value="17">Other</option>
-								</select><input type="submit" name="Add Beer" />
+								</select><input type="submit" value="Add Beer" />
 							</form>
 						</div>
 					</c:if>
@@ -241,6 +241,24 @@
 			document.getElementById("cancel_update_btn").style.display = "block";
 			review_btn.focus();
 		}
+		
+		function getMap(street, city, state, zip){
+			let address = (street.split(" ").join("+")) + "+" + (city.split(" ").join("+")) + "+" + state + "+" + zip;
+			console.log(address);
+			
+			let map = document.createElement("iframe");
+			map.width = "100%";
+			map.height = "500";
+			map.frameBorder = "0";
+			map.src = "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=" + address +
+				"&z=14&output=embed";
+
+			document.getElementById("map-container").appendChild(map);
+//			<iframe width="100%" height="500" frameborder="0"
+//				src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=5763+Arapahoe+Avenue+
+//				Boulder+Colorado+80303&z=14&output=embed"></iframe>
+		}
+		
 
 	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
