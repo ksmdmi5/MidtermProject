@@ -11,15 +11,26 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>Show Individual Brewery</title>
 <link rel='stylesheet' type="text/css" href='details.css'>
 <link rel='stylesheet' type="text/css" href='beerColor.css'>
-
 </head>
 
-<body onload= 'getMap("${ brew.address.street }", "${ brew.address.city }", "${ brew.address.state }", "${ brew.address.zip }")'>
+<body
+	onload='getMap("${ brew.address.street }", "${ brew.address.city }", "${ brew.address.state }", "${ brew.address.zip }")'>
 	<jsp:include page="navbar.jsp" /><br>
 
 	<div class="header">
@@ -45,12 +56,13 @@
 									<button class="btn btn-secondary" type="submit">Edit
 										Brewery</button>
 								</form>
-
+							<c:if test="${brew.user.username == loggedIn.name or auth == '[ROLE_ADMIN]'}">
 								<form method='POST' action=deleteBrewery.do>
 									<button class="btn btn-secondary" type="submit">Delete
 										Brewery</button>
 									<input type="hidden" name="id" value="${brew.id}">
 								</form>
+							</c:if>
 							</div>
 						</c:if>
 
@@ -115,8 +127,8 @@
 						<h2>Add Beer:</h2>
 						<div class="beer-form">
 							<form action="addBeer.do" method="POST">
-							<br> Name: <input type="text" name="beerName" /> <input
-								type="hidden" name="brewId" value="${brew.id}" /><br>
+								<br> Name: <input type="text" name="beerName" /> <input
+									type="hidden" name="brewId" value="${brew.id}" /><br>
 								Style: <select name="beerTypeId">
 									<option value="1">I.P.A.</option>
 									<option value="2">A.P.A.</option>
@@ -152,7 +164,8 @@
 									</c:forEach>
 									<div class="review-detail">${review.details}</div>
 									<h4>- ${review.user.username}</h4>
-									<c:if test="${review.user.username == loggedIn.name}">
+									<c:if
+										test="${review.user.username == loggedIn.name or auth == '[ROLE_ADMIN]'}">
 										<div class="btn-pair">
 											<button class="btn btn-secondary"
 												onClick="setReviewData('${review.details}', '${review.rating }', '${review.id }')">
@@ -176,8 +189,7 @@
 
 
 			<br>
-
-			<c:if test="${not empty loggedIn }">
+			<c:if test="${not empty loggedIn}">
 				<div class="review-container">
 					Review this Brewery:<br>
 					<form id="review_form" action="createReview.do" method="POST"
@@ -222,8 +234,7 @@
 	</c:choose>
 
 
-	<footer></footer>
-
+	<footer> </footer>
 
 
 	<script type="text/javascript">
@@ -239,21 +250,20 @@
 			document.getElementById("cancel_update_btn").style.display = "block";
 			review_btn.focus();
 		}
-		
-		function getMap(street, city, state, zip){
-			let address = (street.split(" ").join("+")) + "+" + (city.split(" ").join("+")) + "+" + state + "+" + zip;
-			
+
+		function getMap(street, city, state, zip) {
+			let address = (street.split(" ").join("+")) + "+"
+					+ (city.split(" ").join("+")) + "+" + state + "+" + zip;
+
 			let map = document.createElement("iframe");
 			map.width = "100%";
 			map.height = "500";
 			map.frameBorder = "0";
-			map.src = "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=" + address +
-				"&z=14&output=embed";
+			map.src = "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q="
+					+ address + "&z=14&output=embed";
 
 			document.getElementById("map-container").appendChild(map);
 		}
-		
-
 	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
