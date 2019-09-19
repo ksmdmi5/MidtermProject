@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='IndexCSS.css'> 
+<link rel='stylesheet' type='text/css' href='IndexCSS.css'>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -21,59 +21,72 @@
 	<jsp:include page="navbar.jsp" />
 	<br>
 	<div class="container-fluid">
-	<form action="creationFormBrewery.do" method="GET">
-		To Add a Brewery: <input type="submit" value="Create Brewery" />
-	</form>
-	<br>
-	<!-- <img src="https://picsum.photos/350/305?image=100" alt="Dummy Image"> -->
-	<ul>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-md-8">
+				<div>
+					<em><h1>Deja Brew</h1></em>
+					<h2>Your Source For Finding Local Breweries</h2>
+					<h3>We Encourage Our Visitors to Contribute and Add to Our
+						List</h3>
+					<h3>And Feel Free to Write a Review of Your Favorite Brewery</h3>
+				</div>
+				<br>
 
-		<div class="masonry-wrapper">
-			<div class="masonry">
-
-
-				<c:forEach var='brew' items='${brews}'>
-					<c:set var="count" value="${count + 1}" scope="page" />
-
-
-					<div class="masonry-item">
-						<div class="masonry-content">
-							<div class="card" style="width: 250px">
-								<img class="card-img-top"
-									src="https://picsum.photos/350/305?image=100" alt="Card image">
-								<div class="card-body">
-									<form action="details.do" method="GET">
-									<h4 class="card-title">${brew.name }</h4>
-									<p class="card-text">${brew.url }</p>
-										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">View Details</button>
-									</form>
-								</div>
-							</div>
-
-
-							<%-- <h3 class="masonry-title">${brew.name }</h3>
-							<p class="masonry-description">${brew.description }</p> --%>
-						</div>
-					</div>
-
-
-				</c:forEach>
-				<div class="card" style="width: 250px">
-								<img class="card-img-top"
-									src="https://picsum.photos/350/305?image=100" alt="Card image">
-								<div class="card-body">
-									<h4 class="card-title">Add your brewery</h4>
-									<p class="card-text">Add your url</p>
-									<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
-								</div>
-							</div>
-
-
+				<form action="creationFormBrewery.do" method="GET">
+					To Add a Brewery: <input type="submit" value="Create Brewery" />
+				</form>
 			</div>
-
 		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="card-deck">
+			<c:forEach var='brew' items='${brews}' varStatus="count">
+				<div class="card mb-4">
+					<form action="details.do" method="GET">
+						<c:choose>
+							<c:when test="${not empty brew.logourl}">
+								<div class="flex-container">
+								
+								<img class="card-img-top" src="${brew.logourl}" alt=" Cardimage">
+								
+								
+								<div class="card-body">
+									<h4 class="card-title">${brew.name }</h4>
+									<button type="submit" name="id" value="${brew.id }"
+										class="btn btn-primary">View Details</button>
+								</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="/image/detail.jpg" alt=" Cardimage">
+								<div class="card-body">
+									<h4 class="card-title">${brew.name }</h4>
+									<button type="submit" name="id" value="${brew.id }"
+										class="btn btn-primary">View Details</button>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</form>
+				</div>
+				<c:if test="${count.count %5 ==0 }">
+					<div class="w-100 d-none d-xl-block"></div>
+				</c:if>
+			</c:forEach>
+			<div class="card mb-4">
+				<img class="card-img-top" src="/image/taps.jpg" alt="Card image">
+				<div class="card-body">
+					<h4 class="card-title">Add your brewery</h4>
+					<form action="creationFormBrewery.do" method="GET">
+						<input type="submit" class="btn btn-primary"
+							value="Create Brewery" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	</ul>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -85,6 +98,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	</div>
+
 </body>
 </html>

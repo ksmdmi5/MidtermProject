@@ -23,6 +23,7 @@ public class Brewery {
 	private String url;
 	private boolean active;
 	private boolean menu;
+	private String logourl;
 
 	@OneToMany(mappedBy = "brewery")
 	private List<Review> reviews;
@@ -173,6 +174,18 @@ public class Brewery {
 
 	public void setBeers(List<Beer> beers) {
 		this.beers = beers;
+	}
+
+	public String getLogourl() {
+		return logourl;
+	}
+
+	public void setLogourl(String logourl) {
+		this.logourl = logourl;
+	}
+
+	public void setMenu(boolean menu) {
+		this.menu = menu;
 	}
 
 	@Override
