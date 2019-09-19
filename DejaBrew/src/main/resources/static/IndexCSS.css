@@ -10,37 +10,23 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 }
-.masonry {
-	display: flex;
-	flex-flow: row wrap;
-	/* margin-left: 10px; */  /* Adjustment for the gutter  */
-	
-	/* margin-right: 10px; */
+
+/*  img {
 	width: 100%;
-	justify-content: space-evenly!important;
+	height: 50%;
+}  */
+.flex-container {
+	display:flex;
+	flex-direction: column;
+	/* align-items: baseline; */
 	
-	 /* border: 5px solid red; */ 
 }
- .masonry-item {
-	flex: auto;
-	height: 550px;
-	min-width: 150px;
-	    
-} 
-
-
-/* .masonry-brick:nth-child(4n+1) {
-	width: 250px;
+.flex-container img {
+	width: 200px;
+	
 }
-.masonry-brick:nth-child(4n+1):nth-child(4n+2) {
-	width: 325px;
+.flex-container div {
+	height: 50%;
+	position: relative;
+	bottom:0;
 }
-.masonry-brick:nth-child(4n+1):nth-child(4n+3) {
-	width: 180px;
-}
-.masonry-brick:nth-child(4n+1):nth-child(4n+4) {
-	width: 380px;
-} */
-
-
-

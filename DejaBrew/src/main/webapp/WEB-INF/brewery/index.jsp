@@ -39,57 +39,50 @@
 		</div>
 	</div>
 	<br>
-
-	<div class="masonry">
-		<c:forEach var='brew' items='${brews}'>
-			<c:set var="count" value="${count + 1}" scope="page" />
-			<div class="masonry-item">
-				<div class="masonry-content">
-					<div class="card" style="width: 250px">
-						<form action="details.do" method="GET">
-							<c:choose>
-								<c:when test="${not empty brew.logourl}">
-
-									<img class="card-img-top" src="${brew.logourl}"
-										style="width: 250px" alt=" Cardimage">
-									<div class="card-body">
-										<h4 class="card-title">${brew.name }</h4>
-										<button type="submit" name="id" value="${brew.id }"
-											class="btn btn-primary">View Details</button>
-											</div>
-								</c:when>
-								<c:otherwise>
-									<img class="card-img-top" src="/image/detail.jpg"
-										style="width: 250px" alt=" Cardimage">
-									<div class="card-body">
-										<h4 class="card-title">${brew.name }</h4>
-										<button type="submit" name="id" value="${brew.id }"
-											class="btn btn-primary">View Details</button>
-											</div>
-								</c:otherwise>
-							</c:choose>
-						</form>
-					</div>
+	<div class="container">
+		<div class="card-deck">
+			<c:forEach var='brew' items='${brews}' varStatus="count">
+				<div class="card mb-4">
+					<form action="details.do" method="GET">
+						<c:choose>
+							<c:when test="${not empty brew.logourl}">
+								<div class="flex-container">
+								
+								<img class="card-img-top" src="${brew.logourl}" alt=" Cardimage">
+								
+								
+								<div class="card-body">
+									<h4 class="card-title">${brew.name }</h4>
+									<button type="submit" name="id" value="${brew.id }"
+										class="btn btn-primary">View Details</button>
+								</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="/image/detail.jpg" alt=" Cardimage">
+								<div class="card-body">
+									<h4 class="card-title">${brew.name }</h4>
+									<button type="submit" name="id" value="${brew.id }"
+										class="btn btn-primary">View Details</button>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</form>
 				</div>
-
-
-				<%-- <h3 class="masonry-title">${brew.name }</h3>
-							<p class="masonry-description">${brew.description }</p> --%>
+				<c:if test="${count.count %5 ==0 }">
+					<div class="w-100 d-none d-xl-block"></div>
+				</c:if>
+			</c:forEach>
+			<div class="card mb-4">
+				<img class="card-img-top" src="/image/taps.jpg" alt="Card image">
+				<div class="card-body">
+					<h4 class="card-title">Add your brewery</h4>
+					<form action="creationFormBrewery.do" method="GET">
+						<input type="submit" class="btn btn-primary"
+							value="Create Brewery" />
+					</form>
+				</div>
 			</div>
-
-	</c:forEach>
-			
-	</div>
-
-	<div class="card" style="width: 250px">
-		<img class="card-img-top" src="/image/taps.jpg" alt="Card image">
-		<div class="card-body">
-			<h4 class="card-title">Add your brewery</h4>
-			<!-- <p class="card-text">Add your url</p> -->
-			<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
-			<form action="creationFormBrewery.do" method="GET">
-				<input type="submit" class="btn btn-primary" value="Create Brewery" />
-			</form>
 		</div>
 	</div>
 
@@ -104,6 +97,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	
+
 </body>
 </html>
