@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>User Account Page</title>
 <link rel='stylesheet' type='text/css' href='details.css'>
+<link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
 

@@ -79,10 +79,17 @@ public class DejaBrewController {
 	// creation of user redirects
 	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
 	public String createBrewery(User user, RedirectAttributes redir) {
-		redir.addFlashAttribute("newUser", user);
-		dao.addUser(user);
-		return "redirect:userAdded.do";
+		try {
+			dao.addUser(user);
+			redir.addFlashAttribute("newUser", user);
+			return "redirect:userAdded.do";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
 	}
+	
 
 	// after user user created it goes to index
 	@RequestMapping(path = "userAdded.do", method = RequestMethod.GET)
