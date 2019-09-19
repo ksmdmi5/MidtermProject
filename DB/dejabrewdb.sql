@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `brewery` (
   `description` VARCHAR(5000) NULL,
   `url` VARCHAR(500) NULL,
   `menu` TINYINT NULL,
-  `logourl` VARCHAR(750) NULL,
+  `logourl` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_brewery_address_idx` (`address_id` ASC),
   INDEX `fk_brewery_user1_idx` (`createdby_user` ASC),
@@ -247,7 +247,7 @@ USE `dejabrewdb`;
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (1, 1, 1, 'Amicas Pizza, Microbrews and More', 1, '', '', 1, 'https://coloradofrontrange.com/wp-content/uploads/2015/02/00wbportfolio.jpg');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (2, 2, 1, 'Avery Brewing Company', 1, 'Established in 1993, Avery Brewing Co. is a family owned and operated micro-brewery dedicated to brewing the finest quality English and Belgian style ales.. From humble beginnings, brewing 800 barrels of three different beers in 1994, we have progressed to brewing 13,000 barrels of twenty different beers in 2007. We attribute this success to beer drinkers gravitating to beers with more interesting flavor profiles. The unique flavor complexity of Avery beers occurs through a combination of sparing no expense with regard to ingredients and our hopping methods. Sparing no expense means using lots of specialty malts, imported hops, such as Styrian Goldings, and imported Belgian candy sugar.', 'http://www.averybrewing.com/', 1, 'https://i.vimeocdn.com/portrait/6956905_600x600.webp');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (3, 3, 1, 'Backcountry Brewery', 1, '', '', 0, 'https://3.bp.blogspot.com/-vs2h83X2Yzc/WRuad8lGuCI/AAAAAAAAD8Y/n_K4_H13ZmEeX__3ffemqNh9E0m491TiACLcB/s1600/14100358_10153715979067233_4229655348491101355_n.jpg');
-INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (5, 5, 1, 'Boulder Beer Company', 1, '', 'http://boulderbeer.com/', 0, 'https://d2pxm94gkd1wuq.cloudfront.net/BreweryLogos/Standard/637787964.boulder.beer.logo.hopiron.gold.jpg');
+INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (5, 5, 1, 'Boulder Beer Company', 1, '', 'http://boulderbeer.com/', 0, 'https://scontent.fapa1-1.fna.fbcdn.net/v/t1.0-9/12115637_10153418877147663_5824627673618583945_n.jpg?_nc_cat=103&_nc_oc=AQl6vCvnfSn7ODSLf1ewe_gGhnKXLciNSnfFqlij6p8eiE7a-Mtq4eGO_FuuH9N6hzw&_nc_ht=scontent.fapa1-1.fna&oh=319036c0702bd54394a9c970d756b016&oe=5E3B7F9A');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (6, 6, 1, 'Breckenridge Brewery', 1, '', 'http://www.breckbrew.com/', 1, 'https://www.breckbrew.com/_stay_out/images/logo.png');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (7, 7, 1, 'Bristol Brewing', 1, '', '', 1, 'http://www.bristolbrewing.com/wp-content/uploads/2018/06/Color-Circular-BBC-logo2.png');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (8, 8, 1, 'Bull & Bush Pub & Brewery', 1, '', '', 1, 'https://ggchamber.com/wp-content/uploads/2014/10/Bull_Bush-Big-C.jpg');

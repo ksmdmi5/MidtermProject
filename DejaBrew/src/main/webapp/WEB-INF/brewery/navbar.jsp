@@ -103,7 +103,7 @@
 <!--Modal: Login / Register Form-->
 
 
-<nav class="navbar fixed-top navbar-light bg-light">
+<nav class="navbar fixed-top navbar-light bg-dark">
 	<a href="/DejaBrew"><button class="btn btn-primary">
 			<i class="fa fa-home"></i> Home
 		</button></a>
