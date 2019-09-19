@@ -172,7 +172,7 @@ public class DejaBrewController {
 
 	// allows user to create a Review
 	@RequestMapping(path = "createReview.do", method = RequestMethod.POST)
-	public ModelAndView createReview( Principal principal, Review review, @RequestParam("breweryID") int id ) {
+	public ModelAndView createReview(Principal principal, Review review, @RequestParam("breweryID") int id) {
 		review.setUser(dao.findUserByName(principal.getName()));
 		review.setBrewery(dao.findById(id));
 		dao.addReview(review);
@@ -182,7 +182,7 @@ public class DejaBrewController {
 		return mv;
 	}
 
-	@RequestMapping(path = "updateReview.do", method = RequestMethod.POST, params = {"breweryID", "reviewID"})
+	@RequestMapping(path = "updateReview.do", method = RequestMethod.POST, params = { "breweryID", "reviewID" })
 	public ModelAndView editReview(Review review, int breweryID, int reviewID) {
 		dao.updateReview(reviewID, review);
 		ModelAndView mv = new ModelAndView();
@@ -191,41 +191,42 @@ public class DejaBrewController {
 		return mv;
 	}
 
-	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST, params = {"brewID", "reviewID"})
+	@RequestMapping(path = "deleteReview.do", method = RequestMethod.POST, params = { "brewID", "reviewID" })
 	public ModelAndView deleteReview(int reviewID, int brewID) {
 		ModelAndView mv = new ModelAndView("details");
 		mv.addObject("brew", dao.findById(brewID));
 		dao.deleteReview(reviewID);
 		return mv;
 	}
-	@RequestMapping(path="addBeer.do", method = RequestMethod.POST, params= {"beerTypeId","beerName","brewId"} )
-	public ModelAndView addBeer( int beerTypeId, String beerName, int brewId) {
+
+	@RequestMapping(path = "addBeer.do", method = RequestMethod.POST, params = { "beerTypeId", "beerName", "brewId" })
+	public ModelAndView addBeer(int beerTypeId, String beerName, int brewId) {
 		ModelAndView mv = new ModelAndView();
 		Beer beer = new Beer();
 		beer.setBrewery(dao.findById(brewId));
-		List <BeerType> types = Arrays.asList(dao.findByBeerType(beerTypeId));
+		List<BeerType> types = Arrays.asList(dao.findByBeerType(beerTypeId));
 		beer.setTypes(types);
 		beer.setName(beerName);
 		dao.addBeer(beer);
 		mv.addObject("brew", dao.findById(brewId));
-		
+
 		mv.setViewName("details");
-		return mv; 
+		return mv;
 	}
 
-	//Shows list of users
-	@RequestMapping(path="admin.do")
+	// Shows list of users
+	@RequestMapping(path = "admin.do")
 	public ModelAndView showUsers(Principal principal) {
-	List<User> users = dao.showAllUsers();
-	ModelAndView mv = new ModelAndView();
-	mv.addObject("users", dao.showAllUsers());
-	mv.addObject("loggedIn", principal);
-	mv.setViewName("admin");
-	return mv;
+		List<User> users = dao.showAllUsers();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("users", dao.showAllUsers());
+		mv.addObject("loggedIn", principal);
+		mv.setViewName("admin");
+		return mv;
 	}
 
-	//Delete user, only intended for admin
-	@RequestMapping(path="deleteUser.do", method = RequestMethod.POST)
+	// Delete user, only intended for admin
+	@RequestMapping(path = "deleteUser.do", method = RequestMethod.POST)
 	public ModelAndView deleteUser(int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id", id);
@@ -234,6 +235,16 @@ public class DejaBrewController {
 		mv.setViewName("admin");
 		return mv;
 	}
-	
+
+//	//User can see their comments on their account page
+	@RequestMapping(path = "user.do", method = RequestMethod.GET)
+	public ModelAndView showUserComments(Review review, Principal principal) {
+		ModelAndView mv = new ModelAndView();
+		List<Review> reviews = dao.showUserComments(dao.findUserByName(principal.getName()).getId());
+		mv.addObject("reviews", reviews);
+		mv.addObject("loggedIn", principal);
+		mv.setViewName("user");
+		return mv;
+	}
+
 }
-	
