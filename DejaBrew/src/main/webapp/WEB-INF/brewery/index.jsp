@@ -63,7 +63,7 @@
 
 
 									<div class="card-body">
-										<h4 align="center" class="card-title">${brew.name }</h4>
+										<h4 align="center" position="bottom" class="card-title">${brew.name }</h4>
 									<%-- 	<button type="submit" name="id" value="${brew.id }"
 											class="btn btn-primary">View Details</button> --%>
 									</div>
