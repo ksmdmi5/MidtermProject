@@ -5,12 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='IndexCSS.css'> 
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+<link rel="manifest" href="/image/site.webmanifest">
+<link rel="mask-icon" href="/image/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<link rel='stylesheet' type='text/css' href='IndexCSS.css'>
+<link rel='stylesheet' type='text/css' href='theme.css'>
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 <title>index</title>
@@ -20,58 +23,71 @@
 	<jsp:include page="navbar.jsp" />
 	<br>
 	<div class="container-fluid">
-	<form action="creationFormBrewery.do" method="GET">
-		To Add a Brewery: <input type="submit" value="Create Brewery" />
-	</form>
+		<form action="creationFormBrewery.do" method="GET">
+			To Add a Brewery: <input type="submit" value="Create Brewery" />
+		</form>
+	</div>
 	<br>
 	<!-- <img src="https://picsum.photos/350/305?image=100" alt="Dummy Image"> -->
 	<ul>
+		<!--  *********************  Opening Divs for All Brewery Cards             **********************************************-->
+		<div class="container">
+			<div class="card-deck">
 
-		<div class="masonry-wrapper">
-			<div class="masonry">
-
-
-				<c:forEach var='brew' items='${brews}'>
-					<c:set var="count" value="${count + 1}" scope="page" />
-
-
-					<div class="masonry-item">
-						<div class="masonry-content">
-							<div class="card" style="width: 250px">
-								<img class="card-img-top"
-									src="https://picsum.photos/350/305?image=100" alt="Card image">
-								<div class="card-body">
-									<form action="details.do" method="GET">
-									<h4 class="card-title">${brew.name }</h4>
-									<p class="card-text">${brew.url }</p>
-										<button type="submit" name="id" value="${brew.id }" class="btn btn-primary">View Details</button>
-									</form>
-								</div>
-							</div>
+				<!--  *********************  FOREA Loop Creating All Brewery Cards             **********************************************-->
+				<c:forEach var='brew' items='${brews}'  varStatus="count">
 
 
-							<%-- <h3 class="masonry-title">${brew.name }</h3>
-							<p class="masonry-description">${brew.description }</p> --%>
+					<!--  *********************  All Brewery Cards             **********************************************-->
+
+					<div class="card mb-4">
+						<img class="card-img-top"
+							src="https://picsum.photos/350/305?image=100" alt="Card image">
+						<div class="card-body">
+							<form action="details.do" method="GET">
+								<h4 class="card-title">${brew.name }</h4>
+								<button type="submit" name="id" value="${brew.id }"
+									class="btn btn-primary">View Details</button>
+							</form>
 						</div>
 					</div>
-
+					<!--  *********************  /CSS for Each breweries Card         **********************************************-->
+					<!-- <div class="w-100 d-none d-sm-block d-md-none">
+						wrap every 2 on sm
+					</div>
+					<div class="w-100 d-none d-md-block d-lg-none">
+						wrap every 3 on md
+					</div>
+					<div class="w-100 d-none d-lg-block d-xl-none">
+						wrap every 4 on lg
+					</div> -->
+					<c:if test="${count.count % 5 == 0 }">
+					<div class="w-100 d-none d-xl-block">
+						<!-- wrap every 5 on xl-->
+					</div>
+					</c:if>
 
 				</c:forEach>
-				<div class="card" style="width: 250px">
-								<img class="card-img-top"
-									src="https://picsum.photos/350/305?image=100" alt="Card image">
-								<div class="card-body">
-									<h4 class="card-title">Add your brewery</h4>
-									<p class="card-text">Add your url</p>
-									<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
-								</div>
-							</div>
+				<!--  *********************  /FOREA Loop Creating All Brewery Cards             **********************************************-->
+
+				<!--  *********************   Add brewery   Card             **********************************************-->
+				<div class="card mb-4">
+					<img class="card-img-top"
+						src="https://picsum.photos/350/305?image=100" alt="Card image">
+					<div class="card-body">
+						<h4 class="card-title">Add your brewery</h4>
+						<p class="card-text">Add your url</p>
+						<%-- <a href="details.do" value="${brew.id }" class="btn btn-primary">See Profile</a> --%>
+					</div>
+				</div>
+				<!--  *********************   /Add brewery   Card             **********************************************-->
+				<!--  *********************      Closing Divs for all breweries             **********************************************-->
+
 
 
 			</div>
-
 		</div>
-
+		<!--  *********************      /Closing Divs for all breweries             **********************************************-->
 	</ul>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

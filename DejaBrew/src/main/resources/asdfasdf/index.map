@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "index.css",
+	"sources": [
+		"../static/index.scss"
+	],
+	"sourcesContent": [
+		"// Bootstrap 4 breakpoints & gutter\n$grid-breakpoints: (\n    xs: 0,\n    sm: 576px,\n    md: 768px,\n    lg: 992px,\n    xl: 1200px\n) !default;\n\n$grid-gutter-width: 30px !default;\n\n// number of cards per line for each breakpoint\n$cards-per-line: (\n    xs: 1,\n    sm: 2,\n    md: 3,\n    lg: 4,\n    xl: 5\n);\n\n@each $name, $breakpoint in $grid-breakpoints {\n    @media (min-width: $breakpoint) {\n        .card-deck .card {\n            flex: 0 0 calc(#{100/map-get($cards-per-line, $name)}% - #{$grid-gutter-width});\n        }\n    }\n}"
+	],
+	"names": [],
+	"mappings": "AAqBI,MAAM,EAAE,SAAS,EAAE,CAAC;;EAChB,AAAA,UAAU,CAAC,KAAK,CAAC;IACb,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC,iBAAqE;GAClF;;;AAHL,MAAM,EAAE,SAAS,EAAE,KAAK;;EACpB,AAAA,UAAU,CAAC,KAAK,CAAC;IACb,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC,gBAAqE;GAClF;;;AAHL,MAAM,EAAE,SAAS,EAAE,KAAK;;EACpB,AAAA,UAAU,CAAC,KAAK,CAAC;IACb,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC,sBAAqE;GAClF;;;AAHL,MAAM,EAAE,SAAS,EAAE,KAAK;;EACpB,AAAA,UAAU,CAAC,KAAK,CAAC;IACb,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC,gBAAqE;GAClF;;;AAHL,MAAM,EAAE,SAAS,EAAE,MAAM;;EACrB,AAAA,UAAU,CAAC,KAAK,CAAC;IACb,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC,gBAAqE;GAClF"
+}

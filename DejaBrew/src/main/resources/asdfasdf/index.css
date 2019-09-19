@@ -1,0 +1,36 @@
+@media (min-width: 0) {
+  /* line 23, ../../../../../../../../../../../../../Users/ckl2007/SD/Java/MidtermProject/DejaBrew/src/main/resources/static/index.scss */
+  .card-deck .card {
+    flex: 0 0 calc(100% - 30px);
+  }
+}
+
+@media (min-width: 576px) {
+  /* line 23, ../../../../../../../../../../../../../Users/ckl2007/SD/Java/MidtermProject/DejaBrew/src/main/resources/static/index.scss */
+  .card-deck .card {
+    flex: 0 0 calc(50% - 30px);
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 23, ../../../../../../../../../../../../../Users/ckl2007/SD/Java/MidtermProject/DejaBrew/src/main/resources/static/index.scss */
+  .card-deck .card {
+    flex: 0 0 calc(33.33333% - 30px);
+  }
+}
+
+@media (min-width: 992px) {
+  /* line 23, ../../../../../../../../../../../../../Users/ckl2007/SD/Java/MidtermProject/DejaBrew/src/main/resources/static/index.scss */
+  .card-deck .card {
+    flex: 0 0 calc(25% - 30px);
+  }
+}
+
+@media (min-width: 1200px) {
+  /* line 23, ../../../../../../../../../../../../../Users/ckl2007/SD/Java/MidtermProject/DejaBrew/src/main/resources/static/index.scss */
+  .card-deck .card {
+    flex: 0 0 calc(20% - 30px);
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
