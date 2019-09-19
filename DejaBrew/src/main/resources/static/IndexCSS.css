@@ -9,6 +9,7 @@ body {
 	background-attachment: fixed;
 	overflow-x: hidden;
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .container-fluid {
@@ -20,7 +21,8 @@ body {
 .container {
 	margin: 5%;
 }
-
+h4 {
+	font-size:1.5vm;}
 
 .flex-container {
 	display: flex;
@@ -36,12 +38,13 @@ body {
 
 .card-body {
 	vertical-align: center;
+	
 }
 
 .card-body h4 {
 	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	/* top: 50%; */
+	/* transform: translateY(-50%); */
 	margin: 0;
 }
 
