@@ -25,9 +25,13 @@
 				<c:set var="breweryName" scope="page" value="" />
 				<c:forEach items="${reviews}" var="review">
 					<c:if test="${breweryName != review.brewery.name }">
+						<form:form action="userBrewDetails.do" method="GET">
+						<input type="hidden" name="brewId" value="${review.brewery.id }"/>
 						<h2>
-							<a href="details.do">${review.brewery.name}</a>
+						<button type="submit" class="btn-link">${review.brewery.name} </button>
+							<%-- <a href="userBrewDetails.do">${review.brewery.name}</a> --%>
 						</h2>
+						</form:form>
 					</c:if>
 					<div class="user-review">
 						<c:set var="breweryName" scope="page"

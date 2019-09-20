@@ -28,6 +28,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public User findUserById(int id) {
 		return em.find(User.class, id);
 	}
+
 	public Review findReviewById(int id) {
 		return em.find(Review.class, id);
 	}
@@ -116,7 +117,6 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		em.close();
 		return true;
 	}
-	
 
 	@Override
 	public Beer addBeer(Beer beer) {
@@ -196,20 +196,22 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	public BeerType findByBeerType(int id) {
 		return em.find(BeerType.class, id);
 	}
+
 	@Override
 	public List<User> showAllUsers() {
 		String query = "SELECT user FROM User user";
 		return em.createQuery(query, User.class).getResultList();
 	}
+
 	@Override
 	public List<Review> showUserComments(int id) {
 		String query = "SELECT rev FROM Review rev WHERE user.id = :id ORDER BY brewery.name";
-		return em.createQuery(query, Review.class).setParameter("id", id).getResultList(); 
+		return em.createQuery(query, Review.class).setParameter("id", id).getResultList();
 	}
 
-	
 	@Override
-	public List<BeerType> getAllBeerTypes(){
+	public List<BeerType> getAllBeerTypes() {
 		return em.createQuery("SELECT type FROM BeerType type", BeerType.class).getResultList();
 	}
+
 }

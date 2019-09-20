@@ -1,4 +1,4 @@
-package com.skilldistillery.dejabrew;
+package com.skilldistillery.dejabrew.security;
 
 import java.util.Optional;
 
@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.dejabrew.data.UserRepository;
 import com.skilldistillery.dejabrew.entities.User;
 
 @Service
