@@ -29,8 +29,7 @@
 			<div class="col-sm-2"></div>
 			<div class="col-md-8">
 				<div>
-					<em><h1>Deja Brew</h1></em>
-					<br>
+					<em><h1>Deja Brew</h1></em> <br>
 					<h2>Your Source For Finding Local Breweries</h2>
 					<br>
 					<h5>We encourage our visitors to contribute and add to our
@@ -38,7 +37,7 @@
 					<h5>and feel free to write a review of your favorite brewery</h5>
 				</div>
 
-<%-- 				<form action="creationFormBrewery.do" method="GET">
+				<%-- 				<form action="creationFormBrewery.do" method="GET">
 					To Add a Brewery: <input type="submit" value="Create Brewery" />
 				</form> --%>
 			</div>
@@ -64,7 +63,7 @@
 
 									<div class="card-body">
 										<h4 align="center" position="bottom" class="card-title">${brew.name }</h4>
-									<%-- 	<button type="submit" name="id" value="${brew.id }"
+										<%-- 	<button type="submit" name="id" value="${brew.id }"
 											class="btn btn-primary">View Details</button> --%>
 									</div>
 								</div>
@@ -73,15 +72,15 @@
 								<div class="flex-container">
 									<div class="img-div">
 
-										<input type="image" class="card-img-top" src="/image/detail.jpg"
-											alt=" Cardimage"> <input type="hidden" name="id"
-											value="${brew.id }">
+										<input type="image" class="card-img-top"
+											src="/image/detail.jpg" alt=" Cardimage"> <input
+											type="hidden" name="id" value="${brew.id }">
 									</div>
 
 
 									<div class="card-body">
 										<h4 align="center" class="card-title">${brew.name }</h4>
-								<%-- 		<button type="submit" name="id" value="${brew.id }"
+										<%-- 		<button type="submit" name="id" value="${brew.id }"
 											class="btn btn-primary">View Details</button> --%>
 									</div>
 								</div>
@@ -100,13 +99,20 @@
 				</c:if>
 			</c:forEach>
 			<div class="card mb-4">
-				<img class="card-img-top" src="/image/taps.jpg" alt="Card image">
-				<div class="card-body">
-					<h4 class="card-title">Add your brewery</h4>
-					<form action="creationFormBrewery.do" method="GET">
-						<input type="submit" class="btn btn-primary"
-							value="Create Brewery" />
-					</form>
+				<div class="flex-container">
+					<div class="img-div">
+
+						<input type="image" class="card-img-top" src="/image/taps.jpg"
+							alt="Cardimage">
+							</div>
+						<div class="card-body" align="center">
+							<!-- <h4 align="center" class="card-title"></h4> -->
+							<form action="creationFormBrewery.do" method="GET">
+								<input type="submit"  class="btn btn-button"
+									value="Create Brewery" />
+							</form>
+						</div>
+					
 				</div>
 			</div>
 		</div>
