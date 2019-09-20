@@ -17,6 +17,7 @@ public interface DejaBrewDAO {
 	BeerType findByBeerType(int id);
 	List<Brewery> findBreweryByKeyword(String keyword);
 	List<Brewery> showAll();
+	List<User> showAllUsers();
 	List<BeerType> getAllBeerTypes();
 	Address updateAddress(int id, Address addr);
 	Review updateReview(int id, Review review);
@@ -30,5 +31,6 @@ public interface DejaBrewDAO {
 	boolean deleteUser(int id);
 	boolean deleteAddress(int id);
 	boolean deleteReview(int id);
+	boolean enableUser(int id);
 	List<Review> showUserComments(int id);
 }
