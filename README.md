@@ -8,7 +8,8 @@ SD22 Midterm Project
 * Carl Lawson (We're not sure)
 
 ### Overview
-Deja Brew is a website that provides visitors a list of breweries local to Denver, CO
+
+Deja Brew is a website that provides visitors a list of breweries local to Colorado
 that provides a list of beers, a map of the location, and allows registered users to
 leave ratings and reviews for the establishment.
 
@@ -26,7 +27,7 @@ incapable of playing nice with others.
 * Spring MVC
 * JPA/Hibernate/JPQL
 * Mysql
-* bootstrap
+* Bootstrap
 * CSS
 * Git
 * MAMP
@@ -42,7 +43,7 @@ incapable of playing nice with others.
 ### How To Use
 
 Upon getting to the welcome page you are able to look around at the different breweries
-available in the Denver area. As a visitor you are also able to click on an individual
+available in Colorado. As a visitor you are also able to click on an individual
 brewery and take a look at what they have available and what registered have said about
 the brewery. If you wish to leave your own reviews or if you know of a brewery that is
 not on the website yet you can register an account by clicking the register button on the
@@ -50,10 +51,13 @@ navbar to create your own unique username and password.
 
 ### Lessons Learned
 
-
-
+* Try to solve a problem on your own but know when it is time to ask for help.
+* A second pair of eyes never hurts.
+* Resolve merge conflicts as a team.
+* Start simple and build upon.
 
 ### Stretch Goals
-* Expand to include all of Colorado
+
+* Expand to include all of the United States
 * Have users directly comment on another users comment
 * User can add image when creating a new brewery
