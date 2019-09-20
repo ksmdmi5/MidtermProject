@@ -12,9 +12,12 @@
 <meta charset="UTF-8">
 <title>Error</title>
 <link rel='stylesheet' type='text/css' href='IndexCSS.css'>
+<link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
 <jsp:include page="navbar.jsp" /><br>
-Something went wrong.
+<div align="center" color: white; >
+<h4>Oops, something has gone wrong. Have you tried a Gradle refresh?</h4>
+</div>
 </body>
 </html>

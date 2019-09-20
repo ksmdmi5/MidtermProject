@@ -9,6 +9,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link rel='stylesheet' type='text/css' href='IndexCSS.css'>
+<link rel="stylesheet" type="text/css" href="theme.css">
 <head>
 <style type="text/css">
 body {
@@ -21,6 +22,7 @@ body {
 </head>
 <body>
 	<jsp:include page="navbar.jsp" /><br>
+	<div align="center">
 	<c:choose>
 		<c:when test="${not empty users}">
 			<c:forEach items="${users}" var="user">
@@ -36,5 +38,6 @@ body {
 	No users found.
 	</c:otherwise>
 	</c:choose>
+	</div>
 </body>
 </html>
