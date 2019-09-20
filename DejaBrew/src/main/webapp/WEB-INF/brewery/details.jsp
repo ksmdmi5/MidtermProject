@@ -10,7 +10,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-
 <link rel="apple-touch-icon" sizes="180x180"
 	href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32"

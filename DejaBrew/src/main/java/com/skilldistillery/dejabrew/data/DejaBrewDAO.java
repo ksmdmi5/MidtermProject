@@ -17,7 +17,6 @@ public interface DejaBrewDAO {
 	BeerType findByBeerType(int id);
 	List<Brewery> findBreweryByKeyword(String keyword);
 	List<Brewery> showAll();
-	List<User> showAllUsers();
 	List<BeerType> getAllBeerTypes();
 	Address updateAddress(int id, Address addr);
 	Review updateReview(int id, Review review);

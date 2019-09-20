@@ -15,8 +15,8 @@
 <link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
-
 	<jsp:include page="navbar.jsp" /><br>
+<div align="center">
 	<div id="review-list">
 		<h2>User Reviews:</h2>
 		<c:choose>
@@ -43,6 +43,7 @@
 	You have not left any reviews yet.
 	</c:otherwise>
 		</c:choose>
+	</div>
 	</div>
 </body>
 </html>
