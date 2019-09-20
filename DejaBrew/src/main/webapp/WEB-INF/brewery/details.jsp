@@ -33,7 +33,7 @@
 	<jsp:include page="navbar.jsp" /><br>
 
 	<div class="header">
-		<img id="header-img" alt="beer-img" src="/img/details.jpg" heig>
+		<img id="header-img" alt="beer-img" src="img/details.jpg">
 		<div id="brew-name">${brew.name}</div>
 	</div>
 	<c:choose>
@@ -99,7 +99,7 @@
 
 								<div class="beer-detail ">
 									<img class="beer-img ${beer.types[0].name}" alt="beer"
-										src="beer.png" width="50px">
+										src="img/beer.png" width="50px">
 
 									<div class="beer-info">
 
