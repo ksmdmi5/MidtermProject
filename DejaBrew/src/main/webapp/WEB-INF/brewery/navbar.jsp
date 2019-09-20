@@ -109,7 +109,8 @@
 		</button></a>
 	<c:choose>
 		<c:when test="${auth == '[ROLE_ADMIN]' }">
-			<a href="admin.do"><button class="btn btn-primary">God Mode</button></a>
+			<a href="admin.do"><button class="btn btn-primary">God
+					Mode</button></a>
 		</c:when>
 	</c:choose>
 	<form action="searchKeyword.do" method="GET">
@@ -125,7 +126,8 @@
 		</c:when>
 		<c:otherwise>
 			<div class="text-center">
-				<a href="/logout" class="btn btn-primary">Logout</a>
+				<a href="user.do">${loggedIn.name }</a> <a href="/logout"
+					class="btn btn-primary">Logout</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
