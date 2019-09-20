@@ -55,6 +55,11 @@ public class DejaBrewController {
 		mv.addObject("auth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		mv.addObject("review", new Review());
 		mv.addObject("brew", brew);
+		
+		Beer beer = new Beer();
+		beer.setTypes(dao.getAllBeerTypes());
+		
+		mv.addObject("types", beer);
 		mv.addObject("loggedIn", principal);
 		mv.setViewName("details");
 		return mv;
@@ -119,13 +124,19 @@ public class DejaBrewController {
 
 	// creation of brewery redirects
 	@RequestMapping(path = "createBrewery.do", method = RequestMethod.POST)
-	public String createBrewery(CreateForm breweryForm, RedirectAttributes redir) {
+	public String createBrewery(CreateForm breweryForm, RedirectAttributes redir, Principal principal) {
 		redir.addFlashAttribute("newbrew", breweryForm);
+		
 		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(), breweryForm.getState(),
 				breweryForm.getZip());
+		
 		dao.addAddress(address);
+		
+//		dao.addBrewery(new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), true,
+//				breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+
 		dao.addBrewery(new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), true,
-				breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+				breweryForm.getMenu(), address, dao.findUserByName(principal.getName())));
 		return "redirect:/DejaBrew";
 	}
 
@@ -143,12 +154,16 @@ public class DejaBrewController {
 	public ModelAndView editBrewery(@RequestParam("brewId") int id, CreateForm breweryForm) {
 		ModelAndView mv = new ModelAndView();
 		int addrId = dao.findById(id).getAddress().getId();
+		
 		Address address = new Address(breweryForm.getStreet(), breweryForm.getCity(), breweryForm.getState(),
 				breweryForm.getZip());
+		
 		address.setId(addrId);
 		dao.updateAddress(addrId, address);
+		
 		dao.updateBrew(id, new Brewery(breweryForm.getName(), breweryForm.getDescription(), breweryForm.getUrl(), true,
 				breweryForm.getMenu(), address, dao.findUserById(breweryForm.getUserId())));
+		
 		mv.addObject("brew", dao.findById(id));
 		mv.setViewName("details");
 		return mv;

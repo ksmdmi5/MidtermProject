@@ -28,6 +28,19 @@ public class CreateForm {
 		this.menu = menu;
 		this.userId = userId;
 	}
+	
+	public CreateForm(String name, String street, String city, String state, String zip, String description, String url,
+			boolean menu) {
+		super();
+		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.description = description;
+		this.url = url;
+		this.menu = menu;
+	}
 
 	public String getName() {
 		return name;

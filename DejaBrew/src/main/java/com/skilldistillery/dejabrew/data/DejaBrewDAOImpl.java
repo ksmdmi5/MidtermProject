@@ -207,4 +207,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		return em.createQuery(query, Review.class).setParameter("id", id).getResultList(); 
 	}
 
+	
+	@Override
+	public List<BeerType> getAllBeerTypes(){
+		return em.createQuery("SELECT type FROM BeerType type", BeerType.class).getResultList();
+	}
 }
