@@ -109,7 +109,7 @@
 				<div class="flex-container">
 					<div class="img-div">
 
-						<input type="image" class="card-img-top" src="/image/taps.jpg"
+						<input type="image" class="card-img-top" src="img/taps.jpg"
 							alt="Cardimage">
 							</div>
 						<div class="card-body" align="center">
