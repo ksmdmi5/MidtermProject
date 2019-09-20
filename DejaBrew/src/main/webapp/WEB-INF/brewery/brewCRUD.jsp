@@ -17,12 +17,19 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
+
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	padding-top: 65px;
+	display: flex;
+}
+.center {
+
 }
 </style>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1"
 	charset="UTF-8">
 
@@ -30,60 +37,59 @@ body {
 </head>
 <body>
 	<jsp:include page="navbar.jsp" /><br>
-	<c:if test="${not empty brew }">
-		<h2>Brewery Add Page</h2>
-	</c:if>
-	<c:choose>
+	<div class="center">
+		<c:if test="${not empty brew }">
+			<h2>Brewery Add Page</h2>
+		</c:if>
+		<c:choose>
 
-		<c:when test="${not empty brew }">
-			<form action="createBrewery.do" method="POST"
-				modelAttribute="breweryForm">
-		</c:when>
+			<c:when test="${not empty brew }">
+				<form action="createBrewery.do" method="POST"
+					modelAttribute="breweryForm">
+			</c:when>
 
-		<c:otherwise>
-			<form action="breweryEdited.do" method="POST"
-				modelAttribute="breweryForm">
-		</c:otherwise>
+			<c:otherwise>
+				<form action="breweryEdited.do" method="POST"
+					modelAttribute="breweryForm">
+			</c:otherwise>
 
-	</c:choose>
+		</c:choose>
 
-		Brewery Name here: <input type="text" name="name" value="${editBrew.name}" /><br>
-		Street Address: <input type="text" name="street" value="${editBrew.address.street}" /><br>
-		City: <input type="text" name="city" value="${editBrew.address.city}" /><br>
-		State: <input type="text" name="state" value="${editBrew.address.state}" /><br>
-		ZipCode: <input type="number" name="zip" value="${editBrew.address.zip}" /><br>
-		<br> 
-		Does the establishment have a food menu? (Y/N)<br> <input
+		Brewery Name: <input type="text" name="name" value="${editBrew.name}"
+			required /><br> Street Address: <input type="text" name="street"
+			value="${editBrew.address.street}" required /><br> City: <input
+			type="text" name="city" value="${editBrew.address.city}" required /><br>
+		State: <input type="text" name="state"
+			value="${editBrew.address.state}" required /><br> ZipCode: <input
+			type="number" name="zip" value="${editBrew.address.zip}" required /><br>
+		<br> Does the establishment have a food menu? (Y/N)<br> <input
 			type="radio" name="menu" value="yes"
 			${editBrew.menu==true ? "checked":""}>Yes<br> <input
 			type="radio" name="menu" value="no"
 			${editBrew.menu==false ? "checked":""}>No<br> <br>
-		Brewery Description: <input type="text" name="description" value="${editBrew.description}" /><br> <br> 
-		URL for the Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
-	
-	<c:if test="${not empty editBrew }">
- 		<input type="hidden" name="userId" value="${editBrew.user.id }" />
-	</c:if>
+		Brewery Description: <input type="text" name="description"
+			value="${editBrew.description}" /><br> <br> URL for the
+		Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
 
-		<input type="hidden" name="brewId" value="${editBrew.id }" />
+		<c:if test="${not empty editBrew }">
+			<input type="hidden" name="userId" value="${editBrew.user.id }" />
+		</c:if>
 
-	<p>After the Brewery has been created you will be given a chance to
-		add a review of the establishment and add what types of beers they
-		have.</p>
-	<br>
-	<c:choose>
-		<c:when test="${not empty brew }">
-			<input type="submit" value="Submit New Brewery" />
-			<br>
-		</c:when>
-		<c:otherwise>
-			<input type="submit" value="Update Brewery" />
-		</c:otherwise>
-	</c:choose>
+		<input type="hidden" name="brewId" value="${editBrew.id }" /> <br>
+		<c:choose>
+			<c:when test="${not empty brew }">
+				<input type="submit" value="Submit New Brewery" />
+				<br>
+			</c:when>
+			<c:otherwise>
+				<input type="submit" value="Update Brewery" />
+			</c:otherwise>
+		</c:choose>
 
-	</form>
+		</form>
 
 
+	</div>
 
 </body>
 </html>
