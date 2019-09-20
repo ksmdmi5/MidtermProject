@@ -33,5 +33,4 @@ public interface DejaBrewDAO {
 	boolean deleteReview(int id);
 	boolean enableUser(int id);
 	List<Review> showUserComments(int id);
-	List<User> showAllUsers();
 }
