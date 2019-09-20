@@ -126,11 +126,15 @@
 						<br>
 						<h2>Add Beer:</h2>
 						<div class="beer-form">
-							<form action="addBeer.do" method="POST">
+							<form:form action="addBeer.do" method="POST" modelAttribute="beer">
 								<br> Name: <input type="text" name="beerName" /> <input
 									type="hidden" name="brewId" value="${brew.id}" /><br>
-								Style: <select name="beerTypeId">
-									<option value="1">I.P.A.</option>
+									
+									
+<%-- 								Style: <form:select path="types" items="${types }"/>
+ --%>								
+								
+					<!-- 				<option value="1">I.P.A.</option>
 									<option value="2">A.P.A.</option>
 									<option value="3">Ale</option>
 									<option value="4">Lager</option>
@@ -146,9 +150,9 @@
 									<option value="14">Wheat/Weisse/Hefeweizen</option>
 									<option value="15">Blond</option>
 									<option value="16">Amber</option>
-									<option value="17">Other</option>
-								</select><input type="submit" value="Add Beer" />
-							</form>
+									<option value="17">Other</option> -->
+								<input type="submit" value="Add Beer" />
+							</form:form>
 						</div>
 					</c:if>
 				</div>

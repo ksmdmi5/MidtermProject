@@ -201,4 +201,9 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 		String query = "SELECT user FROM User user";
 		return em.createQuery(query, User.class).getResultList();
 	}
+	
+	@Override
+	public List<BeerType> getAllBeerTypes(){
+		return em.createQuery("SELECT type FROM BeerType type", BeerType.class).getResultList();
+	}
 }
