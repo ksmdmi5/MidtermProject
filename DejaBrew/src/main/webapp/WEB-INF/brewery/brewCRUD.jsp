@@ -22,10 +22,9 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	padding-top: 65px;
-	display: flex;
 }
 .center {
-
+	margin: 1% 10%;
 }
 </style>
 
