@@ -57,8 +57,11 @@ body {
 			${editBrew.menu==false ? "checked":""}>No<br> <br>
 		Brewery Description: <input type="text" name="description" value="${editBrew.description}" /><br> <br> 
 		URL for the Brewery: <input type="text" name="url" value="${editBrew.url}" /><br>
+	
+	<c:if test="${not empty editBrew }">
+ 		<input type="hidden" name="userId" value="${editBrew.user.id }" />
+	</c:if>
 
-		<input type="hidden" name="userId" value="${editBrew.user.id }" />
 		<input type="hidden" name="brewId" value="${editBrew.id }" />
 		<!-- Change after authoritazation XXXXXXXX -->
 
