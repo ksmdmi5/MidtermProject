@@ -272,6 +272,16 @@ public class DejaBrewController {
 		mv.setViewName("admin");
 		return mv;
 	}
+	
+	@RequestMapping(path = "enableUser.do", method = RequestMethod.POST)
+	public ModelAndView enableUser(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id", id);
+		dao.enableUser(id);
+		mv.addObject("users", dao.showAllUsers());
+		mv.setViewName("admin");
+		return mv;
+	}
 
 //	//User can see their comments on their account page
 	@RequestMapping(path = "user.do", method = RequestMethod.GET)

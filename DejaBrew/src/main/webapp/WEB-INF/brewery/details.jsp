@@ -55,13 +55,14 @@
 									<button class="btn btn-secondary" type="submit">Edit
 										Brewery</button>
 								</form>
-							<c:if test="${brew.user.username == loggedIn.name or auth == '[ROLE_ADMIN]'}">
-								<form method='POST' action=deleteBrewery.do>
-									<button class="btn btn-secondary" type="submit">Delete
-										Brewery</button>
-									<input type="hidden" name="id" value="${brew.id}">
-								</form>
-							</c:if>
+								<c:if
+									test="${brew.user.username == loggedIn.name or auth == '[ROLE_ADMIN]'}">
+									<form method='POST' action=deleteBrewery.do>
+										<button class="btn btn-secondary" type="submit">Delete
+											Brewery</button>
+										<input type="hidden" name="id" value="${brew.id}">
+									</form>
+								</c:if>
 							</div>
 						</c:if>
 
@@ -125,15 +126,13 @@
 						<br>
 						<h2>Add Beer:</h2>
 						<div class="beer-form">
-							<form:form action="addBeer.do" method="POST" modelAttribute="beer">
+							<form action="addBeer.do" method="POST">
 								<br> Name: <input type="text" name="beerName" /> <input
 									type="hidden" name="brewId" value="${brew.id}" /><br>
-									
-									
-<%-- 								Style: <form:select path="types" items="${types }"/>
- --%>								
-								
-					<!-- 				<option value="1">I.P.A.</option>
+								Style <select name="beerTypeId">
+
+									<%-- Style: <form:select path="types" items="${types }"/> --%>
+									<option value="1">I.P.A.</option>
 									<option value="2">A.P.A.</option>
 									<option value="3">Ale</option>
 									<option value="4">Lager</option>
@@ -149,9 +148,9 @@
 									<option value="14">Wheat/Weisse/Hefeweizen</option>
 									<option value="15">Blond</option>
 									<option value="16">Amber</option>
-									<option value="17">Other</option> -->
-								<input type="submit" value="Add Beer" />
-							</form:form>
+									<option value="17">Other</option>
+								</select> <input type="submit" value="Add Beer" />
+							</form>
 						</div>
 					</c:if>
 				</div>
