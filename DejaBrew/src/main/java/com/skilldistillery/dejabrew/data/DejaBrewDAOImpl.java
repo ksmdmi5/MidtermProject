@@ -41,7 +41,7 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 
 	@Override
 	public List<Brewery> showAll() {
-		String query = "SELECT brewery FROM Brewery brewery ORDER BY id";
+		String query = "SELECT brewery FROM Brewery brewery where brewery.active = 1 ORDER BY id";
 		return em.createQuery(query, Brewery.class).getResultList();
 	}
 
@@ -87,16 +87,17 @@ public class DejaBrewDAOImpl implements DejaBrewDAO {
 	@Override
 	public boolean deleteBrewery(int id) {
 		try {
+			System.err.println("************" + id);
 			Brewery brew = em.find(Brewery.class, id);
-			List<Beer> beers = brew.getBeers();
-			for (Beer beer : beers) {
-				em.remove(beer);
-			}
-			em.remove(brew);
+			brew.setActive(false);
+//			List<Beer> beers = brew.getBeers();
+//			for (Beer beer : beers) {
+//				em.remove(beer);
+//			}
+//			em.remove(brew);
 		} catch (Exception e) {
 			return false;
 		}
-		em.close();
 		return true;
 	}
 

@@ -57,7 +57,7 @@
 								</form>
 								<c:if
 									test="${brew.user.username == loggedIn.name or auth == '[ROLE_ADMIN]'}">
-									<form method='POST' action=deleteBrewery.do>
+									<form method='POST' action="deleteBrewery.do">
 										<button class="btn btn-secondary" type="submit">Delete
 											Brewery</button>
 										<input type="hidden" name="id" value="${brew.id}">

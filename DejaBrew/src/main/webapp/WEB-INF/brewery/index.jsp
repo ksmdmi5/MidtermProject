@@ -80,7 +80,7 @@
 									<div class="img-div">
 
 										<input type="image" class="card-img-top"
-											src="/image/detail.jpg" alt=" Cardimage"> <input
+											src="img/detail.jpg" alt=" Cardimage"> <input
 											type="hidden" name="id" value="${brew.id }">
 									</div>
 
