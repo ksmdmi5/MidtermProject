@@ -120,13 +120,13 @@
 	<c:choose>
 		<c:when test="${empty loggedIn }">
 			<div class="text-center">
-				<a href="" class="btn btn-primary" id="test" onClick="focusModal()"
+				<a href="" class="btn btn-primary" id="test"
 					data-toggle="modal" data-target="#modalLRForm">Login/Register</a>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="text-center">
-				<a href="user.do">${loggedIn.name }</a> <a href="/logout"
+				<a class="btn btn-primary" href="user.do">${loggedIn.name }</a> <a href="/logout"
 					class="btn btn-primary">Logout</a>
 			</div>
 		</c:otherwise>

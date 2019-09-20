@@ -1,4 +1,4 @@
-package com.skilldistillery.dejabrew.data;
+package com.skilldistillery.dejabrew.security;
 
 import java.util.Optional;
 

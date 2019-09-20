@@ -1,7 +1,6 @@
 package com.skilldistillery.dejabrew.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,17 +47,31 @@ public class DejaBrewController {
 
 	// handles going to details of specific brewery
 	@RequestMapping(path = "details.do", method = RequestMethod.GET)
-	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id, Principal principal) {
+	public ModelAndView viewBrewery(Brewery brew, Principal principal) {
 		brew = dao.findById(brew.getId());
 		ModelAndView mv = new ModelAndView();
-
+		Beer beer = new Beer();
+		beer.setTypes(dao.getAllBeerTypes());
 		mv.addObject("auth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		mv.addObject("review", new Review());
 		mv.addObject("brew", brew);
-		
+		mv.addObject("types", beer);
+		mv.addObject("loggedIn", principal);
+		mv.setViewName("details");
+		return mv;
+	}
+	
+	// handles going to details of specific brewery
+	@RequestMapping(path = "userBrewDetails.do", method = RequestMethod.GET)
+	public ModelAndView userBrewDetails(@RequestParam("brewId")int brewId, Principal principal) {
+		System.err.println("*******************************" + brewId);
+		Brewery brew = dao.findById(brewId);
+		ModelAndView mv = new ModelAndView();
 		Beer beer = new Beer();
 		beer.setTypes(dao.getAllBeerTypes());
-		
+		mv.addObject("auth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+		mv.addObject("review", new Review());
+		mv.addObject("brew", brew);
 		mv.addObject("types", beer);
 		mv.addObject("loggedIn", principal);
 		mv.setViewName("details");

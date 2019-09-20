@@ -1,4 +1,4 @@
-package com.skilldistillery.dejabrew;
+package com.skilldistillery.dejabrew.security;
 
 import java.util.Arrays;
 import java.util.Collection;
