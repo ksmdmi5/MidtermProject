@@ -64,7 +64,6 @@ public class DejaBrewController {
 	// handles going to details of specific brewery
 	@RequestMapping(path = "userBrewDetails.do", method = RequestMethod.GET)
 	public ModelAndView userBrewDetails(@RequestParam("brewId")int brewId, Principal principal) {
-		System.err.println("*******************************" + brewId);
 		Brewery brew = dao.findById(brewId);
 		ModelAndView mv = new ModelAndView();
 		Beer beer = new Beer();
@@ -194,14 +193,16 @@ public class DejaBrewController {
 	// deletion redirects
 	@RequestMapping(path = "deleteBrewery.do", method = RequestMethod.POST)
 	public String deleteBrewery(Brewery brew, RedirectAttributes redir) {
-		boolean status = false;
+//		boolean status = false;
+		System.err.println("###########" + brew);
 		brew = dao.findById(brew.getId());
-		int addrId = brew.getAddress().getId();
+//		int addrId = brew.getAddress().getId();
 		int brewId = brew.getId();
-		if (dao.deleteBrewery(brewId) && dao.deleteAddress(addrId)) {
-			status = true;
-		}
-		redir.addFlashAttribute("status", status);
+//		if (dao.deleteBrewery(brewId) && dao.deleteAddress(addrId)) {
+//			status = true;
+//		}
+		dao.deleteBrewery(brewId);
+//		redir.addFlashAttribute("status", status);
 
 		return "redirect:/DejaBrew";
 

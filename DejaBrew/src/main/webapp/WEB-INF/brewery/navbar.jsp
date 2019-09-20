@@ -126,7 +126,7 @@
 		</c:when>
 		<c:otherwise>
 			<div class="text-center">
-				<a class="btn btn-primary" href="user.do">${loggedIn.name }</a> <a href="/logout"
+				<a class="btn btn-primary" href="user.do">${loggedIn.name }</a> <a href="logout"
 					class="btn btn-primary">Logout</a>
 			</div>
 		</c:otherwise>
