@@ -26,7 +26,7 @@ import com.skilldistillery.dejabrew.entities.Review;
 import com.skilldistillery.dejabrew.entities.User;
 
 @Controller
-@SessionAttributes("loggedIn")
+@SessionAttributes({"loggedIn", "auth"})
 public class DejaBrewController {
 	@Autowired
 	private DejaBrewDAO dao;
@@ -51,6 +51,8 @@ public class DejaBrewController {
 	public ModelAndView viewBrewery(Brewery brew, @RequestParam("id") int id, Principal principal) {
 		brew = dao.findById(brew.getId());
 		ModelAndView mv = new ModelAndView();
+
+		mv.addObject("auth", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		mv.addObject("review", new Review());
 		mv.addObject("brew", brew);
 		mv.addObject("loggedIn", principal);
