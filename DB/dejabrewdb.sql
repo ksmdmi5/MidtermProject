@@ -242,6 +242,7 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (58, '1634
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (59, '555 North Mill Street', 'Aspen', 'Colorado', 81611);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (60, '1123 Walnut Street', 'Boulder', 'Colorado', 80302);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (61, '3120 Blake St Unit c', 'Denver', 'CO', 80205);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (62, '1132 W. Dillon Rd', 'Louiseville', 'CO', 80027);
 
 COMMIT;
 
@@ -299,6 +300,7 @@ INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (59, 59, 1, 'Aspen Brewing Company', 1, '', 'http://aspenbrewingcompany.com', 1, 'https://www.coloradobrewerylist.com/wp-content/uploads/2014/02/Aspen.png');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (60, 60, 1, 'Walnut Brewery', 1, '', 'http://www.walnutbrewery.com/', 0, 'https://coloradofrontrange.com/wp-content/uploads/2015/02/00wbportfolio.jpg');
 INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (61, 61, 4, '14er Brewing & Beer Garden', 1, NULL, NULL, 0, 'https://www.coloradobrewerylist.com/wp-content/uploads/2016/10/14er.jpg');
+INSERT INTO `brewery` (`id`, `address_id`, `createdby_user`, `name`, `active`, `description`, `url`, `menu`, `logourl`) VALUES (62, 61, 3, 'Mother Tucker Brewery', 1, NULL, 'https://www.mothertuckerbrewery.com/louisville/', 0, 'https://www.mothertuckerbrewery.com/wp-content/uploads/MTB-Colorado_Logo-White-1024x941.png');
 
 COMMIT;
 
