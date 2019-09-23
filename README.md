@@ -5,7 +5,7 @@ SD22 Midterm Project
 * Daniel Bautista (SCRUM Master)
 * Paul Lewis (DBA)
 * Cody Fulker (Repo Owner)
-* Carl Lawson (We're not sure)
+* Carl Lawson (Security Architect)
 
 ### Overview
 
